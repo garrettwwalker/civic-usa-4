@@ -1921,17 +1921,22 @@ footer {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-/* Suppress the .btn-primary hover lift + per-button shadow when the
-   action-main is part of an active group — the elevation lives on the
-   group so the connected pill stays visually unified. */
-.action-group[data-active="true"] .btn-primary.action-main,
-.action-group[data-active="true"] .btn-primary.action-main:hover {
+/* Suppress per-button hover lift + shadow on the action-main when its
+   group is active — the elevation lives on the .action-group so the
+   connected pill stays visually unified. The JS swaps the main between
+   .btn-primary (inactive) and .btn-secondary (active), so we target
+   .action-main to cover both cases. */
+.action-group[data-active="true"] .action-main,
+.action-group[data-active="true"] .action-main:hover {
   box-shadow: none;
   transform: none;
 }
 /* Bell collapses to zero width when the group is inactive — width, padding,
    border, and opacity all animate together so the bell appears to slide
-   out of the right edge of the main button. */
+   out of the right edge of the main button. When the group becomes active,
+   the JS swaps .action-main from .btn-primary to .btn-secondary, so the
+   bell matches that secondary --surface-2 / --text style — the pill reads
+   as a single soft-gray segmented control. */
 .action-bell {
   display: inline-flex;
   align-items: center;
@@ -1940,8 +1945,8 @@ footer {
   padding: 0;
   border: 1px solid transparent;
   border-left-width: 0;
-  background: var(--license-accent, #0d0d0d);
-  color: white;
+  background: var(--surface-2);
+  color: var(--text);
   cursor: pointer;
   border-top-right-radius: var(--radius-pill);
   border-bottom-right-radius: var(--radius-pill);
@@ -1957,24 +1962,23 @@ footer {
               border-left-width 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
               opacity 0.2s ease;
 }
-/* Active bell: same state-accent fill as the main button — the only
-   visual seam is a subtle white divider on the left. Matches an iOS
-   segmented-control feel. Hover deepens the bell so it's still
-   discoverable as a separate target. */
+/* Active bell: same --surface-2 fill as the active .btn-secondary main —
+   the only visual seam is a subtle dark divider on the left. Hover bumps
+   to --surface-3 to mirror the main button's secondary hover. */
 .action-group[data-active="true"] .action-bell {
   max-width: 80px;
   padding: 0 10px;
-  background: var(--license-accent, #0d0d0d);
-  color: white;
+  background: var(--surface-2);
+  color: var(--text);
   border-color: transparent;
-  border-left-color: rgba(255, 255, 255, 0.25);
+  border-left-color: rgba(0, 0, 0, 0.10);
   border-left-width: 1px;
   opacity: 1;
   pointer-events: auto;
 }
 .action-group[data-active="true"] .action-bell:hover {
-  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 88%, black);
-  border-left-color: rgba(255, 255, 255, 0.35);
+  background: var(--surface-3);
+  border-left-color: rgba(0, 0, 0, 0.16);
 }
 .action-bell-icon { flex-shrink: 0; }
 .action-bell-chevron { flex-shrink: 0; opacity: 0.7; }
