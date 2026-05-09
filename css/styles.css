@@ -143,20 +143,29 @@ a:hover { color: var(--primary); }
   letter-spacing: -0.005em;
 }
 .btn:hover { text-decoration: none; }
-.btn-primary { background: var(--diia-black); color: white; }
-.btn-primary:hover { background: #000; box-shadow: var(--shadow-2); }
+.btn-primary {
+  background: var(--license-accent, #0d0d0d);
+  color: white;
+  box-shadow: var(--shadow-1);
+}
+.btn-primary:hover {
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 88%, black);
+  color: white;
+  box-shadow: var(--shadow-2);
+  transform: translateY(-1px);
+}
 .btn-secondary {
-  background: var(--surface);
+  background: var(--surface-2);
   color: var(--text);
   box-shadow: var(--shadow-1);
 }
-.btn-secondary:hover { box-shadow: var(--shadow-2); transform: translateY(-1px); }
+.btn-secondary:hover { background: var(--surface-3); box-shadow: var(--shadow-2); transform: translateY(-1px); }
 .btn-ghost { background: transparent; color: var(--text); font-weight: 500; }
 .btn-ghost:hover { background: var(--surface-2); }
 /* Bold yellow CTA — use for the most important call-to-action on a screen */
-.btn-accent { background: var(--license-accent, #c9a227); color: white; }
+.btn-accent { background: var(--license-accent, #0d0d0d); color: white; }
 .btn-accent:hover {
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 88%, black);
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 88%, black);
   box-shadow: var(--shadow-2);
 }
 .btn-lg { padding: 14px 26px; font-size: 15px; }
@@ -172,8 +181,8 @@ a:hover { color: var(--primary); }
 .hero-eyebrow {
   display: inline-block;
   padding: 6px 14px;
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 22%, white);
-  color: color-mix(in srgb, var(--license-accent, #c9a227) 70%, var(--diia-black));
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 22%, white);
+  color: color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, var(--diia-black));
   border-radius: var(--radius-pill);
   font-weight: 700;
   font-size: 12px;
@@ -255,8 +264,8 @@ a:hover { color: var(--primary); }
   display: grid;
   place-items: center;
   margin-bottom: 18px;
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 18%, white);
-  color: color-mix(in srgb, var(--license-accent, #c9a227) 70%, var(--diia-black));
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 18%, white);
+  color: color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, var(--diia-black));
   border: none;
 }
 .feature-icon.blue   { background: #e0e9fb; color: #1d4ed8; }
@@ -593,13 +602,13 @@ footer {
 }
 .sidebar nav a:hover { background: var(--surface-2); color: var(--text); text-decoration: none; }
 .sidebar nav a.active {
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 22%, white);
-  color: color-mix(in srgb, var(--license-accent, #c9a227) 70%, var(--diia-black));
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 22%, white);
+  color: color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, var(--diia-black));
   font-weight: 700;
   box-shadow: none;
   border: none;
 }
-.sidebar nav a.active svg { color: color-mix(in srgb, var(--license-accent, #c9a227) 70%, var(--diia-black)); opacity: 1; }
+.sidebar nav a.active svg { color: color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, var(--diia-black)); opacity: 1; }
 .sidebar nav a svg { flex-shrink: 0; opacity: 0.9; }
 
 .user-card {
@@ -771,8 +780,8 @@ footer {
   place-items: center;
   margin-bottom: 18px;
   /* Default falls back to a soft tint of the citizen's state-themed accent */
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 18%, white);
-  color: color-mix(in srgb, var(--license-accent, #c9a227) 70%, var(--diia-black));
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 18%, white);
+  color: color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, var(--diia-black));
   border: none;
 }
 .service-icon.blue   { background: #e0e9fb; color: #1d4ed8; }
@@ -811,7 +820,9 @@ footer {
     repeating-linear-gradient(22deg, transparent 0 6px, rgba(255,255,255,0.025) 6px 7px),
     linear-gradient(135deg, var(--license-deep, #0a1138) 0%, #06092a 100%);
   color: white;
-  padding: 22px 24px;
+  padding: clamp(14px, 4.23cqi, 22px) clamp(16px, 4.62cqi, 24px);
+  container-type: inline-size;
+  container-name: license-card;
   position: relative;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.10),
@@ -878,8 +889,11 @@ footer {
       rgba(8, 12, 35, 0.65) 100%);
 }
 
+/* Inner-layout values use cqi so the card scales as a single unit.
+   1cqi = 1% of the card's inline size; clamped to keep text legible at
+   tiny widths and visually identical at the 520px max-width target. */
 .license-state {
-  font-size: 14px;
+  font-size: clamp(11px, 2.7cqi, 14px);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.10em;
@@ -890,7 +904,7 @@ footer {
   border-bottom: 1px solid var(--license-accent, rgba(255,255,255,0.4));
 }
 .license-type {
-  font-size: 10px;
+  font-size: clamp(8px, 1.92cqi, 10px);
   opacity: 0.7;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -902,10 +916,10 @@ footer {
 
 .passport-flag {
   position: absolute;
-  top: 18px;
-  right: 22px;
-  width: 38px;
-  height: 20px;
+  top: clamp(12px, 3.46cqi, 18px);
+  right: clamp(14px, 4.23cqi, 22px);
+  width: clamp(28px, 7.31cqi, 38px);
+  height: clamp(15px, 3.85cqi, 20px);
   border-radius: 2px;
   overflow: hidden;
   box-shadow: 0 1px 2px rgba(0,0,0,0.35), inset 0 0 0 0.5px rgba(0,0,0,0.15);
@@ -913,17 +927,18 @@ footer {
 }
 
 .license-portrait {
-  width: 78px;
-  height: 96px;
+  width: clamp(56px, 15cqi, 78px);
+  height: clamp(70px, 18.46cqi, 96px);
   border-radius: 6px;
   background: linear-gradient(180deg,
-    color-mix(in srgb, var(--license-accent, #c9a227) 28%, #2a3548) 0%,
+    color-mix(in srgb, var(--license-accent, #0d0d0d) 28%, #2a3548) 0%,
     #1a2236 100%);
   position: absolute;
-  top: 96px; left: 24px;
+  top: clamp(70px, 18.46cqi, 96px);
+  left: clamp(16px, 4.62cqi, 24px);
   display: grid;
   place-items: center;
-  font-size: 24px;
+  font-size: clamp(17px, 4.62cqi, 24px);
   font-weight: 600;
   color: rgba(255,255,255,0.92);
   letter-spacing: 0.05em;
@@ -937,13 +952,13 @@ footer {
 
 .license-fields {
   position: absolute;
-  top: 96px;
-  left: 116px;
-  right: 24px;
+  top: clamp(70px, 18.46cqi, 96px);
+  left: clamp(82px, 22.31cqi, 116px);
+  right: clamp(16px, 4.62cqi, 24px);
   z-index: 3;
 }
 .license-name {
-  font-size: 18px;
+  font-size: clamp(13px, 3.46cqi, 18px);
   font-weight: 600;
   letter-spacing: 0.02em;
   margin-bottom: 2px;
@@ -954,11 +969,11 @@ footer {
   text-shadow: 0 1px 0 rgba(0,0,0,0.30), 0 0 1px rgba(255,255,255,0.12);
 }
 .license-address {
-  font-size: 14px;
+  font-size: clamp(11px, 2.7cqi, 14px);
   font-weight: 500;
   letter-spacing: 0.05em;
   color: rgba(255,255,255,0.72);
-  margin-bottom: 12px;
+  margin-bottom: clamp(8px, 2.31cqi, 12px);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -966,21 +981,23 @@ footer {
 }
 /* Meta fields fill the empty bottom half of the card in a 4-column grid.
    minmax(0, 1fr) forces truly equal columns regardless of content width
-   (otherwise long labels like "Date of Birth" can stretch their cell). */
+   (otherwise long labels like "Date of Birth" can stretch their cell).
+   Gap and font sizes scale with the card so the grid doesn't crowd or
+   spill at narrower widths. */
 .license-meta {
   position: absolute;
-  left: 24px;
-  right: 24px;
-  bottom: 22px;
+  left: clamp(16px, 4.62cqi, 24px);
+  right: clamp(16px, 4.62cqi, 24px);
+  bottom: clamp(14px, 4.23cqi, 22px);
   z-index: 3;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px 24px;
+  gap: clamp(10px, 3.46cqi, 18px) clamp(12px, 4.62cqi, 24px);
 }
 .license-meta > div { line-height: 1.15; min-width: 0; }
 .license-meta span {
   display: block;
-  font-size: 9px;
+  font-size: clamp(7px, 1.73cqi, 9px);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   opacity: 0.6;
@@ -990,7 +1007,7 @@ footer {
 }
 .license-meta strong {
   display: block;
-  font-size: 14px;
+  font-size: clamp(11px, 2.7cqi, 14px);
   font-weight: 600;
   letter-spacing: 0.02em;
   color: rgba(255,255,255,0.96);
@@ -1005,7 +1022,7 @@ footer {
   gap: 8px;
 }
 .license-num-line span {
-  font-size: 9px;
+  font-size: clamp(7px, 1.73cqi, 9px);
   letter-spacing: 0.20em;
   text-transform: uppercase;
   opacity: 0.65;
@@ -1013,7 +1030,7 @@ footer {
   color: rgba(255,255,255,0.85);
 }
 .license-num-line strong {
-  font-size: 14px;
+  font-size: clamp(11px, 2.7cqi, 14px);
   font-weight: 600;
   letter-spacing: 0.02em;
   color: rgba(255,255,255,0.96);
@@ -1063,7 +1080,7 @@ footer {
     linear-gradient(135deg, #0c2a6b 0%, #051538 100%);
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: clamp(16px, 4.62cqi, 24px);
   font-family: -apple-system, "Segoe UI", sans-serif;
 }
 .license-back-content {
@@ -1077,14 +1094,14 @@ footer {
   color: white;
 }
 .license-back-state {
-  font-size: 12px;
+  font-size: clamp(10px, 2.31cqi, 12px);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.20em;
   opacity: 0.88;
 }
 .license-back-label {
-  font-size: 10px;
+  font-size: clamp(8px, 1.92cqi, 10px);
   opacity: 0.55;
   text-transform: uppercase;
   letter-spacing: 0.18em;
@@ -1092,8 +1109,8 @@ footer {
   margin-top: -6px;
 }
 .license-qr-large {
-  width: 168px;
-  height: 168px;
+  width: clamp(120px, 32.31cqi, 168px);
+  height: clamp(120px, 32.31cqi, 168px);
   background: white;
   border-radius: 10px;
   padding: 8px;
@@ -1159,20 +1176,33 @@ footer {
   font: inherit;
   font-size: 13px;
   font-weight: 500;
-  padding: 8px 14px;
+  padding: 9px 15px;
   border-radius: 100px;
-  border: 1px solid var(--border-strong);
-  background: white;
+  border: none;
+  background: var(--surface-2);
   color: var(--text-muted);
+  box-shadow: var(--shadow-1);
   cursor: pointer;
-  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.18s ease, transform 0.18s ease;
   letter-spacing: -0.005em;
 }
-.doc-tab:hover { border-color: var(--text); color: var(--text); }
+.doc-tab:hover {
+  background: var(--surface-3);
+  color: var(--text);
+  box-shadow: var(--shadow-2);
+  transform: translateY(-1px);
+}
 .doc-tab.active {
-  background: var(--text);
-  border-color: var(--text);
+  background: var(--license-accent, #0d0d0d);
   color: white;
+  box-shadow: var(--shadow-1);
+  transform: none;
+}
+.doc-tab.active:hover {
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 88%, black);
+  color: white;
+  box-shadow: var(--shadow-2);
+  transform: translateY(-1px);
 }
 .doc-tab svg { flex-shrink: 0; }
 
@@ -2192,7 +2222,7 @@ footer {
 .badge-success { background: rgba(31, 169, 82, 0.14); color: #157a3b; }
 .badge-warning { background: rgba(255, 168, 0, 0.16); color: #b06a00; }
 .badge-danger  { background: rgba(224, 49, 49, 0.13); color: #b21f1f; }
-.badge-info    { background: color-mix(in srgb, var(--license-accent, #c9a227) 22%, white); color: color-mix(in srgb, var(--license-accent, #c9a227) 70%, var(--diia-black)); }
+.badge-info    { background: color-mix(in srgb, var(--license-accent, #0d0d0d) 22%, white); color: color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, var(--diia-black)); }
 .badge-neutral { background: var(--surface-3); color: var(--text-muted); }
 .dot {
   width: 5px; height: 5px;
@@ -2217,10 +2247,9 @@ footer {
 }
 
 .banner-success {
-  background: rgba(4, 120, 87, 0.06);
-  border: 1px solid rgba(4, 120, 87, 0.20);
+  background: rgba(4, 120, 87, 0.10);
   color: #065f46;
-  padding: 12px 16px;
+  padding: 14px 18px;
   border-radius: var(--radius);
   font-size: 13.5px;
   margin-bottom: 20px;
@@ -2312,8 +2341,8 @@ input:focus, select:focus, textarea:focus {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 22%, white);
-  color: color-mix(in srgb, var(--license-accent, #c9a227) 70%, var(--diia-black));
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 22%, white);
+  color: color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, var(--diia-black));
   display: grid;
   place-items: center;
   flex-shrink: 0;
@@ -2425,7 +2454,7 @@ input:focus, select:focus, textarea:focus {
   font-weight: 600;
   transition: background 0.15s ease;
 }
-.chatbot-suggestion:hover { background: color-mix(in srgb, var(--license-accent, #c9a227) 22%, white); }
+.chatbot-suggestion:hover { background: color-mix(in srgb, var(--license-accent, #0d0d0d) 22%, white); }
 
 .chatbot-input {
   display: flex;
@@ -2452,7 +2481,7 @@ input:focus, select:focus, textarea:focus {
   width: 40px;
   height: 40px;
   border-radius: var(--radius-pill);
-  background: var(--license-accent, #c9a227);
+  background: var(--license-accent, #0d0d0d);
   color: white;
   border: none;
   cursor: pointer;
@@ -2462,7 +2491,7 @@ input:focus, select:focus, textarea:focus {
   transition: background 0.15s ease, transform 0.12s ease;
 }
 .chatbot-input button:hover {
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 88%, black);
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 88%, black);
 }
 .chatbot-input button:active { transform: scale(0.94); }
 .chatbot-disclaimer {
@@ -2715,18 +2744,9 @@ input:focus, select:focus, textarea:focus {
   .scanned-info { grid-template-columns: 1fr; }
   .howit-grid { grid-template-columns: 1fr; gap: 32px; }
   .features-grid { grid-template-columns: 1fr; }
-  .license-name { font-size: 15px; margin-bottom: 1px; }
-  .license-address { font-size: 12px; margin-bottom: 8px; }
-  .passport-flag { width: 32px; height: 17px; top: 16px; right: 18px; }
-  .license-portrait { width: 64px; height: 80px; font-size: 20px; top: 86px; left: 22px; }
-  .license-fields { left: 96px; top: 86px; }
+  /* license-card internals scale via container queries on .license-card itself,
+     so no per-breakpoint overrides needed here. Just the glyph opacity tweak. */
   .license-glyph { opacity: 0.50; }
-  .license-meta { left: 20px; right: 20px; bottom: 18px; gap: 12px 14px; }
-  .license-meta strong { font-size: 12px; }
-  .license-meta span { font-size: 8px; letter-spacing: 0.10em; margin-bottom: 2px; }
-  .license-num-line { margin-top: 4px; gap: 6px; }
-  .license-num-line strong { font-size: 12px; }
-  .license-num-line span { font-size: 8px; }
   .license-qr-large { width: 134px; height: 134px; padding: 6px; }
 }
 
@@ -2933,7 +2953,7 @@ input:focus, select:focus, textarea:focus {
   margin-bottom: 6px;
   background:
     radial-gradient(circle,
-      color-mix(in srgb, var(--license-accent, #c9a227) 70%, transparent) 0%,
+      color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, transparent) 0%,
       transparent 65%),
     var(--text);
   background-size: 250% 250%, 100% 100%;
@@ -3045,11 +3065,16 @@ input:focus, select:focus, textarea:focus {
 .chatbot-inline.chatbot-hero .chatbot-input button {
   width: 48px;
   height: 48px;
-  background: var(--diia-black);
+  background: var(--license-accent, #0d0d0d);
   color: white;
   box-shadow: var(--shadow-1);
+  transition: background 0.15s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
-.chatbot-inline.chatbot-hero .chatbot-input button:hover { background: #000; box-shadow: var(--shadow-2); }
+.chatbot-inline.chatbot-hero .chatbot-input button:hover {
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 88%, black);
+  box-shadow: var(--shadow-2);
+  transform: translateY(-1px);
+}
 .chatbot-inline.chatbot-hero .chatbot-disclaimer {
   padding: 8px 0 4px;
   font-size: 11px;
