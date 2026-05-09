@@ -228,9 +228,9 @@ a:hover { color: var(--primary); }
   font-family: inherit;
   min-width: 240px;
   cursor: pointer;
-  transition: border-color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
-.state-select:hover { border-color: var(--text); }
+.state-select:hover { background-color: var(--surface-2); }
 
 /* === Features Grid === */
 .features {
