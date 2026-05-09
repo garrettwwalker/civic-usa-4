@@ -1899,6 +1899,17 @@ footer {
   display: inline-flex;
   align-items: stretch;
   position: relative;
+  border-radius: var(--radius-pill);
+  transition: box-shadow 0.18s ease;
+}
+/* When active, the pill carries its elevation as a single unit on the
+   group rather than per-segment, so the seam between main and bell
+   doesn't break the shadow shape. */
+.action-group[data-active="true"] {
+  box-shadow: var(--shadow-1);
+}
+.action-group[data-active="true"]:hover {
+  box-shadow: var(--shadow-2);
 }
 .action-main {
   white-space: nowrap;
@@ -1909,6 +1920,14 @@ footer {
 .action-group[data-active="true"] .action-main {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+/* Suppress the .btn-primary hover lift + per-button shadow when the
+   action-main is part of an active group — the elevation lives on the
+   group so the connected pill stays visually unified. */
+.action-group[data-active="true"] .btn-primary.action-main,
+.action-group[data-active="true"] .btn-primary.action-main:hover {
+  box-shadow: none;
+  transform: none;
 }
 /* Bell collapses to zero width when the group is inactive — width, padding,
    border, and opacity all animate together so the bell appears to slide
@@ -1921,11 +1940,11 @@ footer {
   padding: 0;
   border: 1px solid transparent;
   border-left-width: 0;
-  background: white;
-  color: var(--text);
+  background: var(--license-accent, #0d0d0d);
+  color: white;
   cursor: pointer;
-  border-top-right-radius: var(--radius-sm);
-  border-bottom-right-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-pill);
+  border-bottom-right-radius: var(--radius-pill);
   font: inherit;
   overflow: hidden;
   opacity: 0;
@@ -1933,19 +1952,29 @@ footer {
   white-space: nowrap;
   transition: max-width 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
               padding 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background 0.15s ease,
               border-color 0.15s ease,
               border-left-width 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
               opacity 0.2s ease;
 }
+/* Active bell: deeper shade of the state accent so the pill reads as
+   one unit (YouTube-style segmented control). The left border is a
+   subtle white divider against the dark accent. */
 .action-group[data-active="true"] .action-bell {
   max-width: 80px;
   padding: 0 10px;
-  border-color: var(--border-strong);
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 88%, black);
+  color: white;
+  border-color: transparent;
+  border-left-color: rgba(255, 255, 255, 0.20);
   border-left-width: 1px;
   opacity: 1;
   pointer-events: auto;
 }
-.action-group[data-active="true"] .action-bell:hover { border-color: var(--text); }
+.action-group[data-active="true"] .action-bell:hover {
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 78%, black);
+  border-left-color: rgba(255, 255, 255, 0.30);
+}
 .action-bell-icon { flex-shrink: 0; }
 .action-bell-chevron { flex-shrink: 0; opacity: 0.7; }
 
