@@ -214,11 +214,17 @@ a:hover { color: var(--primary); }
   align-items: center;
 }
 .state-select {
-  padding: 12px 16px;
+  padding: 12px 40px 12px 16px;
   font-size: 15px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-strong);
-  background: white;
+  background-color: white;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%235a5c66' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M1 1.5l5 5 5-5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   font-family: inherit;
   min-width: 240px;
   cursor: pointer;
@@ -2302,6 +2308,22 @@ input:focus, select:focus, textarea:focus {
   outline: none;
   background: var(--surface);
   box-shadow: 0 0 0 2px var(--diia-black);
+}
+/* Replace the native <select> arrow with a custom chevron so it has
+   proper breathing room from the right edge instead of sitting flush
+   against it. Padding-right makes room for the arrow + spacing. */
+select {
+  padding-right: 40px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%235a5c66' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M1 1.5l5 5 5-5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+select:focus {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%230d0d0d' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M1 1.5l5 5 5-5'/></svg>");
 }
 .form-row { margin-bottom: 14px; }
 .form-row label {
