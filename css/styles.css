@@ -2825,6 +2825,14 @@ select:focus {
    Used on the healthcare page to keep each card terse until the user
    shows interest. Uses grid-rows trick so transitions are smooth. */
 .plan-tile { transition: box-shadow 0.18s ease, transform 0.18s ease; }
+/* Plan-tile columns are narrower than .info-field's 200px min-width,
+   so the four summary fields (Deductible/OOP/Effective/Renews etc.)
+   were stacking one-per-row. Drop the min-width inside plan tiles so
+   they render as a 2x2. */
+.plan-tile .scanned-info .info-field {
+  min-width: 0;
+  flex-basis: calc(50% - 4px);
+}
 .plan-tile:hover { box-shadow: var(--shadow-lg); transform: translateY(-1px); }
 .plan-extra {
   display: grid;
