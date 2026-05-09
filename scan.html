@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify your driver's license — ePluribus</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="scan">
+  <nav class="topnav">
+    <div class="brand">
+      <div class="brand-mark"><svg viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="15" height="15" fill="#3c3b6e"/><rect x="5" y="5" width="5" height="5" fill="#fff"/><rect x="15" width="10" height="5" fill="#b22234"/><rect x="15" y="5" width="10" height="5" fill="#fff"/><rect x="15" y="10" width="10" height="5" fill="#b22234"/><rect y="15" width="25" height="5" fill="#fff"/><rect y="20" width="25" height="5" fill="#b22234"/></svg></div>
+      <span>ePluribus</span>
+    </div>
+    <a href="index.html" class="btn btn-ghost" style="font-size:14px;">Cancel</a>
+  </nav>
+
+  <main class="scan-page">
+    <div class="scan-steps">
+      <div class="scan-step-indicator active" data-step-ind="2"><div class="num">1</div> Verify</div>
+      <div class="scan-step-indicator" data-step-ind="3"><div class="num">2</div> Confirm</div>
+    </div>
+
+    <!-- Step 1 (capture) is skipped in the demo — the verify animation runs
+         immediately on page load. The dropzone + file input are kept hidden
+         for any code paths that still reference them. -->
+    <div class="scan-card hidden" id="step1">
+      <input type="file" id="fileInput" accept="image/*" style="display:none;">
+      <div id="dropzone" hidden></div>
+    </div>
+
+    <!-- Step 2: scanning -->
+    <div class="scan-card hidden" id="step2">
+      <h2>Verifying Your License</h2>
+      <p class="lead">Reading the document, validating against the DMV record, and creating your secure credential.</p>
+
+      <div class="scan-progress">
+        <div class="scan-anim"></div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="scan-status" id="scanStatus">Reading document…</div>
+      </div>
+    </div>
+
+    <!-- Step 3: confirm -->
+    <div class="scan-card hidden" id="step3">
+      <div class="banner-success">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div><strong>Verified!</strong> We matched your license to a DMV record.</div>
+      </div>
+      <h2>Confirm Your Details</h2>
+      <p class="lead">Review the information we extracted. You'll use this to access state services.</p>
+
+      <div class="scanned-info" id="scannedInfo"></div>
+
+      <div class="row" style="gap:10px; margin-top:8px;">
+        <button class="btn btn-secondary" onclick="goBackToStep1()">Re-scan</button>
+        <button class="btn btn-primary" style="margin-left:auto;" onclick="finishOnboarding()">
+          Confirm & continue
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>ePluribus POC · Verification is simulated for demonstration.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    const stateCode = getState();
+
+    function useCameraMock() { startScan(); }
+
+    function setStepIndicator(n) {
+      document.querySelectorAll('.scan-step-indicator').forEach(el => {
+        const i = +el.dataset.stepInd;
+        el.classList.toggle('active', i === n);
+        el.classList.toggle('done', i < n);
+      });
+    }
+
+    function startScan() {
+      setStepIndicator(2);
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.remove('hidden');
+
+      const fill = document.getElementById('progressFill');
+      const status = document.getElementById('scanStatus');
+      const stages = [
+        { pct: 18, msg: 'Reading document…' },
+        { pct: 38, msg: 'Detecting security features…' },
+        { pct: 60, msg: 'Matching to DMV record…' },
+        { pct: 82, msg: 'Cryptographically signing credential…' },
+        { pct: 100, msg: 'Verified.' },
+      ];
+      let i = 0;
+      const tick = () => {
+        if (i >= stages.length) { showConfirm(); return; }
+        fill.style.width = stages[i].pct + '%';
+        status.textContent = stages[i].msg;
+        i++;
+        setTimeout(tick, 650);
+      };
+      tick();
+    }
+
+    function showConfirm() {
+      const citizen = buildMockCitizen(stateCode);
+      window._pendingCitizen = citizen;
+      const fields = [
+        { label: 'Full name', value: `${citizen.firstName} ${citizen.middleInitial}. ${citizen.lastName}`, full: true },
+        { label: 'Date of birth', value: formatDateLong(citizen.dob) },
+        { label: 'Sex', value: citizen.sex },
+        { label: 'License number', value: citizen.licenseNumber },
+        { label: 'Class', value: citizen.class },
+        { label: 'State', value: citizen.stateName },
+        { label: 'Expires', value: formatDateLong(citizen.expires) },
+        { label: 'Address', value: `${citizen.address}, ${citizen.city}, ${citizen.state} ${citizen.zip}`, full: true },
+      ];
+      const html = fields.map(f => `
+        <div class="info-field${f.full ? ' full' : ''}">
+          <label>${f.label}</label>
+          <div class="value">${f.value}</div>
+        </div>
+      `).join('');
+      document.getElementById('scannedInfo').innerHTML = html;
+      setTimeout(() => {
+        setStepIndicator(3);
+        document.getElementById('step2').classList.add('hidden');
+        document.getElementById('step3').classList.remove('hidden');
+      }, 400);
+    }
+
+    function goBackToStep1() {
+      // No upload step in the demo — "Re-scan" just re-runs the verification.
+      document.getElementById('step3').classList.add('hidden');
+      startScan();
+    }
+
+    function finishOnboarding() {
+      if (!window._pendingCitizen) return;
+      setCitizen(window._pendingCitizen);
+      window.location.href = 'dashboard.html';
+    }
+
+    // Auto-start verification on page load — skip the upload step.
+    startScan();
+  </script>
+</body>
+</html>
