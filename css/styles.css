@@ -545,6 +545,16 @@ footer {
   grid-template-columns: 64px 1fr;
   min-height: 100vh;
 }
+/* Suppress transitions on the sidebar (and its descendants) for one frame
+   after mount, so the initial 72→240px width settle when the cursor
+   happens to be over the sidebar at navigation time doesn't visibly
+   "close and reopen". JS strips this class after a couple of rAFs. */
+.sidebar.no-transitions,
+.sidebar.no-transitions *,
+.sidebar.no-transitions *::before,
+.sidebar.no-transitions *::after {
+  transition: none !important;
+}
 .sidebar {
   background: rgba(255, 255, 255, 0.55);
   backdrop-filter: saturate(140%) blur(12px);
