@@ -309,11 +309,26 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStorage.removeItem('civic_from_sidebar_click');
     if (fromSidebarClick && sidebar) {
       sidebar.classList.add('force-open');
-      // Drop force-open the first time the cursor leaves the sidebar —
-      // from that point on, normal :hover behaviour takes over.
-      sidebar.addEventListener('mouseleave', () => {
+      // Drop force-open under either of two conditions:
+      //   1. The cursor leaves the sidebar (the normal case — they
+      //      held position long enough for :hover to take over, then
+      //      moved off).
+      //   2. The first global mousemove confirms the cursor isn't
+      //      actually over the sidebar (the cursor moved away during
+      //      navigation, so mouseleave never fires because the bar
+      //      was never hovered post-mount).
+      // Whichever happens first releases the hold and detaches both
+      // listeners so we don't keep watching the document forever.
+      const release = () => {
         sidebar.classList.remove('force-open');
-      }, { once: true });
+        document.removeEventListener('mousemove', onMove);
+        sidebar.removeEventListener('mouseleave', release);
+      };
+      const onMove = (e) => {
+        if (!sidebar.contains(e.target)) release();
+      };
+      document.addEventListener('mousemove', onMove);
+      sidebar.addEventListener('mouseleave', release);
     }
 
     // Wire sidebar nav clicks to set the flag for the next page.
