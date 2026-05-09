@@ -1957,23 +1957,24 @@ footer {
               border-left-width 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
               opacity 0.2s ease;
 }
-/* Active bell: deeper shade of the state accent so the pill reads as
-   one unit (YouTube-style segmented control). The left border is a
-   subtle white divider against the dark accent. */
+/* Active bell: same state-accent fill as the main button — the only
+   visual seam is a subtle white divider on the left. Matches an iOS
+   segmented-control feel. Hover deepens the bell so it's still
+   discoverable as a separate target. */
 .action-group[data-active="true"] .action-bell {
   max-width: 80px;
   padding: 0 10px;
-  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 88%, black);
+  background: var(--license-accent, #0d0d0d);
   color: white;
   border-color: transparent;
-  border-left-color: rgba(255, 255, 255, 0.20);
+  border-left-color: rgba(255, 255, 255, 0.25);
   border-left-width: 1px;
   opacity: 1;
   pointer-events: auto;
 }
 .action-group[data-active="true"] .action-bell:hover {
-  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 78%, black);
-  border-left-color: rgba(255, 255, 255, 0.30);
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 88%, black);
+  border-left-color: rgba(255, 255, 255, 0.35);
 }
 .action-bell-icon { flex-shrink: 0; }
 .action-bell-chevron { flex-shrink: 0; opacity: 0.7; }
