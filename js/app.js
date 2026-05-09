@@ -221,7 +221,7 @@ function renderSidebar(activePage) {
     ? `<span class="brand-state">${user.state}</span>`
     : '';
   return `
-    <aside class="sidebar">
+    <aside class="sidebar no-transitions">
       <div class="brand">
         <div class="brand-mark"><svg viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="15" height="15" fill="#3c3b6e"/><rect x="5" y="5" width="5" height="5" fill="#fff"/><rect x="15" width="10" height="5" fill="#b22234"/><rect x="15" y="5" width="10" height="5" fill="#fff"/><rect x="15" y="10" width="10" height="5" fill="#b22234"/><rect y="15" width="25" height="5" fill="#fff"/><rect y="20" width="25" height="5" fill="#b22234"/></svg></div>
         <span>ePluribus${stateBadge ? ` ${stateBadge}` : ''}</span>
@@ -298,5 +298,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const mount = document.getElementById('sidebar-mount');
     if (mount) mount.outerHTML = renderSidebar(page);
     setActiveNav(page);
+
+    const sidebar = document.querySelector('.sidebar');
+    // If the user just clicked a sidebar link to get here, force the
+    // sidebar to render expanded — the browser's :hover state isn't
+    // applied until a mouse event fires, so without this the sidebar
+    // briefly paints at 72px before snapping to 240px (the "rapid
+    // close and reopen" flicker).
+    const fromSidebarClick = sessionStorage.getItem('civic_from_sidebar_click') === '1';
+    sessionStorage.removeItem('civic_from_sidebar_click');
+    if (fromSidebarClick && sidebar) {
+      sidebar.classList.add('force-open');
+      // Drop force-open under either of two conditions:
+      //   1. The cursor leaves the sidebar (the normal case — they
+      //      held position long enough for :hover to take over, then
+      //      moved off).
+      //   2. The first global mousemove confirms the cursor isn't
+      //      actually over the sidebar (the cursor moved away during
+      //      navigation, so mouseleave never fires because the bar
+      //      was never hovered post-mount).
+      // Whichever happens first releases the hold and detaches both
+      // listeners so we don't keep watching the document forever.
+      const release = () => {
+        sidebar.classList.remove('force-open');
+        document.removeEventListener('mousemove', onMove);
+        sidebar.removeEventListener('mouseleave', release);
+      };
+      const onMove = (e) => {
+        if (!sidebar.contains(e.target)) release();
+      };
+      document.addEventListener('mousemove', onMove);
+      sidebar.addEventListener('mouseleave', release);
+    }
+
+    // Wire sidebar nav clicks to set the flag for the next page.
+    sidebar?.querySelectorAll('nav a').forEach(a => {
+      a.addEventListener('click', () => {
+        sessionStorage.setItem('civic_from_sidebar_click', '1');
+      });
+    });
+
+    // Strip the no-transitions class after first paint so subsequent
+    // hover changes (width, frost, shadow) animate normally — but the
+    // initial 72→240px settle doesn't animate.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        sidebar?.classList.remove('no-transitions');
+      });
+    });
   }
 });
