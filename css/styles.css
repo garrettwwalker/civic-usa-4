@@ -2296,6 +2296,10 @@ footer {
   align-items: center;
   gap: 12px;
 }
+/* Restore display:none for the [hidden] attribute — the .banner-success
+   class's display:flex was beating the user-agent rule, so banners
+   marked hidden in HTML rendered anyway. */
+.banner-success[hidden] { display: none; }
 
 /* === Forms === Diia filled style — soft tile bg, no harsh borders */
 input[type="text"], input[type="email"], input[type="number"],
