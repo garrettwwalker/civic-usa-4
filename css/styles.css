@@ -2806,7 +2806,7 @@ input:focus, select:focus, textarea:focus {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--bg);
+  background: transparent;
 }
 .chatbot-inline.chatbot-hero {
   height: 100vh;
@@ -3007,7 +3007,11 @@ input:focus, select:focus, textarea:focus {
   max-width: 80%;
 }
 
-/* Floating composer pinned to the bottom of the viewport, centered. */
+/* Floating composer pinned to the bottom of the viewport, centered.
+   Transparent so the body's per-state gradient wash shows through —
+   messages don't actually scroll past the composer (the thread above
+   has its own overflow-y: auto), so no fade-to-bg is needed for
+   legibility. */
 .chatbot-inline.chatbot-hero .chatbot-composer {
   position: sticky;
   bottom: 0;
@@ -3015,7 +3019,7 @@ input:focus, select:focus, textarea:focus {
   max-width: 760px;
   margin: 0 auto;
   padding: 12px 24px 16px;
-  background: linear-gradient(to bottom, transparent 0%, var(--bg) 28%);
+  background: transparent;
 }
 .chatbot-inline.chatbot-hero .chatbot-suggestions {
   border-top: none;
