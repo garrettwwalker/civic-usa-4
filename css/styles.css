@@ -144,12 +144,12 @@ a:hover { color: var(--primary); }
 }
 .btn:hover { text-decoration: none; }
 .btn-primary {
-  background: var(--license-accent, #c9a227);
+  background: var(--license-accent, #0d0d0d);
   color: white;
   box-shadow: var(--shadow-1);
 }
 .btn-primary:hover {
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 88%, black);
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 88%, black);
   color: white;
   box-shadow: var(--shadow-2);
   transform: translateY(-1px);
@@ -163,9 +163,9 @@ a:hover { color: var(--primary); }
 .btn-ghost { background: transparent; color: var(--text); font-weight: 500; }
 .btn-ghost:hover { background: var(--surface-2); }
 /* Bold yellow CTA — use for the most important call-to-action on a screen */
-.btn-accent { background: var(--license-accent, #c9a227); color: white; }
+.btn-accent { background: var(--license-accent, #0d0d0d); color: white; }
 .btn-accent:hover {
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 88%, black);
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 88%, black);
   box-shadow: var(--shadow-2);
 }
 .btn-lg { padding: 14px 26px; font-size: 15px; }
@@ -181,8 +181,8 @@ a:hover { color: var(--primary); }
 .hero-eyebrow {
   display: inline-block;
   padding: 6px 14px;
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 22%, white);
-  color: color-mix(in srgb, var(--license-accent, #c9a227) 70%, var(--diia-black));
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 22%, white);
+  color: color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, var(--diia-black));
   border-radius: var(--radius-pill);
   font-weight: 700;
   font-size: 12px;
@@ -264,8 +264,8 @@ a:hover { color: var(--primary); }
   display: grid;
   place-items: center;
   margin-bottom: 18px;
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 18%, white);
-  color: color-mix(in srgb, var(--license-accent, #c9a227) 70%, var(--diia-black));
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 18%, white);
+  color: color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, var(--diia-black));
   border: none;
 }
 .feature-icon.blue   { background: #e0e9fb; color: #1d4ed8; }
@@ -602,13 +602,13 @@ footer {
 }
 .sidebar nav a:hover { background: var(--surface-2); color: var(--text); text-decoration: none; }
 .sidebar nav a.active {
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 22%, white);
-  color: color-mix(in srgb, var(--license-accent, #c9a227) 70%, var(--diia-black));
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 22%, white);
+  color: color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, var(--diia-black));
   font-weight: 700;
   box-shadow: none;
   border: none;
 }
-.sidebar nav a.active svg { color: color-mix(in srgb, var(--license-accent, #c9a227) 70%, var(--diia-black)); opacity: 1; }
+.sidebar nav a.active svg { color: color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, var(--diia-black)); opacity: 1; }
 .sidebar nav a svg { flex-shrink: 0; opacity: 0.9; }
 
 .user-card {
@@ -780,8 +780,8 @@ footer {
   place-items: center;
   margin-bottom: 18px;
   /* Default falls back to a soft tint of the citizen's state-themed accent */
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 18%, white);
-  color: color-mix(in srgb, var(--license-accent, #c9a227) 70%, var(--diia-black));
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 18%, white);
+  color: color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, var(--diia-black));
   border: none;
 }
 .service-icon.blue   { background: #e0e9fb; color: #1d4ed8; }
@@ -926,7 +926,7 @@ footer {
   height: 96px;
   border-radius: 6px;
   background: linear-gradient(180deg,
-    color-mix(in srgb, var(--license-accent, #c9a227) 28%, #2a3548) 0%,
+    color-mix(in srgb, var(--license-accent, #0d0d0d) 28%, #2a3548) 0%,
     #1a2236 100%);
   position: absolute;
   top: 96px; left: 24px;
@@ -1185,13 +1185,13 @@ footer {
   transform: translateY(-1px);
 }
 .doc-tab.active {
-  background: var(--license-accent, #c9a227);
+  background: var(--license-accent, #0d0d0d);
   color: white;
   box-shadow: var(--shadow-1);
   transform: none;
 }
 .doc-tab.active:hover {
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 88%, black);
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 88%, black);
   color: white;
   box-shadow: var(--shadow-2);
   transform: translateY(-1px);
@@ -2214,7 +2214,7 @@ footer {
 .badge-success { background: rgba(31, 169, 82, 0.14); color: #157a3b; }
 .badge-warning { background: rgba(255, 168, 0, 0.16); color: #b06a00; }
 .badge-danger  { background: rgba(224, 49, 49, 0.13); color: #b21f1f; }
-.badge-info    { background: color-mix(in srgb, var(--license-accent, #c9a227) 22%, white); color: color-mix(in srgb, var(--license-accent, #c9a227) 70%, var(--diia-black)); }
+.badge-info    { background: color-mix(in srgb, var(--license-accent, #0d0d0d) 22%, white); color: color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, var(--diia-black)); }
 .badge-neutral { background: var(--surface-3); color: var(--text-muted); }
 .dot {
   width: 5px; height: 5px;
@@ -2333,8 +2333,8 @@ input:focus, select:focus, textarea:focus {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 22%, white);
-  color: color-mix(in srgb, var(--license-accent, #c9a227) 70%, var(--diia-black));
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 22%, white);
+  color: color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, var(--diia-black));
   display: grid;
   place-items: center;
   flex-shrink: 0;
@@ -2446,7 +2446,7 @@ input:focus, select:focus, textarea:focus {
   font-weight: 600;
   transition: background 0.15s ease;
 }
-.chatbot-suggestion:hover { background: color-mix(in srgb, var(--license-accent, #c9a227) 22%, white); }
+.chatbot-suggestion:hover { background: color-mix(in srgb, var(--license-accent, #0d0d0d) 22%, white); }
 
 .chatbot-input {
   display: flex;
@@ -2473,7 +2473,7 @@ input:focus, select:focus, textarea:focus {
   width: 40px;
   height: 40px;
   border-radius: var(--radius-pill);
-  background: var(--license-accent, #c9a227);
+  background: var(--license-accent, #0d0d0d);
   color: white;
   border: none;
   cursor: pointer;
@@ -2483,7 +2483,7 @@ input:focus, select:focus, textarea:focus {
   transition: background 0.15s ease, transform 0.12s ease;
 }
 .chatbot-input button:hover {
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 88%, black);
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 88%, black);
 }
 .chatbot-input button:active { transform: scale(0.94); }
 .chatbot-disclaimer {
@@ -2954,7 +2954,7 @@ input:focus, select:focus, textarea:focus {
   margin-bottom: 6px;
   background:
     radial-gradient(circle,
-      color-mix(in srgb, var(--license-accent, #c9a227) 70%, transparent) 0%,
+      color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, transparent) 0%,
       transparent 65%),
     var(--text);
   background-size: 250% 250%, 100% 100%;
@@ -3066,13 +3066,13 @@ input:focus, select:focus, textarea:focus {
 .chatbot-inline.chatbot-hero .chatbot-input button {
   width: 48px;
   height: 48px;
-  background: var(--license-accent, #c9a227);
+  background: var(--license-accent, #0d0d0d);
   color: white;
   box-shadow: var(--shadow-1);
   transition: background 0.15s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
 .chatbot-inline.chatbot-hero .chatbot-input button:hover {
-  background: color-mix(in srgb, var(--license-accent, #c9a227) 88%, black);
+  background: color-mix(in srgb, var(--license-accent, #0d0d0d) 88%, black);
   box-shadow: var(--shadow-2);
   transform: translateY(-1px);
 }
