@@ -143,14 +143,23 @@ a:hover { color: var(--primary); }
   letter-spacing: -0.005em;
 }
 .btn:hover { text-decoration: none; }
-.btn-primary { background: var(--diia-black); color: white; }
-.btn-primary:hover { background: #000; box-shadow: var(--shadow-2); }
+.btn-primary {
+  background: var(--license-accent, #c9a227);
+  color: white;
+  box-shadow: var(--shadow-1);
+}
+.btn-primary:hover {
+  background: color-mix(in srgb, var(--license-accent, #c9a227) 88%, black);
+  color: white;
+  box-shadow: var(--shadow-2);
+  transform: translateY(-1px);
+}
 .btn-secondary {
-  background: var(--surface);
+  background: var(--surface-2);
   color: var(--text);
   box-shadow: var(--shadow-1);
 }
-.btn-secondary:hover { box-shadow: var(--shadow-2); transform: translateY(-1px); }
+.btn-secondary:hover { background: var(--surface-3); box-shadow: var(--shadow-2); transform: translateY(-1px); }
 .btn-ghost { background: transparent; color: var(--text); font-weight: 500; }
 .btn-ghost:hover { background: var(--surface-2); }
 /* Bold yellow CTA — use for the most important call-to-action on a screen */
@@ -3045,11 +3054,16 @@ input:focus, select:focus, textarea:focus {
 .chatbot-inline.chatbot-hero .chatbot-input button {
   width: 48px;
   height: 48px;
-  background: var(--diia-black);
+  background: var(--license-accent, #c9a227);
   color: white;
   box-shadow: var(--shadow-1);
+  transition: background 0.15s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
-.chatbot-inline.chatbot-hero .chatbot-input button:hover { background: #000; box-shadow: var(--shadow-2); }
+.chatbot-inline.chatbot-hero .chatbot-input button:hover {
+  background: color-mix(in srgb, var(--license-accent, #c9a227) 88%, black);
+  box-shadow: var(--shadow-2);
+  transform: translateY(-1px);
+}
 .chatbot-inline.chatbot-hero .chatbot-disclaimer {
   padding: 8px 0 4px;
   font-size: 11px;
