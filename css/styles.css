@@ -2314,7 +2314,12 @@ input[type="date"], input[type="tel"], select, textarea {
 input:focus, select:focus, textarea:focus {
   outline: none;
   background-color: var(--surface);
-  box-shadow: 0 0 0 2px var(--diia-black);
+}
+/* Use :focus-visible so the 2-px ring only shows for keyboard
+   navigation — clicking a field shouldn't slap a harsh outline on
+   it. Tinted with the per-state accent for on-brand a11y. */
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+  box-shadow: 0 0 0 2px var(--license-accent, #0d0d0d);
 }
 /* Replace the native <select> arrow with a custom chevron so it has
    proper breathing room from the right edge instead of sitting flush
@@ -2529,8 +2534,10 @@ select:focus {
 }
 .chatbot-input input:focus {
   background: var(--surface);
-  box-shadow: 0 0 0 2px var(--diia-black);
   outline: none;
+}
+.chatbot-input input:focus-visible {
+  box-shadow: 0 0 0 2px var(--license-accent, #0d0d0d);
 }
 .chatbot-input button {
   width: 40px;
