@@ -298,13 +298,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const mount = document.getElementById('sidebar-mount');
     if (mount) mount.outerHTML = renderSidebar(page);
     setActiveNav(page);
+
+    const sidebar = document.querySelector('.sidebar');
+    // If the user just clicked a sidebar link to get here, force the
+    // sidebar to render expanded — the browser's :hover state isn't
+    // applied until a mouse event fires, so without this the sidebar
+    // briefly paints at 72px before snapping to 240px (the "rapid
+    // close and reopen" flicker).
+    const fromSidebarClick = sessionStorage.getItem('civic_from_sidebar_click') === '1';
+    sessionStorage.removeItem('civic_from_sidebar_click');
+    if (fromSidebarClick && sidebar) {
+      sidebar.classList.add('force-open');
+      // Drop force-open the first time the cursor leaves the sidebar —
+      // from that point on, normal :hover behaviour takes over.
+      sidebar.addEventListener('mouseleave', () => {
+        sidebar.classList.remove('force-open');
+      }, { once: true });
+    }
+
+    // Wire sidebar nav clicks to set the flag for the next page.
+    sidebar?.querySelectorAll('nav a').forEach(a => {
+      a.addEventListener('click', () => {
+        sessionStorage.setItem('civic_from_sidebar_click', '1');
+      });
+    });
+
     // Strip the no-transitions class after first paint so subsequent
     // hover changes (width, frost, shadow) animate normally — but the
-    // initial 72→240px settle when the cursor is already over the
-    // sidebar at navigation time doesn't flicker.
+    // initial 72→240px settle doesn't animate.
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        document.querySelector('.sidebar')?.classList.remove('no-transitions');
+        sidebar?.classList.remove('no-transitions');
       });
     });
   }

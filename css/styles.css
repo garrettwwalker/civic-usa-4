@@ -573,8 +573,13 @@ footer {
   transition: width 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, backdrop-filter 0.2s ease;
 }
 /* When expanded, drop the frost — solid white surface so the labels
-   read clearly without the gradient bleeding through behind them. */
-.sidebar:hover {
+   read clearly without the gradient bleeding through behind them.
+   .force-open mirrors :hover so the sidebar can be held expanded on
+   navigation arrival until the user moves the cursor away (the
+   browser's :hover state isn't applied until a mouse event, so a
+   click→navigate would otherwise show a brief 72px collapsed flash). */
+.sidebar:hover,
+.sidebar.force-open {
   background: var(--surface);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
@@ -592,7 +597,11 @@ footer {
 .sidebar:hover .brand span,
 .sidebar:hover nav a span,
 .sidebar:hover .user-info,
-.sidebar:hover .signout {
+.sidebar:hover .signout,
+.sidebar.force-open .brand span,
+.sidebar.force-open nav a span,
+.sidebar.force-open .user-info,
+.sidebar.force-open .signout {
   opacity: 1;
   pointer-events: auto;
 }
@@ -644,7 +653,7 @@ footer {
   gap: 10px;
   transition: background 0.15s ease, border-color 0.15s ease, padding 0.15s ease;
 }
-.sidebar:not(:hover) .user-card {
+.sidebar:not(:hover):not(.force-open) .user-card {
   background: transparent;
   border-color: transparent;
   padding: 4px 9px;
