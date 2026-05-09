@@ -3173,14 +3173,14 @@ body {
     radial-gradient(
       ellipse 1400px 900px at 50% -100px,
       color-mix(in srgb,
-        color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, var(--license-deep, #0a1f3a)) 13%,
+        color-mix(in srgb, var(--license-accent, #0d0d0d) 70%, var(--license-deep, #0a1f3a)) 16%,
         transparent
       ) 0%,
       transparent 65%
     ),
     radial-gradient(
       ellipse 1600px 700px at 50% calc(100% + 100px),
-      color-mix(in srgb, var(--license-deep, #0a1f3a) 6%, transparent) 0%,
+      color-mix(in srgb, var(--license-deep, #0a1f3a) 8%, transparent) 0%,
       transparent 60%
     );
   background-attachment: fixed;
