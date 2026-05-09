@@ -820,7 +820,9 @@ footer {
     repeating-linear-gradient(22deg, transparent 0 6px, rgba(255,255,255,0.025) 6px 7px),
     linear-gradient(135deg, var(--license-deep, #0a1138) 0%, #06092a 100%);
   color: white;
-  padding: 22px 24px;
+  padding: clamp(14px, 4.23cqi, 22px) clamp(16px, 4.62cqi, 24px);
+  container-type: inline-size;
+  container-name: license-card;
   position: relative;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.10),
@@ -887,8 +889,11 @@ footer {
       rgba(8, 12, 35, 0.65) 100%);
 }
 
+/* Inner-layout values use cqi so the card scales as a single unit.
+   1cqi = 1% of the card's inline size; clamped to keep text legible at
+   tiny widths and visually identical at the 520px max-width target. */
 .license-state {
-  font-size: 14px;
+  font-size: clamp(11px, 2.7cqi, 14px);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.10em;
@@ -899,7 +904,7 @@ footer {
   border-bottom: 1px solid var(--license-accent, rgba(255,255,255,0.4));
 }
 .license-type {
-  font-size: 10px;
+  font-size: clamp(8px, 1.92cqi, 10px);
   opacity: 0.7;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -911,10 +916,10 @@ footer {
 
 .passport-flag {
   position: absolute;
-  top: 18px;
-  right: 22px;
-  width: 38px;
-  height: 20px;
+  top: clamp(12px, 3.46cqi, 18px);
+  right: clamp(14px, 4.23cqi, 22px);
+  width: clamp(28px, 7.31cqi, 38px);
+  height: clamp(15px, 3.85cqi, 20px);
   border-radius: 2px;
   overflow: hidden;
   box-shadow: 0 1px 2px rgba(0,0,0,0.35), inset 0 0 0 0.5px rgba(0,0,0,0.15);
@@ -922,17 +927,18 @@ footer {
 }
 
 .license-portrait {
-  width: 78px;
-  height: 96px;
+  width: clamp(56px, 15cqi, 78px);
+  height: clamp(70px, 18.46cqi, 96px);
   border-radius: 6px;
   background: linear-gradient(180deg,
     color-mix(in srgb, var(--license-accent, #0d0d0d) 28%, #2a3548) 0%,
     #1a2236 100%);
   position: absolute;
-  top: 96px; left: 24px;
+  top: clamp(70px, 18.46cqi, 96px);
+  left: clamp(16px, 4.62cqi, 24px);
   display: grid;
   place-items: center;
-  font-size: 24px;
+  font-size: clamp(17px, 4.62cqi, 24px);
   font-weight: 600;
   color: rgba(255,255,255,0.92);
   letter-spacing: 0.05em;
@@ -946,13 +952,13 @@ footer {
 
 .license-fields {
   position: absolute;
-  top: 96px;
-  left: 116px;
-  right: 24px;
+  top: clamp(70px, 18.46cqi, 96px);
+  left: clamp(82px, 22.31cqi, 116px);
+  right: clamp(16px, 4.62cqi, 24px);
   z-index: 3;
 }
 .license-name {
-  font-size: 18px;
+  font-size: clamp(13px, 3.46cqi, 18px);
   font-weight: 600;
   letter-spacing: 0.02em;
   margin-bottom: 2px;
@@ -963,11 +969,11 @@ footer {
   text-shadow: 0 1px 0 rgba(0,0,0,0.30), 0 0 1px rgba(255,255,255,0.12);
 }
 .license-address {
-  font-size: 14px;
+  font-size: clamp(11px, 2.7cqi, 14px);
   font-weight: 500;
   letter-spacing: 0.05em;
   color: rgba(255,255,255,0.72);
-  margin-bottom: 12px;
+  margin-bottom: clamp(8px, 2.31cqi, 12px);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -975,21 +981,23 @@ footer {
 }
 /* Meta fields fill the empty bottom half of the card in a 4-column grid.
    minmax(0, 1fr) forces truly equal columns regardless of content width
-   (otherwise long labels like "Date of Birth" can stretch their cell). */
+   (otherwise long labels like "Date of Birth" can stretch their cell).
+   Gap and font sizes scale with the card so the grid doesn't crowd or
+   spill at narrower widths. */
 .license-meta {
   position: absolute;
-  left: 24px;
-  right: 24px;
-  bottom: 22px;
+  left: clamp(16px, 4.62cqi, 24px);
+  right: clamp(16px, 4.62cqi, 24px);
+  bottom: clamp(14px, 4.23cqi, 22px);
   z-index: 3;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px 24px;
+  gap: clamp(10px, 3.46cqi, 18px) clamp(12px, 4.62cqi, 24px);
 }
 .license-meta > div { line-height: 1.15; min-width: 0; }
 .license-meta span {
   display: block;
-  font-size: 9px;
+  font-size: clamp(7px, 1.73cqi, 9px);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   opacity: 0.6;
@@ -999,7 +1007,7 @@ footer {
 }
 .license-meta strong {
   display: block;
-  font-size: 14px;
+  font-size: clamp(11px, 2.7cqi, 14px);
   font-weight: 600;
   letter-spacing: 0.02em;
   color: rgba(255,255,255,0.96);
@@ -1014,7 +1022,7 @@ footer {
   gap: 8px;
 }
 .license-num-line span {
-  font-size: 9px;
+  font-size: clamp(7px, 1.73cqi, 9px);
   letter-spacing: 0.20em;
   text-transform: uppercase;
   opacity: 0.65;
@@ -1022,7 +1030,7 @@ footer {
   color: rgba(255,255,255,0.85);
 }
 .license-num-line strong {
-  font-size: 14px;
+  font-size: clamp(11px, 2.7cqi, 14px);
   font-weight: 600;
   letter-spacing: 0.02em;
   color: rgba(255,255,255,0.96);
@@ -1072,7 +1080,7 @@ footer {
     linear-gradient(135deg, #0c2a6b 0%, #051538 100%);
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: clamp(16px, 4.62cqi, 24px);
   font-family: -apple-system, "Segoe UI", sans-serif;
 }
 .license-back-content {
@@ -1086,14 +1094,14 @@ footer {
   color: white;
 }
 .license-back-state {
-  font-size: 12px;
+  font-size: clamp(10px, 2.31cqi, 12px);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.20em;
   opacity: 0.88;
 }
 .license-back-label {
-  font-size: 10px;
+  font-size: clamp(8px, 1.92cqi, 10px);
   opacity: 0.55;
   text-transform: uppercase;
   letter-spacing: 0.18em;
@@ -1101,8 +1109,8 @@ footer {
   margin-top: -6px;
 }
 .license-qr-large {
-  width: 168px;
-  height: 168px;
+  width: clamp(120px, 32.31cqi, 168px);
+  height: clamp(120px, 32.31cqi, 168px);
   background: white;
   border-radius: 10px;
   padding: 8px;
@@ -2736,18 +2744,9 @@ input:focus, select:focus, textarea:focus {
   .scanned-info { grid-template-columns: 1fr; }
   .howit-grid { grid-template-columns: 1fr; gap: 32px; }
   .features-grid { grid-template-columns: 1fr; }
-  .license-name { font-size: 15px; margin-bottom: 1px; }
-  .license-address { font-size: 12px; margin-bottom: 8px; }
-  .passport-flag { width: 32px; height: 17px; top: 16px; right: 18px; }
-  .license-portrait { width: 64px; height: 80px; font-size: 20px; top: 86px; left: 22px; }
-  .license-fields { left: 96px; top: 86px; }
+  /* license-card internals scale via container queries on .license-card itself,
+     so no per-breakpoint overrides needed here. Just the glyph opacity tweak. */
   .license-glyph { opacity: 0.50; }
-  .license-meta { left: 20px; right: 20px; bottom: 18px; gap: 12px 14px; }
-  .license-meta strong { font-size: 12px; }
-  .license-meta span { font-size: 8px; letter-spacing: 0.10em; margin-bottom: 2px; }
-  .license-num-line { margin-top: 4px; gap: 6px; }
-  .license-num-line strong { font-size: 12px; }
-  .license-num-line span { font-size: 8px; }
   .license-qr-large { width: 134px; height: 134px; padding: 6px; }
 }
 
