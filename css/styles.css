@@ -3105,3 +3105,27 @@ input:focus, select:focus, textarea:focus {
 @media (max-width: 900px) {
   .dashboard-extras { padding: 32px 20px 48px; }
 }
+
+/* Soft per-state background gradient wash — two domes, Diia-style.
+   Top-anchored radial uses --license-accent (per-state warm/cool tone)
+   at 11% opacity; bottom-anchored uses --license-deep (state's dark navy
+   variant) at 6% — both fade to transparent and layer over the body's
+   --bg color. The accent's higher opacity compensates for the perceptual
+   difference between warm reds (which dominate at lower opacity) and
+   cooler/desaturated tones like gold, teal, or sage. Fixed attachment
+   so the washes stay anchored to the viewport as the user scrolls. */
+body {
+  background:
+    radial-gradient(
+      ellipse 1400px 900px at 50% -100px,
+      color-mix(in srgb, var(--license-accent, #0d0d0d) 11%, transparent) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 1600px 700px at 50% calc(100% + 100px),
+      color-mix(in srgb, var(--license-deep, #0a1f3a) 6%, transparent) 0%,
+      transparent 60%
+    );
+  background-attachment: fixed;
+  background-color: var(--bg);
+}
