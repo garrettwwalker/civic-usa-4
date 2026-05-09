@@ -1980,8 +1980,11 @@ footer {
   background: var(--surface-3);
   border-left-color: rgba(0, 0, 0, 0.16);
 }
-.action-bell-icon { flex-shrink: 0; }
-.action-bell-chevron { flex-shrink: 0; opacity: 0.7; }
+/* Bump stroke widths so the bell icons read at a similar visual weight
+   to the main button's font-weight: 600 text — otherwise the text on
+   the left looks heavier than the icon glyphs on the right. */
+.action-bell-icon { flex-shrink: 0; stroke-width: 2.4; }
+.action-bell-chevron { flex-shrink: 0; opacity: 0.7; stroke-width: 3; }
 
 /* Notification level menu (dropdown from the bell). */
 .notify-menu {
