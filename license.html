@@ -101,10 +101,150 @@
 
           <div class="card">
             <div class="card-header">
-              <div class="card-title">Credential Details</div>
-              <span class="badge badge-success"><span class="dot"></span>Verified</span>
+              <div class="card-title">Renewal &amp; Updates</div>
+              <span class="badge" id="renewalBadge"><span class="dot"></span>—</span>
             </div>
-            <div class="scanned-info" id="details"></div>
+
+            <div class="scanned-info mb-4">
+              <div class="info-field"><label>Current expiry</label><div class="value" id="renewCurrentExp">—</div></div>
+              <div class="info-field"><label>Time remaining</label><div class="value" id="renewRemaining">—</div></div>
+              <div class="info-field"><label>Last updated</label><div class="value" id="renewLastUpdated">—</div></div>
+              <div class="info-field"><label>DMV visit required</label><div class="value">No · all online</div></div>
+            </div>
+
+            <div class="row" style="gap:8px;flex-wrap:wrap;">
+              <button class="btn btn-primary" id="btnShowRenew" onclick="toggleRenewPane()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>
+                Renew online
+              </button>
+              <button class="btn btn-secondary" id="btnShowUpdate" onclick="toggleUpdatePane()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+                Update details
+              </button>
+            </div>
+
+            <div class="renewal-pane mt-6" id="renewPane" hidden>
+              <div class="row-between mb-4">
+                <div>
+                  <div class="text-lg" style="font-weight:600;">Renew Your License Online</div>
+                  <div class="text-sm text-muted mt-2">Submit electronically. Your digital license updates immediately; the physical card mails in 5–7 business days.</div>
+                </div>
+              </div>
+
+              <div class="grid-2 mb-4">
+                <div class="form-row">
+                  <label>Renewal term</label>
+                  <select id="renewTerm" onchange="recalcRenewal()">
+                    <option value="4">4-year — Standard ($36.00)</option>
+                    <option value="8">8-year — REAL ID compliant ($68.00)</option>
+                  </select>
+                </div>
+                <div class="form-row">
+                  <label>New expiry</label>
+                  <input type="text" id="renewNewExp" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <label style="display:flex;align-items:flex-start;gap:8px;font-weight:500;cursor:pointer;">
+                  <input type="checkbox" id="renewVision" style="width:auto;margin-top:2px;">
+                  <span>I attest that my vision meets state requirements (corrective lenses noted on the license if applicable).</span>
+                </label>
+              </div>
+              <div class="form-row">
+                <label style="display:flex;align-items:flex-start;gap:8px;font-weight:500;cursor:pointer;">
+                  <input type="checkbox" id="renewLegal" style="width:auto;margin-top:2px;">
+                  <span>I confirm there are no medical or legal changes that would disqualify me from holding a driver license.</span>
+                </label>
+              </div>
+              <div class="form-row">
+                <label>Photo</label>
+                <div class="row" style="gap:10px;">
+                  <span class="badge badge-info"><span class="dot"></span>Use current photo on file</span>
+                  <button class="btn btn-ghost" style="font-size:13px;padding:6px 10px;" onclick="alert('Photo upload would open here. (Demo)');">Upload new</button>
+                </div>
+              </div>
+
+              <div class="row-between mt-6">
+                <div>
+                  <div class="text-sm text-muted">Total due today</div>
+                  <div class="text-xl" id="renewFee">$36.00</div>
+                </div>
+                <div class="row" style="gap:8px;">
+                  <button class="btn btn-ghost" onclick="toggleRenewPane()">Cancel</button>
+                  <button class="btn btn-primary" onclick="submitRenewal()">Pay &amp; submit</button>
+                </div>
+              </div>
+
+              <div id="renewSuccess" hidden class="banner-success mt-4">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <div>Renewal accepted. Digital license updated · new expiry <strong id="renewSuccessDate"></strong>. A physical card has been mailed to your address on file.</div>
+              </div>
+            </div>
+
+            <div class="renewal-pane mt-6" id="updatePane" hidden>
+              <div class="row-between mb-4">
+                <div>
+                  <div class="text-lg" style="font-weight:600;">Update License Details</div>
+                  <div class="text-sm text-muted mt-2">Address changes are free and effective immediately. Physical descriptors update on the next reissue or renewal.</div>
+                </div>
+              </div>
+
+              <div class="grid-2">
+                <div class="form-row" style="grid-column:1 / -1;">
+                  <label>Street address</label>
+                  <input type="text" id="upAddr">
+                </div>
+                <div class="form-row">
+                  <label>City</label>
+                  <input type="text" id="upCity">
+                </div>
+                <div class="form-row">
+                  <label>ZIP</label>
+                  <input type="text" id="upZip" maxlength="10">
+                </div>
+                <div class="form-row">
+                  <label>Height</label>
+                  <input type="text" id="upHeight" placeholder="5'-06&quot;">
+                </div>
+                <div class="form-row">
+                  <label>Eye color</label>
+                  <select id="upEyes">
+                    <option value="BRN">Brown (BRN)</option>
+                    <option value="BLU">Blue (BLU)</option>
+                    <option value="GRN">Green (GRN)</option>
+                    <option value="HZL">Hazel (HZL)</option>
+                    <option value="GRY">Gray (GRY)</option>
+                    <option value="BLK">Black (BLK)</option>
+                  </select>
+                </div>
+                <div class="form-row">
+                  <label>Hair color</label>
+                  <select id="upHair">
+                    <option value="BRN">Brown (BRN)</option>
+                    <option value="BLK">Black (BLK)</option>
+                    <option value="BLN">Blonde (BLN)</option>
+                    <option value="RED">Red (RED)</option>
+                    <option value="GRY">Gray (GRY)</option>
+                    <option value="WHI">White (WHI)</option>
+                    <option value="BAL">Bald (BAL)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row-between mt-4">
+                <span class="text-sm text-muted">Address changes are free. ID reissue with descriptor updates: $12.50.</span>
+                <div class="row" style="gap:8px;">
+                  <button class="btn btn-ghost" onclick="toggleUpdatePane()">Cancel</button>
+                  <button class="btn btn-primary" onclick="submitUpdate()">Save changes</button>
+                </div>
+              </div>
+
+              <div id="updateSuccess" hidden class="banner-success mt-4">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <div>Details updated. Your license now reflects the new information.</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -200,18 +340,19 @@
 
           <div class="card">
             <div class="card-header">
-              <div class="card-title">Credential Details</div>
-              <span class="badge badge-success"><span class="dot"></span>Verified</span>
+              <div class="card-title">Passport Management</div>
+              <span class="badge badge-success"><span class="dot"></span>4 years remaining</span>
             </div>
-            <div class="scanned-info">
-              <div class="info-field full"><label>Issuing Authority</label><div class="value">U.S. Department of State</div></div>
-              <div class="info-field"><label>Type</label><div class="value">P · Regular tourist</div></div>
-              <div class="info-field"><label>Endorsements</label><div class="value">None</div></div>
-              <div class="info-field"><label>Date of Issue</label><div class="value">May 5, 2020</div></div>
-              <div class="info-field"><label>Date of Expiry</label><div class="value">May 4, 2030</div></div>
-              <div class="info-field"><label>Pages</label><div class="value">52 (visa pages)</div></div>
-              <div class="info-field"><label>RFID Chip</label><div class="value">Active · ICAO 9303</div></div>
-              <div class="info-field full"><label>Authorized Travel</label><div class="value">All countries except OFAC-restricted</div></div>
+            <div class="scanned-info mb-4">
+              <div class="info-field"><label>Current expiry</label><div class="value">May 4, 2030</div></div>
+              <div class="info-field"><label>Renewal eligibility</label><div class="value">Now (within 1 year of expiry)</div></div>
+              <div class="info-field"><label>Standard renewal fee</label><div class="value">$130</div></div>
+              <div class="info-field"><label>Processing time</label><div class="value">6–8 weeks · Expedited 2–3 weeks ($60)</div></div>
+            </div>
+            <div class="row" style="gap:8px;flex-wrap:wrap;">
+              <button class="btn btn-primary" onclick="alert('Form DS-82 renewal flow opens. (Demo)');">Start DS-82 renewal</button>
+              <button class="btn btn-secondary" onclick="alert('Travel advisory dashboard. (Demo)');">Travel advisories</button>
+              <a class="btn btn-ghost" href="https://travel.state.gov" target="_blank" rel="noopener">travel.state.gov →</a>
             </div>
           </div>
         </div>
@@ -267,19 +408,19 @@
 
           <div class="card">
             <div class="card-header">
-              <div class="card-title">Credential Details</div>
-              <span class="badge badge-success"><span class="dot"></span>Active</span>
+              <div class="card-title">License Management</div>
+              <span class="badge badge-warning"><span class="dot"></span>Expires Jun 30, 2027</span>
             </div>
-            <div class="scanned-info">
-              <div class="info-field full"><label>Issuing Authority</label><div class="value" id="huntAuthority">California Department of Fish &amp; Wildlife</div></div>
-              <div class="info-field"><label>License Year</label><div class="value">Jul 1, 2026 – Jun 30, 2027</div></div>
-              <div class="info-field"><label>Resident Status</label><div class="value">In-state resident</div></div>
-              <div class="info-field"><label>Hunter Education</label><div class="value">Cert #HE-22041</div></div>
-              <div class="info-field"><label>Tags Issued</label><div class="value">3 (deer, waterfowl, upland)</div></div>
-              <div class="info-field"><label>Tags Used</label><div class="value">0 of 3</div></div>
-              <div class="info-field"><label>Bag Limits</label><div class="value">Per zone &amp; season</div></div>
-              <div class="info-field"><label>Public Lands Access</label><div class="value">All state WMAs</div></div>
-              <div class="info-field full"><label>Restrictions</label><div class="value">No mountain lion · No bighorn sheep without separate tag</div></div>
+            <div class="scanned-info mb-4">
+              <div class="info-field"><label>License year</label><div class="value">Jul 1, 2026 – Jun 30, 2027</div></div>
+              <div class="info-field"><label>Renewal opens</label><div class="value">May 1, 2027</div></div>
+              <div class="info-field"><label>Resident fee</label><div class="value">$54.00 (annual)</div></div>
+              <div class="info-field"><label>Tag inventory</label><div class="value">3 of 3 unused</div></div>
+            </div>
+            <div class="row" style="gap:8px;flex-wrap:wrap;">
+              <button class="btn btn-primary" onclick="alert('Tag purchase flow. (Demo)');">Buy additional tags</button>
+              <button class="btn btn-secondary" onclick="alert('Harvest log — record your catch. (Demo)');">Harvest log</button>
+              <button class="btn btn-ghost" onclick="alert('Season schedule for your zone. (Demo)');">Season schedule</button>
             </div>
           </div>
         </div>
@@ -335,20 +476,19 @@
 
           <div class="card">
             <div class="card-header">
-              <div class="card-title">Credential Details</div>
-              <span class="badge badge-success"><span class="dot"></span>Current</span>
+              <div class="card-title">Registration Management</div>
+              <span class="badge badge-success"><span class="dot"></span>Current until Apr 30, 2027</span>
             </div>
-            <div class="scanned-info">
-              <div class="info-field full"><label>Registered Owner</label><div class="value" id="vehDetailOwner">Sarah K. Mitchell</div></div>
-              <div class="info-field full"><label>Owner Address</label><div class="value" id="vehAddr">—</div></div>
-              <div class="info-field"><label>Plate Number</label><div class="value">9KZA204</div></div>
-              <div class="info-field"><label>VIN</label><div class="value">1FTFW1ET7DKD12345</div></div>
-              <div class="info-field"><label>Year / Make / Model</label><div class="value">2021 Honda CR-V</div></div>
-              <div class="info-field"><label>Body Style</label><div class="value">Sport Utility</div></div>
-              <div class="info-field"><label>Fuel</label><div class="value">Gasoline · 28 MPG</div></div>
-              <div class="info-field"><label>Registration Class</label><div class="value">Passenger</div></div>
-              <div class="info-field"><label>Smog Inspection</label><div class="value">Mar 2026 · Pass</div></div>
-              <div class="info-field"><label>Expires</label><div class="value">Apr 30, 2027</div></div>
+            <div class="scanned-info mb-4">
+              <div class="info-field"><label>Current expiry</label><div class="value">April 30, 2027</div></div>
+              <div class="info-field"><label>Annual fee</label><div class="value">$192.00 (incl. $36 transportation tax)</div></div>
+              <div class="info-field"><label>Smog inspection</label><div class="value">Passed Mar 12, 2026 (next due 2028)</div></div>
+              <div class="info-field"><label>Insurance on file</label><div class="value">State Farm · Policy #SF-104832</div></div>
+            </div>
+            <div class="row" style="gap:8px;flex-wrap:wrap;">
+              <button class="btn btn-primary" onclick="alert('Renewal flow opens. (Demo)');">Renew online</button>
+              <button class="btn btn-secondary" onclick="alert('Transfer ownership flow. (Demo)');">Transfer title</button>
+              <button class="btn btn-ghost" onclick="alert('Replacement plate / sticker request. (Demo)');">Order replacement</button>
             </div>
           </div>
         </div>
@@ -407,20 +547,19 @@
 
           <div class="card">
             <div class="card-header">
-              <div class="card-title">Credential Details</div>
-              <span class="badge badge-success"><span class="dot"></span>On file</span>
+              <div class="card-title">Vital Record Options</div>
+              <span class="badge badge-info"><span class="dot"></span>3 certified copies issued</span>
             </div>
-            <div class="scanned-info">
-              <div class="info-field full"><label>Registrar</label><div class="value">Los Angeles County Registrar-Recorder</div></div>
-              <div class="info-field"><label>Certificate Number</label><div class="value">BC-CA-19910314-4477</div></div>
-              <div class="info-field"><label>Filed</label><div class="value">March 15, 1991</div></div>
-              <div class="info-field"><label>Status</label><div class="value">Certified · Long form</div></div>
-              <div class="info-field"><label>Sex on Certificate</label><div class="value">Female</div></div>
-              <div class="info-field"><label>Hospital</label><div class="value">Cedars-Sinai Medical Center</div></div>
-              <div class="info-field"><label>Attendant</label><div class="value">Dr. Linda K. Park, MD</div></div>
-              <div class="info-field"><label>Mother's maiden name</label><div class="value">Jane Catherine Anderson</div></div>
-              <div class="info-field"><label>Father</label><div class="value">Robert James Mitchell</div></div>
-              <div class="info-field"><label>Certified copies issued</label><div class="value">3 (latest Jul 2024)</div></div>
+            <div class="scanned-info mb-4">
+              <div class="info-field"><label>Certified copy</label><div class="value">$25 · Mails in 3–5 business days</div></div>
+              <div class="info-field"><label>Expedited copy</label><div class="value">$45 · 1–2 business days</div></div>
+              <div class="info-field"><label>Long-form vs short-form</label><div class="value">Both available</div></div>
+              <div class="info-field"><label>Apostille (international use)</label><div class="value">$26 + processing</div></div>
+            </div>
+            <div class="row" style="gap:8px;flex-wrap:wrap;">
+              <button class="btn btn-primary" onclick="alert('Certified copy order — $25, mails to address on file. (Demo)');">Order certified copy</button>
+              <button class="btn btn-secondary" onclick="alert('Name change petition opens. (Demo)');">Petition name change</button>
+              <button class="btn btn-ghost" onclick="alert('Apostille request flow. (Demo)');">Request apostille</button>
             </div>
           </div>
         </div>
@@ -478,270 +617,132 @@
 
           <div class="card">
             <div class="card-header">
-              <div class="card-title">Credential Details</div>
-              <span class="badge badge-success"><span class="dot"></span>Active</span>
+              <div class="card-title">Insurance Management</div>
+              <span class="badge badge-success"><span class="dot"></span>Active until Dec 31, 2026</span>
             </div>
-            <div class="scanned-info">
-              <div class="info-field full"><label>Carrier</label><div class="value">Blue Shield of California (Carrier #BC-44021)</div></div>
-              <div class="info-field"><label>Plan Name</label><div class="value">Gold PPO 2000</div></div>
-              <div class="info-field"><label>Plan Type</label><div class="value">PPO · Marketplace</div></div>
-              <div class="info-field"><label>Member ID</label><div class="value">XJP-2841-04</div></div>
-              <div class="info-field"><label>Group #</label><div class="value">G-4421</div></div>
-              <div class="info-field"><label>BIN / RxPCN</label><div class="value">003858 / BSCN</div></div>
-              <div class="info-field"><label>Effective</label><div class="value">January 1, 2024</div></div>
-              <div class="info-field"><label>Plan Year</label><div class="value">2026 (renews Dec 31)</div></div>
-              <div class="info-field"><label>Deductible</label><div class="value">$2,000 / yr</div></div>
-              <div class="info-field"><label>OOP Max</label><div class="value">$7,500 / yr</div></div>
-              <div class="info-field full"><label>Primary Care Provider</label><div class="value">Dr. Sarah Patel · UCLA Health</div></div>
+            <div class="scanned-info mb-4">
+              <div class="info-field"><label>Current premium</label><div class="value">$385 / month</div></div>
+              <div class="info-field"><label>YTD out-of-pocket</label><div class="value">$1,247 of $7,500 max</div></div>
+              <div class="info-field"><label>Open enrollment</label><div class="value">Nov 1 – Dec 15, 2026</div></div>
+              <div class="info-field"><label>Auto-renewal</label><div class="value">On · same plan</div></div>
+            </div>
+            <div class="row" style="gap:8px;flex-wrap:wrap;">
+              <a class="btn btn-primary" href="healthcare.html">Manage plans &amp; coverage</a>
+              <button class="btn btn-secondary" onclick="alert('Network search — find in-network providers. (Demo)');">Find provider</button>
+              <button class="btn btn-ghost" onclick="alert('Claims and EOB statements. (Demo)');">View claims</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ============ Per-doc Renewal & Updates ============ -->
+      <!-- ============ Per-doc Full Credential Details ============ -->
 
-      <!-- License renewal (full flow) -->
+      <!-- License: Full Credential Details (was the right column of the doc-panel grid;
+           moved out and made full-width so it doesn't create an awkward gap next to the
+           shorter license card. The Renewal & Updates card now sits in the right column.) -->
       <div class="card mt-6" data-doc-section="license">
         <div class="card-header">
-          <div class="card-title">Renewal &amp; Updates</div>
-          <span class="badge" id="renewalBadge"><span class="dot"></span>—</span>
+          <div class="card-title">Full Credential Details</div>
+          <span class="badge badge-success"><span class="dot"></span>Verified</span>
         </div>
-
-        <div class="scanned-info mb-4">
-          <div class="info-field"><label>Current expiry</label><div class="value" id="renewCurrentExp">—</div></div>
-          <div class="info-field"><label>Time remaining</label><div class="value" id="renewRemaining">—</div></div>
-          <div class="info-field"><label>Last updated</label><div class="value" id="renewLastUpdated">—</div></div>
-          <div class="info-field"><label>DMV visit required</label><div class="value">No · all online</div></div>
-        </div>
-
-        <div class="row" style="gap:8px;">
-          <button class="btn btn-primary" id="btnShowRenew" onclick="toggleRenewPane()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>
-            Renew online
-          </button>
-          <button class="btn btn-secondary" id="btnShowUpdate" onclick="toggleUpdatePane()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
-            Update details
-          </button>
-          <span class="text-sm text-muted" style="margin-left:auto;">Identity verified by ePluribus · Skip the DMV line</span>
-        </div>
-
-        <div class="renewal-pane mt-6" id="renewPane" hidden>
-          <div class="row-between mb-4">
-            <div>
-              <div class="text-lg" style="font-weight:600;">Renew Your License Online</div>
-              <div class="text-sm text-muted mt-2">Submit electronically. Your digital license updates immediately; the physical card mails in 5–7 business days.</div>
-            </div>
-          </div>
-
-          <div class="grid-2 mb-4">
-            <div class="form-row">
-              <label>Renewal term</label>
-              <select id="renewTerm" onchange="recalcRenewal()">
-                <option value="4">4-year — Standard ($36.00)</option>
-                <option value="8">8-year — REAL ID compliant ($68.00)</option>
-              </select>
-            </div>
-            <div class="form-row">
-              <label>New expiry</label>
-              <input type="text" id="renewNewExp" readonly>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <label style="display:flex;align-items:flex-start;gap:8px;font-weight:500;cursor:pointer;">
-              <input type="checkbox" id="renewVision" style="width:auto;margin-top:2px;">
-              <span>I attest that my vision meets state requirements (corrective lenses noted on the license if applicable).</span>
-            </label>
-          </div>
-          <div class="form-row">
-            <label style="display:flex;align-items:flex-start;gap:8px;font-weight:500;cursor:pointer;">
-              <input type="checkbox" id="renewLegal" style="width:auto;margin-top:2px;">
-              <span>I confirm there are no medical or legal changes that would disqualify me from holding a driver license.</span>
-            </label>
-          </div>
-          <div class="form-row">
-            <label>Photo</label>
-            <div class="row" style="gap:10px;">
-              <span class="badge badge-info"><span class="dot"></span>Use current photo on file</span>
-              <button class="btn btn-ghost" style="font-size:13px;padding:6px 10px;" onclick="alert('Photo upload would open here. (Demo)');">Upload new</button>
-            </div>
-          </div>
-
-          <div class="row-between mt-6">
-            <div>
-              <div class="text-sm text-muted">Total due today</div>
-              <div class="text-xl" id="renewFee">$36.00</div>
-            </div>
-            <div class="row" style="gap:8px;">
-              <button class="btn btn-ghost" onclick="toggleRenewPane()">Cancel</button>
-              <button class="btn btn-primary" onclick="submitRenewal()">Pay &amp; submit</button>
-            </div>
-          </div>
-
-          <div id="renewSuccess" hidden class="banner-success mt-4">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <div>Renewal accepted. Digital license updated · new expiry <strong id="renewSuccessDate"></strong>. A physical card has been mailed to your address on file.</div>
-          </div>
-        </div>
-
-        <div class="renewal-pane mt-6" id="updatePane" hidden>
-          <div class="row-between mb-4">
-            <div>
-              <div class="text-lg" style="font-weight:600;">Update License Details</div>
-              <div class="text-sm text-muted mt-2">Address changes are free and effective immediately. Physical descriptors update on the next reissue or renewal.</div>
-            </div>
-          </div>
-
-          <div class="grid-2">
-            <div class="form-row" style="grid-column:1 / -1;">
-              <label>Street address</label>
-              <input type="text" id="upAddr">
-            </div>
-            <div class="form-row">
-              <label>City</label>
-              <input type="text" id="upCity">
-            </div>
-            <div class="form-row">
-              <label>ZIP</label>
-              <input type="text" id="upZip" maxlength="10">
-            </div>
-            <div class="form-row">
-              <label>Height</label>
-              <input type="text" id="upHeight" placeholder="5'-06&quot;">
-            </div>
-            <div class="form-row">
-              <label>Eye color</label>
-              <select id="upEyes">
-                <option value="BRN">Brown (BRN)</option>
-                <option value="BLU">Blue (BLU)</option>
-                <option value="GRN">Green (GRN)</option>
-                <option value="HZL">Hazel (HZL)</option>
-                <option value="GRY">Gray (GRY)</option>
-                <option value="BLK">Black (BLK)</option>
-              </select>
-            </div>
-            <div class="form-row">
-              <label>Hair color</label>
-              <select id="upHair">
-                <option value="BRN">Brown (BRN)</option>
-                <option value="BLK">Black (BLK)</option>
-                <option value="BLN">Blonde (BLN)</option>
-                <option value="RED">Red (RED)</option>
-                <option value="GRY">Gray (GRY)</option>
-                <option value="WHI">White (WHI)</option>
-                <option value="BAL">Bald (BAL)</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="row-between mt-4">
-            <span class="text-sm text-muted">Address changes are free. ID reissue with descriptor updates: $12.50.</span>
-            <div class="row" style="gap:8px;">
-              <button class="btn btn-ghost" onclick="toggleUpdatePane()">Cancel</button>
-              <button class="btn btn-primary" onclick="submitUpdate()">Save changes</button>
-            </div>
-          </div>
-
-          <div id="updateSuccess" hidden class="banner-success mt-4">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <div>Details updated. Your license now reflects the new information.</div>
-          </div>
-        </div>
+        <div class="scanned-info" id="details"></div>
       </div>
 
-      <!-- Passport renewal -->
+      <!-- Passport: Full Credential Details -->
       <div class="card mt-6" data-doc-section="passport" hidden>
         <div class="card-header">
-          <div class="card-title">Passport Management</div>
-          <span class="badge badge-success"><span class="dot"></span>4 years remaining</span>
+          <div class="card-title">Full Credential Details</div>
+          <span class="badge badge-success"><span class="dot"></span>Verified</span>
         </div>
-        <div class="scanned-info mb-4">
-          <div class="info-field"><label>Current expiry</label><div class="value">May 4, 2030</div></div>
-          <div class="info-field"><label>Renewal eligibility</label><div class="value">Now (within 1 year of expiry)</div></div>
-          <div class="info-field"><label>Standard renewal fee</label><div class="value">$130</div></div>
-          <div class="info-field"><label>Processing time</label><div class="value">6–8 weeks · Expedited 2–3 weeks ($60)</div></div>
-        </div>
-        <div class="row" style="gap:8px;">
-          <button class="btn btn-primary" onclick="alert('Form DS-82 renewal flow opens. (Demo)');">Start DS-82 renewal</button>
-          <button class="btn btn-secondary" onclick="alert('Travel advisory dashboard. (Demo)');">Travel advisories</button>
-          <a class="btn btn-ghost" href="https://travel.state.gov" target="_blank" rel="noopener">travel.state.gov →</a>
+        <div class="scanned-info">
+          <div class="info-field full"><label>Issuing Authority</label><div class="value">U.S. Department of State</div></div>
+          <div class="info-field"><label>Type</label><div class="value">P · Regular tourist</div></div>
+          <div class="info-field"><label>Endorsements</label><div class="value">None</div></div>
+          <div class="info-field"><label>Date of Issue</label><div class="value">May 5, 2020</div></div>
+          <div class="info-field"><label>Date of Expiry</label><div class="value">May 4, 2030</div></div>
+          <div class="info-field"><label>Pages</label><div class="value">52 (visa pages)</div></div>
+          <div class="info-field"><label>RFID Chip</label><div class="value">Active · ICAO 9303</div></div>
+          <div class="info-field full"><label>Authorized Travel</label><div class="value">All countries except OFAC-restricted</div></div>
         </div>
       </div>
 
-      <!-- Hunting renewal -->
+      <!-- Hunting: Full Credential Details -->
       <div class="card mt-6" data-doc-section="hunting" hidden>
         <div class="card-header">
-          <div class="card-title">License Management</div>
-          <span class="badge badge-warning"><span class="dot"></span>Expires Jun 30, 2027</span>
+          <div class="card-title">Full Credential Details</div>
+          <span class="badge badge-success"><span class="dot"></span>Active</span>
         </div>
-        <div class="scanned-info mb-4">
-          <div class="info-field"><label>License year</label><div class="value">Jul 1, 2026 – Jun 30, 2027</div></div>
-          <div class="info-field"><label>Renewal opens</label><div class="value">May 1, 2027</div></div>
-          <div class="info-field"><label>Resident fee</label><div class="value">$54.00 (annual)</div></div>
-          <div class="info-field"><label>Tag inventory</label><div class="value">3 of 3 unused</div></div>
-        </div>
-        <div class="row" style="gap:8px;">
-          <button class="btn btn-primary" onclick="alert('Tag purchase flow. (Demo)');">Buy additional tags</button>
-          <button class="btn btn-secondary" onclick="alert('Harvest log — record your catch. (Demo)');">Harvest log</button>
-          <button class="btn btn-ghost" onclick="alert('Season schedule for your zone. (Demo)');">Season schedule</button>
+        <div class="scanned-info">
+          <div class="info-field full"><label>Issuing Authority</label><div class="value" id="huntAuthority">California Department of Fish &amp; Wildlife</div></div>
+          <div class="info-field"><label>License Year</label><div class="value">Jul 1, 2026 – Jun 30, 2027</div></div>
+          <div class="info-field"><label>Resident Status</label><div class="value">In-state resident</div></div>
+          <div class="info-field"><label>Hunter Education</label><div class="value">Cert #HE-22041</div></div>
+          <div class="info-field"><label>Tags Issued</label><div class="value">3 (deer, waterfowl, upland)</div></div>
+          <div class="info-field"><label>Tags Used</label><div class="value">0 of 3</div></div>
+          <div class="info-field"><label>Bag Limits</label><div class="value">Per zone &amp; season</div></div>
+          <div class="info-field"><label>Public Lands Access</label><div class="value">All state WMAs</div></div>
+          <div class="info-field full"><label>Restrictions</label><div class="value">No mountain lion · No bighorn sheep without separate tag</div></div>
         </div>
       </div>
 
-      <!-- Vehicle renewal -->
+      <!-- Vehicle: Full Credential Details -->
       <div class="card mt-6" data-doc-section="vehicle" hidden>
         <div class="card-header">
-          <div class="card-title">Registration Management</div>
-          <span class="badge badge-success"><span class="dot"></span>Current until Apr 30, 2027</span>
+          <div class="card-title">Full Credential Details</div>
+          <span class="badge badge-success"><span class="dot"></span>Current</span>
         </div>
-        <div class="scanned-info mb-4">
-          <div class="info-field"><label>Current expiry</label><div class="value">April 30, 2027</div></div>
-          <div class="info-field"><label>Annual fee</label><div class="value">$192.00 (incl. $36 transportation tax)</div></div>
-          <div class="info-field"><label>Smog inspection</label><div class="value">Passed Mar 12, 2026 (next due 2028)</div></div>
-          <div class="info-field"><label>Insurance on file</label><div class="value">State Farm · Policy #SF-104832</div></div>
-        </div>
-        <div class="row" style="gap:8px;">
-          <button class="btn btn-primary" onclick="alert('Renewal flow opens. (Demo)');">Renew online</button>
-          <button class="btn btn-secondary" onclick="alert('Transfer ownership flow. (Demo)');">Transfer title</button>
-          <button class="btn btn-ghost" onclick="alert('Replacement plate / sticker request. (Demo)');">Order replacement</button>
+        <div class="scanned-info">
+          <div class="info-field full"><label>Registered Owner</label><div class="value" id="vehDetailOwner">Sarah K. Mitchell</div></div>
+          <div class="info-field full"><label>Owner Address</label><div class="value" id="vehAddr">—</div></div>
+          <div class="info-field"><label>Plate Number</label><div class="value">9KZA204</div></div>
+          <div class="info-field"><label>VIN</label><div class="value">1FTFW1ET7DKD12345</div></div>
+          <div class="info-field"><label>Year / Make / Model</label><div class="value">2021 Honda CR-V</div></div>
+          <div class="info-field"><label>Body Style</label><div class="value">Sport Utility</div></div>
+          <div class="info-field"><label>Fuel</label><div class="value">Gasoline · 28 MPG</div></div>
+          <div class="info-field"><label>Registration Class</label><div class="value">Passenger</div></div>
+          <div class="info-field"><label>Smog Inspection</label><div class="value">Mar 2026 · Pass</div></div>
+          <div class="info-field"><label>Expires</label><div class="value">Apr 30, 2027</div></div>
         </div>
       </div>
 
-      <!-- Birth certificate -->
+      <!-- Birth: Full Credential Details -->
       <div class="card mt-6" data-doc-section="birth" hidden>
         <div class="card-header">
-          <div class="card-title">Vital Record Options</div>
-          <span class="badge badge-info"><span class="dot"></span>3 certified copies issued</span>
+          <div class="card-title">Full Credential Details</div>
+          <span class="badge badge-success"><span class="dot"></span>On file</span>
         </div>
-        <div class="scanned-info mb-4">
-          <div class="info-field"><label>Certified copy</label><div class="value">$25 · Mails in 3–5 business days</div></div>
-          <div class="info-field"><label>Expedited copy</label><div class="value">$45 · 1–2 business days</div></div>
-          <div class="info-field"><label>Long-form vs short-form</label><div class="value">Both available</div></div>
-          <div class="info-field"><label>Apostille (international use)</label><div class="value">$26 + processing</div></div>
-        </div>
-        <div class="row" style="gap:8px;">
-          <button class="btn btn-primary" onclick="alert('Certified copy order — $25, mails to address on file. (Demo)');">Order certified copy</button>
-          <button class="btn btn-secondary" onclick="alert('Name change petition opens. (Demo)');">Petition name change</button>
-          <button class="btn btn-ghost" onclick="alert('Apostille request flow. (Demo)');">Request apostille</button>
+        <div class="scanned-info">
+          <div class="info-field full"><label>Registrar</label><div class="value">Los Angeles County Registrar-Recorder</div></div>
+          <div class="info-field"><label>Certificate Number</label><div class="value">BC-CA-19910314-4477</div></div>
+          <div class="info-field"><label>Filed</label><div class="value">March 15, 1991</div></div>
+          <div class="info-field"><label>Status</label><div class="value">Certified · Long form</div></div>
+          <div class="info-field"><label>Sex on Certificate</label><div class="value">Female</div></div>
+          <div class="info-field"><label>Hospital</label><div class="value">Cedars-Sinai Medical Center</div></div>
+          <div class="info-field"><label>Attendant</label><div class="value">Dr. Linda K. Park, MD</div></div>
+          <div class="info-field"><label>Mother's maiden name</label><div class="value">Jane Catherine Anderson</div></div>
+          <div class="info-field"><label>Father</label><div class="value">Robert James Mitchell</div></div>
+          <div class="info-field"><label>Certified copies issued</label><div class="value">3 (latest Jul 2024)</div></div>
         </div>
       </div>
 
-      <!-- Health card -->
+      <!-- Health: Full Credential Details -->
       <div class="card mt-6" data-doc-section="health" hidden>
         <div class="card-header">
-          <div class="card-title">Insurance Management</div>
-          <span class="badge badge-success"><span class="dot"></span>Active until Dec 31, 2026</span>
+          <div class="card-title">Full Credential Details</div>
+          <span class="badge badge-success"><span class="dot"></span>Active</span>
         </div>
-        <div class="scanned-info mb-4">
-          <div class="info-field"><label>Current premium</label><div class="value">$385 / month</div></div>
-          <div class="info-field"><label>YTD out-of-pocket</label><div class="value">$1,247 of $7,500 max</div></div>
-          <div class="info-field"><label>Open enrollment</label><div class="value">Nov 1 – Dec 15, 2026</div></div>
-          <div class="info-field"><label>Auto-renewal</label><div class="value">On · same plan</div></div>
-        </div>
-        <div class="row" style="gap:8px;">
-          <a class="btn btn-primary" href="healthcare.html">Manage plans &amp; coverage</a>
-          <button class="btn btn-secondary" onclick="alert('Network search — find in-network providers. (Demo)');">Find provider</button>
-          <button class="btn btn-ghost" onclick="alert('Claims and EOB statements. (Demo)');">View claims</button>
+        <div class="scanned-info">
+          <div class="info-field full"><label>Carrier</label><div class="value">Blue Shield of California (Carrier #BC-44021)</div></div>
+          <div class="info-field"><label>Plan Name</label><div class="value">Gold PPO 2000</div></div>
+          <div class="info-field"><label>Plan Type</label><div class="value">PPO · Marketplace</div></div>
+          <div class="info-field"><label>Member ID</label><div class="value">XJP-2841-04</div></div>
+          <div class="info-field"><label>Group #</label><div class="value">G-4421</div></div>
+          <div class="info-field"><label>BIN / RxPCN</label><div class="value">003858 / BSCN</div></div>
+          <div class="info-field"><label>Effective</label><div class="value">January 1, 2024</div></div>
+          <div class="info-field"><label>Plan Year</label><div class="value">2026 (renews Dec 31)</div></div>
+          <div class="info-field"><label>Deductible</label><div class="value">$2,000 / yr</div></div>
+          <div class="info-field"><label>OOP Max</label><div class="value">$7,500 / yr</div></div>
+          <div class="info-field full"><label>Primary Care Provider</label><div class="value">Dr. Sarah Patel · UCLA Health</div></div>
         </div>
       </div>
 

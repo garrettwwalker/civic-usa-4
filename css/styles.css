@@ -214,11 +214,17 @@ a:hover { color: var(--primary); }
   align-items: center;
 }
 .state-select {
-  padding: 12px 16px;
+  padding: 12px 40px 12px 16px;
   font-size: 15px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-strong);
-  background: white;
+  background-color: white;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%235a5c66' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M1 1.5l5 5 5-5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   font-family: inherit;
   min-width: 240px;
   cursor: pointer;
@@ -797,7 +803,6 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
 }
 .license-card {
   width: 100%;
@@ -1900,6 +1905,17 @@ footer {
   display: inline-flex;
   align-items: stretch;
   position: relative;
+  border-radius: var(--radius-pill);
+  transition: box-shadow 0.18s ease;
+}
+/* When active, the pill carries its elevation as a single unit on the
+   group rather than per-segment, so the seam between main and bell
+   doesn't break the shadow shape. */
+.action-group[data-active="true"] {
+  box-shadow: var(--shadow-1);
+}
+.action-group[data-active="true"]:hover {
+  box-shadow: var(--shadow-2);
 }
 .action-main {
   white-space: nowrap;
@@ -1911,9 +1927,22 @@ footer {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
+/* Suppress per-button hover lift + shadow on the action-main when its
+   group is active — the elevation lives on the .action-group so the
+   connected pill stays visually unified. The JS swaps the main between
+   .btn-primary (inactive) and .btn-secondary (active), so we target
+   .action-main to cover both cases. */
+.action-group[data-active="true"] .action-main,
+.action-group[data-active="true"] .action-main:hover {
+  box-shadow: none;
+  transform: none;
+}
 /* Bell collapses to zero width when the group is inactive — width, padding,
    border, and opacity all animate together so the bell appears to slide
-   out of the right edge of the main button. */
+   out of the right edge of the main button. When the group becomes active,
+   the JS swaps .action-main from .btn-primary to .btn-secondary, so the
+   bell matches that secondary --surface-2 / --text style — the pill reads
+   as a single soft-gray segmented control. */
 .action-bell {
   display: inline-flex;
   align-items: center;
@@ -1922,11 +1951,11 @@ footer {
   padding: 0;
   border: 1px solid transparent;
   border-left-width: 0;
-  background: white;
+  background: var(--surface-2);
   color: var(--text);
   cursor: pointer;
-  border-top-right-radius: var(--radius-sm);
-  border-bottom-right-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-pill);
+  border-bottom-right-radius: var(--radius-pill);
   font: inherit;
   overflow: hidden;
   opacity: 0;
@@ -1934,21 +1963,34 @@ footer {
   white-space: nowrap;
   transition: max-width 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
               padding 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background 0.15s ease,
               border-color 0.15s ease,
               border-left-width 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
               opacity 0.2s ease;
 }
+/* Active bell: same --surface-2 fill as the active .btn-secondary main —
+   the only visual seam is a subtle dark divider on the left. Hover bumps
+   to --surface-3 to mirror the main button's secondary hover. */
 .action-group[data-active="true"] .action-bell {
   max-width: 80px;
   padding: 0 10px;
-  border-color: var(--border-strong);
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: transparent;
+  border-left-color: rgba(0, 0, 0, 0.10);
   border-left-width: 1px;
   opacity: 1;
   pointer-events: auto;
 }
-.action-group[data-active="true"] .action-bell:hover { border-color: var(--text); }
-.action-bell-icon { flex-shrink: 0; }
-.action-bell-chevron { flex-shrink: 0; opacity: 0.7; }
+.action-group[data-active="true"] .action-bell:hover {
+  background: var(--surface-3);
+  border-left-color: rgba(0, 0, 0, 0.16);
+}
+/* Bump stroke widths so the bell icons read at a similar visual weight
+   to the main button's font-weight: 600 text — otherwise the text on
+   the left looks heavier than the icon glyphs on the right. */
+.action-bell-icon { flex-shrink: 0; stroke-width: 2.4; }
+.action-bell-chevron { flex-shrink: 0; opacity: 0.7; stroke-width: 3; }
 
 /* Notification level menu (dropdown from the bell). */
 .notify-menu {
@@ -2264,8 +2306,24 @@ input[type="date"], input[type="tel"], select, textarea {
 }
 input:focus, select:focus, textarea:focus {
   outline: none;
-  background: var(--surface);
+  background-color: var(--surface);
   box-shadow: 0 0 0 2px var(--diia-black);
+}
+/* Replace the native <select> arrow with a custom chevron so it has
+   proper breathing room from the right edge instead of sitting flush
+   against it. Padding-right makes room for the arrow + spacing. */
+select {
+  padding-right: 40px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%235a5c66' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M1 1.5l5 5 5-5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+select:focus {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%230d0d0d' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M1 1.5l5 5 5-5'/></svg>");
 }
 .form-row { margin-bottom: 14px; }
 .form-row label {
