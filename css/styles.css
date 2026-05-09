@@ -546,7 +546,9 @@ footer {
   min-height: 100vh;
 }
 .sidebar {
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
   border-right: none;
   display: flex;
   flex-direction: column;
