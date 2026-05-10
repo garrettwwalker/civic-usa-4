@@ -21,30 +21,6 @@
         </button>
       </div>
 
-      <div class="grid-4 mb-6">
-        <div class="stat">
-          <div class="stat-label">Your active reports</div>
-          <div class="stat-value">2</div>
-          <div class="stat-trend">1 in progress · 1 assigned</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Resolved (last 30 days)</div>
-          <div class="stat-value">3</div>
-          <div class="stat-trend up">Avg 3.2 days to fix</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Citywide reports today</div>
-          <div class="stat-value">847</div>
-          <div class="stat-trend">↑ 12% vs typical Sunday</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Within your district</div>
-          <div class="stat-value">29</div>
-          <div class="stat-trend">11 in progress</div>
-        </div>
-      </div>
-
-      <h2 class="text-xl mb-4">Report a Problem</h2>
       <div class="grid-4 mb-6" id="newReport">
         <a class="service-card" href="#" onclick="event.preventDefault();startReport('Pothole');">
           <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></div>
@@ -88,7 +64,7 @@
         </a>
       </div>
 
-      <h2 class="text-xl mb-4">Your Active Reports</h2>
+      <h2 class="text-xl mb-4">Your Reports</h2>
       <div class="card mb-6">
         <ul class="list" id="activeReports">
           <li class="list-item">
@@ -106,6 +82,38 @@
               <div class="list-item-sub">Submitted May 1 · Tracking ID #311-4458-LA · Bureau of Street Lighting · estimated repair within 5 business days.</div>
             </div>
             <div class="list-item-meta">2 days</div>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="list-item-content">
+              <div class="list-item-title">Pothole · Centinela Ave &amp; Washington Blvd <span class="badge badge-success" style="margin-left:6px;">Resolved</span></div>
+              <div class="list-item-sub">Submitted Apr 18 · Tracking ID #311-4287-LA · Repaired and resurfaced Apr 22.</div>
+            </div>
+            <div class="list-item-meta">Apr 22</div>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="list-item-content">
+              <div class="list-item-title">Tree branch down · Beethoven St &amp; Palms <span class="badge badge-success" style="margin-left:6px;">Resolved</span></div>
+              <div class="list-item-sub">Submitted Apr 11 · Tracking ID #311-4119-LA · Urban Forestry crew cleared the limb Apr 13.</div>
+            </div>
+            <div class="list-item-meta">Apr 13</div>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="list-item-content">
+              <div class="list-item-title">Graffiti · Lincoln Blvd underpass <span class="badge badge-success" style="margin-left:6px;">Resolved</span></div>
+              <div class="list-item-sub">Submitted Mar 30 · Tracking ID #311-3984-LA · Sanitation cleaned the wall within 48 hours.</div>
+            </div>
+            <div class="list-item-meta">Apr 01</div>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="list-item-content">
+              <div class="list-item-title">Trash pickup missed · 1247 Elm St <span class="badge badge-success" style="margin-left:6px;">Resolved</span></div>
+              <div class="list-item-sub">Submitted Mar 12 · Tracking ID #311-3712-LA · Sanitation made a make-up pickup the next morning.</div>
+            </div>
+            <div class="list-item-meta">Mar 13</div>
           </li>
         </ul>
       </div>
