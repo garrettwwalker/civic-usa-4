@@ -15,7 +15,6 @@
           <h1 id="taxTitle">State Taxes</h1>
           <p id="taxSub">Pre-filled from your W-2, 1099, and DMV records.</p>
         </div>
-        <span class="badge badge-info" id="filingStatus"><span class="dot"></span>2025 return ready</span>
       </div>
 
       <div id="noTaxState" class="card hidden" style="text-align:center;padding:48px;">
@@ -220,7 +219,6 @@
       if (!tax.hasIncomeTax) {
         document.getElementById('hasTaxContent').classList.add('hidden');
         document.getElementById('noTaxState').classList.remove('hidden');
-        document.getElementById('filingStatus').innerHTML = '<span class="dot"></span>No state income tax';
         document.getElementById('noTaxText').textContent =
           `${u.stateName} has no personal income tax. We'll still help with sales tax, business filings, and property tax records.`;
       } else {

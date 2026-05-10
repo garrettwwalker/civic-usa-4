@@ -15,16 +15,11 @@
           <h1>Get Involved</h1>
           <p id="engageSub">Local petitions, town halls, and ballot measures matched to your interests.</p>
         </div>
-        <button class="btn btn-secondary" onclick="alert('Interest preferences opened. (Demo)');">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
-          Edit interests
-        </button>
       </div>
 
       <div class="card mb-6">
         <div class="card-header">
           <div class="card-title">Your Interests</div>
-          <a class="card-link" href="#">Manage</a>
         </div>
         <div class="row">
           <span class="badge badge-info">Housing</span>
@@ -32,35 +27,12 @@
           <span class="badge badge-info">Public schools</span>
           <span class="badge badge-info">Climate &amp; environment</span>
           <span class="badge badge-info">Local libraries</span>
-          <span class="badge badge-neutral">+ Add interest</span>
-        </div>
-      </div>
-
-      <div class="grid-4 mb-6">
-        <div class="stat">
-          <div class="stat-label">Petitions for you</div>
-          <div class="stat-value">5</div>
-          <div class="stat-trend up">3 closing this month</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Town halls this month</div>
-          <div class="stat-value">4</div>
-          <div class="stat-trend">2 within 5 miles</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Voter status</div>
-          <div class="stat-value" style="font-size:18px;">Registered <span class="badge badge-success" style="vertical-align:middle;">Active</span></div>
-          <div class="stat-trend" id="engagePrecinct">Precinct 8412</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Actions taken</div>
-          <div class="stat-value">12</div>
-          <div class="stat-trend">3 in past 30 days</div>
+          <span class="badge badge-neutral" role="button" tabindex="0" style="cursor:pointer;" onclick="alert('Interest preferences opened. (Demo)');">+ Add interest</span>
         </div>
       </div>
 
       <div class="row-between mb-4">
-        <h2 class="text-xl">Active Petitions</h2>
+        <h2 class="text-xl">Petitions for You</h2>
         <a class="card-link" href="#">View all 14</a>
       </div>
       <div class="grid-2 mb-6">
@@ -239,7 +211,7 @@
       </div>
       <div class="card mb-6">
         <ul class="list town-hall-list">
-          <li class="town-hall" onclick="toggleTownHall(this);">
+          <li class="town-hall" onclick="openTownHall(this);">
             <div class="town-hall-summary">
               <div class="list-item-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
@@ -297,7 +269,7 @@
               </div>
             </div>
           </li>
-          <li class="town-hall" onclick="toggleTownHall(this);">
+          <li class="town-hall" onclick="openTownHall(this);">
             <div class="town-hall-summary">
               <div class="list-item-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
@@ -355,7 +327,7 @@
               </div>
             </div>
           </li>
-          <li class="town-hall" onclick="toggleTownHall(this);">
+          <li class="town-hall" onclick="openTownHall(this);">
             <div class="town-hall-summary">
               <div class="list-item-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
@@ -413,7 +385,7 @@
               </div>
             </div>
           </li>
-          <li class="town-hall" onclick="toggleTownHall(this);">
+          <li class="town-hall" onclick="openTownHall(this);">
             <div class="town-hall-summary">
               <div class="list-item-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
@@ -474,11 +446,11 @@
         </ul>
       </div>
 
+      <div class="row-between mb-4">
+        <h2 class="text-xl">Your Past Actions</h2>
+        <a class="card-link" href="#">Export</a>
+      </div>
       <div class="card">
-        <div class="card-header">
-          <div class="card-title">Your Past Actions</div>
-          <a class="card-link" href="#">Export</a>
-        </div>
         <table class="table">
           <thead><tr><th>Date</th><th>Action</th><th>Topic</th><th>Status</th></tr></thead>
           <tbody>
@@ -551,6 +523,21 @@
 
         <div class="petition-links mt-4" id="modalLinks"></div>
       </div>
+    </div>
+  </div>
+
+  <!-- Town hall details modal — populated from the clicked <li>'s contents -->
+  <div class="modal-backdrop" id="townHallModal" hidden onclick="if(event.target===this)closeTownHall()">
+    <div class="modal-pane" role="dialog" aria-modal="true" aria-labelledby="townHallTitle">
+      <button class="modal-close" type="button" onclick="closeTownHall()" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-header">
+        <span class="badge badge-info">Town hall</span>
+        <h2 id="townHallTitle" class="mt-2" style="font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.2;">—</h2>
+        <p id="townHallSub" class="text-muted mt-2" style="font-size:15px;line-height:1.5;">—</p>
+      </div>
+      <div class="modal-body" id="townHallBody">—</div>
     </div>
   </div>
 
@@ -889,18 +876,26 @@
     }
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        const modal = document.getElementById('petitionModal');
-        if (modal && !modal.hidden) closePetition();
-      }
+      if (e.key !== 'Escape') return;
+      const petition = document.getElementById('petitionModal');
+      const townHall = document.getElementById('townHallModal');
+      if (petition && !petition.hidden) closePetition();
+      if (townHall && !townHall.hidden) closeTownHall();
     });
 
-    function toggleTownHall(li) {
+    function openTownHall(li) {
+      const title = li.querySelector('.list-item-title')?.textContent.trim() || '';
+      const sub = li.querySelector('.list-item-sub')?.textContent.trim() || '';
       const details = li.querySelector('.town-hall-details');
-      if (!details) return;
-      const isOpen = !details.hidden;
-      details.hidden = isOpen;
-      li.classList.toggle('expanded', !isOpen);
+      document.getElementById('townHallTitle').textContent = title;
+      document.getElementById('townHallSub').textContent = sub;
+      document.getElementById('townHallBody').innerHTML = details ? details.innerHTML : '';
+      document.getElementById('townHallModal').hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function closeTownHall() {
+      document.getElementById('townHallModal').hidden = true;
+      document.body.style.overflow = '';
     }
   </script>
 </body>

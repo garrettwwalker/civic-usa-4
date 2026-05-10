@@ -15,36 +15,8 @@
           <h1>Report It · Municipal Services</h1>
           <p id="repairsSub">Report a pothole, broken light, or service issue. The right department gets it the moment you submit.</p>
         </div>
-        <button class="btn btn-primary" onclick="document.getElementById('newReport').scrollIntoView({behavior:'smooth'});">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-          New report
-        </button>
       </div>
 
-      <div class="grid-4 mb-6">
-        <div class="stat">
-          <div class="stat-label">Your active reports</div>
-          <div class="stat-value">2</div>
-          <div class="stat-trend">1 in progress · 1 assigned</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Resolved (last 30 days)</div>
-          <div class="stat-value">3</div>
-          <div class="stat-trend up">Avg 3.2 days to fix</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Citywide reports today</div>
-          <div class="stat-value">847</div>
-          <div class="stat-trend">↑ 12% vs typical Sunday</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Within your district</div>
-          <div class="stat-value">29</div>
-          <div class="stat-trend">11 in progress</div>
-        </div>
-      </div>
-
-      <h2 class="text-xl mb-4">Report a Problem</h2>
       <div class="grid-4 mb-6" id="newReport">
         <a class="service-card" href="#" onclick="event.preventDefault();startReport('Pothole');">
           <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></div>
@@ -52,7 +24,7 @@
           <p>Damaged road, crumbling asphalt.</p>
         </a>
         <a class="service-card" href="#" onclick="event.preventDefault();startReport('Street light');">
-          <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 0-2 7.5V14h4v-3.5A4 4 0 0 0 12 3zM10 17h4M11 21h2"/></svg></div>
+          <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a6 6 0 0 0-3 11v3a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-3A6 6 0 0 0 12 2z"/><path d="M10 21h4"/></svg></div>
           <h3>Street Light</h3>
           <p>Out, flickering, or knocked over.</p>
         </a>
@@ -62,7 +34,7 @@
           <p>Missed pickup, illegal dumping.</p>
         </a>
         <a class="service-card" href="#" onclick="event.preventDefault();startReport('Graffiti');">
-          <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l-3 3-2-2 3-3M14 17l5-5 4 4-5 5zM4 21l3-9 5 5z"/></svg></div>
+          <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16"/><path d="M5 8l14 8"/><path d="M19 8l-14 8"/></svg></div>
           <h3>Graffiti</h3>
           <p>Tagging on public or visible property.</p>
         </a>
@@ -88,7 +60,7 @@
         </a>
       </div>
 
-      <h2 class="text-xl mb-4">Your Active Reports</h2>
+      <h2 class="text-xl mb-4">Your Reports</h2>
       <div class="card mb-6">
         <ul class="list" id="activeReports">
           <li class="list-item">
@@ -100,21 +72,53 @@
             <div class="list-item-meta">3 days</div>
           </li>
           <li class="list-item">
-            <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 0-2 7.5V14h4v-3.5A4 4 0 0 0 12 3z"/></svg></div>
+            <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a6 6 0 0 0-3 11v3a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-3A6 6 0 0 0 12 2z"/><path d="M10 21h4"/></svg></div>
             <div class="list-item-content">
               <div class="list-item-title">Street light out · 1247 Elm St <span class="badge badge-info" style="margin-left:6px;">Assigned</span></div>
               <div class="list-item-sub">Submitted May 1 · Tracking ID #311-4458-LA · Bureau of Street Lighting · estimated repair within 5 business days.</div>
             </div>
             <div class="list-item-meta">2 days</div>
           </li>
+          <li class="list-item">
+            <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="list-item-content">
+              <div class="list-item-title">Pothole · Centinela Ave &amp; Washington Blvd <span class="badge badge-success" style="margin-left:6px;">Resolved</span></div>
+              <div class="list-item-sub">Submitted Apr 18 · Tracking ID #311-4287-LA · Repaired and resurfaced Apr 22.</div>
+            </div>
+            <div class="list-item-meta">Apr 22</div>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="list-item-content">
+              <div class="list-item-title">Tree branch down · Beethoven St &amp; Palms <span class="badge badge-success" style="margin-left:6px;">Resolved</span></div>
+              <div class="list-item-sub">Submitted Apr 11 · Tracking ID #311-4119-LA · Urban Forestry crew cleared the limb Apr 13.</div>
+            </div>
+            <div class="list-item-meta">Apr 13</div>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="list-item-content">
+              <div class="list-item-title">Graffiti · Lincoln Blvd underpass <span class="badge badge-success" style="margin-left:6px;">Resolved</span></div>
+              <div class="list-item-sub">Submitted Mar 30 · Tracking ID #311-3984-LA · Sanitation cleaned the wall within 48 hours.</div>
+            </div>
+            <div class="list-item-meta">Apr 01</div>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="list-item-content">
+              <div class="list-item-title">Trash pickup missed · 1247 Elm St <span class="badge badge-success" style="margin-left:6px;">Resolved</span></div>
+              <div class="list-item-sub">Submitted Mar 12 · Tracking ID #311-3712-LA · Sanitation made a make-up pickup the next morning.</div>
+            </div>
+            <div class="list-item-meta">Mar 13</div>
+          </li>
         </ul>
       </div>
 
+      <div class="row-between mb-4">
+        <h2 class="text-xl">Reports Near You</h2>
+        <a class="card-link" href="#">Map view</a>
+      </div>
       <div class="card">
-        <div class="card-header">
-          <div class="card-title">Reports Near You · Last 7 Days</div>
-          <a class="card-link" href="#">Map view</a>
-        </div>
         <table class="table">
           <thead><tr><th>Type</th><th>Where</th><th>Submitted</th><th>Status</th></tr></thead>
           <tbody>

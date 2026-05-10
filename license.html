@@ -49,7 +49,7 @@
         <div class="grid-2">
           <div>
             <div class="license-wrap">
-             <div class="license-flip" id="licenseFlip">
+             <div class="license-flip" id="licenseFlip" onclick="toggleQR()" role="button" tabindex="0" aria-label="Tap to flip the license — show QR for verification">
               <div class="license-flip-inner">
               <div class="license-card license-front" id="licenseCard">
                 <div class="license-glyph" id="licGlyph" aria-hidden="true"></div>
@@ -74,6 +74,9 @@
                   <div><span>Eyes</span><strong id="licEyes">—</strong></div>
                   <div><span>Hair</span><strong id="licHair">—</strong></div>
                 </div>
+                <button class="license-share-btn" type="button" onclick="event.stopPropagation();shareLicense()" aria-label="Selective share — prove a single attribute without showing the rest of the license">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>
+                </button>
                 <div class="license-shine" aria-hidden="true"></div>
               </div>
 
@@ -86,16 +89,6 @@
               </div>
               </div>
              </div>
-              <div class="license-actions">
-                <button class="btn btn-primary" id="licQrBtn" onclick="toggleQR()">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v3M17 17v4h4"/></svg>
-                  Show QR for verification
-                </button>
-                <button class="btn btn-secondary" onclick="alert('Selective disclosure: prove an attribute (e.g. age over 21) without revealing the rest of your license. (Demo)');">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
-                  Selective share
-                </button>
-              </div>
             </div>
           </div>
 
@@ -130,7 +123,7 @@
       <div class="doc-panel" data-doc="passport" hidden>
         <div class="grid-2">
           <div>
-           <div class="doc-flip" id="docFlipPassport">
+           <div class="doc-flip" id="docFlipPassport" onclick="toggleDocFlip('passport')" role="button" tabindex="0" aria-label="Tap to flip — show QR for verification">
             <div class="doc-flip-inner">
             <div class="doc-card passport-card doc-front">
               <div class="passport-watermark"></div>
@@ -203,16 +196,6 @@
             </div>
             </div>
            </div>
-            <div class="license-actions">
-              <button class="btn btn-primary" id="passQrBtn" onclick="toggleDocFlip('passport', this)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v3M17 17v4h4"/></svg>
-                Show QR for verification
-              </button>
-              <button class="btn btn-secondary" onclick="alert('Mobile passport check-in initiated. (Demo)');">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-                Mobile check-in
-              </button>
-            </div>
           </div>
 
           <div class="card">
@@ -229,7 +212,6 @@
             <div class="row" style="gap:8px;flex-wrap:wrap;">
               <button class="btn btn-primary" onclick="alert('Form DS-82 renewal flow opens. (Demo)');">Start DS-82 renewal</button>
               <button class="btn btn-secondary" onclick="alert('Travel advisory dashboard. (Demo)');">Travel advisories</button>
-              <a class="btn btn-ghost" href="https://travel.state.gov" target="_blank" rel="noopener">travel.state.gov →</a>
             </div>
           </div>
         </div>
@@ -239,7 +221,7 @@
       <div class="doc-panel" data-doc="hunting" hidden>
         <div class="grid-2">
           <div>
-           <div class="doc-flip" id="docFlipHunting">
+           <div class="doc-flip" id="docFlipHunting" onclick="toggleDocFlip('hunting')" role="button" tabindex="0" aria-label="Tap to flip — show QR for verification">
             <div class="doc-flip-inner">
             <div class="doc-card hunting-card doc-front">
               <div class="hunting-watermark"></div>
@@ -271,16 +253,6 @@
             </div>
             </div>
            </div>
-            <div class="license-actions">
-              <button class="btn btn-primary" id="huntQrBtn" onclick="toggleDocFlip('hunting', this)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v3M17 17v4h4"/></svg>
-                Show QR for verification
-              </button>
-              <button class="btn btn-secondary" onclick="alert('Tag inventory and harvest log. (Demo)');">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                Log harvest
-              </button>
-            </div>
           </div>
 
           <div class="card">
@@ -297,7 +269,6 @@
             <div class="row" style="gap:8px;flex-wrap:wrap;">
               <button class="btn btn-primary" onclick="alert('Tag purchase flow. (Demo)');">Buy additional tags</button>
               <button class="btn btn-secondary" onclick="alert('Harvest log — record your catch. (Demo)');">Harvest log</button>
-              <button class="btn btn-ghost" onclick="alert('Season schedule for your zone. (Demo)');">Season schedule</button>
             </div>
           </div>
         </div>
@@ -307,7 +278,7 @@
       <div class="doc-panel" data-doc="vehicle" hidden>
         <div class="grid-2">
           <div>
-           <div class="doc-flip" id="docFlipVehicle">
+           <div class="doc-flip" id="docFlipVehicle" onclick="toggleDocFlip('vehicle')" role="button" tabindex="0" aria-label="Tap to flip — show QR for verification">
             <div class="doc-flip-inner">
             <div class="doc-card vehicle-card doc-front">
               <div class="vehicle-stamp">REGISTERED</div>
@@ -339,16 +310,6 @@
             </div>
             </div>
            </div>
-            <div class="license-actions">
-              <button class="btn btn-primary" id="vehQrBtn" onclick="toggleDocFlip('vehicle', this)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v3M17 17v4h4"/></svg>
-                Show QR for verification
-              </button>
-              <button class="btn btn-secondary" onclick="alert('Renewal flow opens. (Demo)');">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>
-                Renew online
-              </button>
-            </div>
           </div>
 
           <div class="card">
@@ -358,14 +319,13 @@
             </div>
             <div class="scanned-info mb-4">
               <div class="info-field"><label>Current expiry</label><div class="value">April 30, 2027</div></div>
-              <div class="info-field"><label>Annual fee</label><div class="value">$192.00 (incl. $36 transportation tax)</div></div>
+              <div class="info-field"><label>Annual fee</label><div class="value">$192.00</div></div>
               <div class="info-field"><label>Smog inspection</label><div class="value">Passed Mar 12, 2026 (next due 2028)</div></div>
               <div class="info-field"><label>Insurance on file</label><div class="value">State Farm · Policy #SF-104832</div></div>
             </div>
             <div class="row" style="gap:8px;flex-wrap:wrap;">
               <button class="btn btn-primary" onclick="alert('Renewal flow opens. (Demo)');">Renew online</button>
               <button class="btn btn-secondary" onclick="alert('Transfer ownership flow. (Demo)');">Transfer title</button>
-              <button class="btn btn-ghost" onclick="alert('Replacement plate / sticker request. (Demo)');">Order replacement</button>
             </div>
           </div>
         </div>
@@ -375,7 +335,7 @@
       <div class="doc-panel" data-doc="birth" hidden>
         <div class="grid-2">
           <div>
-           <div class="doc-flip" id="docFlipBirth">
+           <div class="doc-flip" id="docFlipBirth" onclick="toggleDocFlip('birth')" role="button" tabindex="0" aria-label="Tap to flip — show QR for verification">
             <div class="doc-flip-inner">
             <div class="doc-card birth-card doc-front">
               <div class="birth-corner birth-corner-tl"></div>
@@ -410,16 +370,6 @@
             </div>
             </div>
            </div>
-            <div class="license-actions">
-              <button class="btn btn-primary" id="birthQrBtn" onclick="toggleDocFlip('birth', this)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v3M17 17v4h4"/></svg>
-                Show QR for verification
-              </button>
-              <button class="btn btn-secondary" onclick="alert('Certified copy request — $25, mails in 3-5 business days. (Demo)');">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/></svg>
-                Request copy
-              </button>
-            </div>
           </div>
 
           <div class="card">
@@ -436,7 +386,6 @@
             <div class="row" style="gap:8px;flex-wrap:wrap;">
               <button class="btn btn-primary" onclick="alert('Certified copy order — $25, mails to address on file. (Demo)');">Order certified copy</button>
               <button class="btn btn-secondary" onclick="alert('Name change petition opens. (Demo)');">Petition name change</button>
-              <button class="btn btn-ghost" onclick="alert('Apostille request flow. (Demo)');">Request apostille</button>
             </div>
           </div>
         </div>
@@ -446,7 +395,7 @@
       <div class="doc-panel" data-doc="health" hidden>
         <div class="grid-2">
           <div>
-           <div class="doc-flip" id="docFlipHealth">
+           <div class="doc-flip" id="docFlipHealth" onclick="toggleDocFlip('health')" role="button" tabindex="0" aria-label="Tap to flip — show QR for verification">
             <div class="doc-flip-inner">
             <div class="doc-card health-card doc-front">
               <div class="health-header">
@@ -480,16 +429,6 @@
             </div>
             </div>
            </div>
-            <div class="license-actions">
-              <button class="btn btn-primary" id="healthQrBtn" onclick="toggleDocFlip('health', this)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v3M17 17v4h4"/></svg>
-                Show at provider
-              </button>
-              <a class="btn btn-secondary" href="healthcare.html">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3l-9 9M10 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></svg>
-                Open insurance
-              </a>
-            </div>
           </div>
 
           <div class="card">
@@ -506,7 +445,6 @@
             <div class="row" style="gap:8px;flex-wrap:wrap;">
               <a class="btn btn-primary" href="healthcare.html">Manage plans &amp; coverage</a>
               <button class="btn btn-secondary" onclick="alert('Network search — find in-network providers. (Demo)');">Find provider</button>
-              <button class="btn btn-ghost" onclick="alert('Claims and EOB statements. (Demo)');">View claims</button>
             </div>
           </div>
         </div>
@@ -623,32 +561,26 @@
         </div>
       </div>
 
-      <!-- ============ Recent Verifications (global) ============ -->
-      <div class="card mt-6">
+      <!-- ============ Per-doc Recent Activity (license / passport / hunting only) ============ -->
+
+      <!-- Driver's license: recent check-ins and scans -->
+      <div class="card mt-6" data-doc-section="license">
         <div class="card-header">
-          <div class="card-title">Recent Verifications</div>
+          <div class="card-title">Recent Activity</div>
         </div>
         <ul class="list">
           <li class="list-item">
             <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22V12h20v10"/><path d="M6 12V8a6 6 0 0 1 12 0v4"/></svg></div>
             <div class="list-item-content">
-              <div class="list-item-title">TSA · LAX Airport <span class="badge badge-info" style="margin-left:6px;">Driver's License</span></div>
+              <div class="list-item-title">TSA · LAX Airport</div>
               <div class="list-item-sub">Shared: name, photo, age over 18</div>
             </div>
             <div class="list-item-meta">Apr 28 · 6:14 AM</div>
           </li>
           <li class="list-item">
-            <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></div>
-            <div class="list-item-content">
-              <div class="list-item-title">UCLA Health · primary care visit <span class="badge badge-info" style="margin-left:6px;">Health Card</span></div>
-              <div class="list-item-sub">Shared: member ID, group, copay tier</div>
-            </div>
-            <div class="list-item-meta">Apr 22</div>
-          </li>
-          <li class="list-item">
             <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 11h2M13 11h2M9 15h2M13 15h2"/></svg></div>
             <div class="list-item-content">
-              <div class="list-item-title">Wells Fargo · account opening <span class="badge badge-info" style="margin-left:6px;">Driver's License + Birth Cert</span></div>
+              <div class="list-item-title">Wells Fargo · account opening</div>
               <div class="list-item-sub">Shared: full identity (KYC)</div>
             </div>
             <div class="list-item-meta">Apr 14</div>
@@ -656,18 +588,92 @@
           <li class="list-item">
             <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg></div>
             <div class="list-item-content">
-              <div class="list-item-title">Trader Joe's · age verification <span class="badge badge-info" style="margin-left:6px;">Driver's License</span></div>
+              <div class="list-item-title">Trader Joe's · age verification</div>
               <div class="list-item-sub">Shared: age over 21 only</div>
             </div>
             <div class="list-item-meta">Apr 03</div>
           </li>
           <li class="list-item">
+            <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+            <div class="list-item-content">
+              <div class="list-item-title">Hertz · vehicle pickup</div>
+              <div class="list-item-sub">Shared: name, license number, address</div>
+            </div>
+            <div class="list-item-meta">Mar 22</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Passport: recent check-ins and scans -->
+      <div class="card mt-6" data-doc-section="passport" hidden>
+        <div class="card-header">
+          <div class="card-title">Recent Activity</div>
+        </div>
+        <ul class="list">
+          <li class="list-item">
             <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></div>
             <div class="list-item-content">
-              <div class="list-item-title">Customs &amp; Border Protection · LAX entry <span class="badge badge-info" style="margin-left:6px;">Passport</span></div>
+              <div class="list-item-title">Customs &amp; Border Protection · LAX entry</div>
               <div class="list-item-sub">Shared: full passport scan + travel history</div>
             </div>
             <div class="list-item-meta">Mar 18</div>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16v-2a4 4 0 0 0-4-4h-4l5-5-5-5"/><path d="M3 8v2a4 4 0 0 0 4 4h4l-5 5 5 5"/></svg></div>
+            <div class="list-item-content">
+              <div class="list-item-title">British Airways · LHR check-in</div>
+              <div class="list-item-sub">Shared: name, passport number, nationality</div>
+            </div>
+            <div class="list-item-meta">Mar 17 · 9:42 AM</div>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22V12h20v10"/><path d="M6 12V8a6 6 0 0 1 12 0v4"/></svg></div>
+            <div class="list-item-content">
+              <div class="list-item-title">TSA · LAX international gate</div>
+              <div class="list-item-sub">Shared: name, photo, passport number</div>
+            </div>
+            <div class="list-item-meta">Mar 17 · 7:08 AM</div>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V11l7-7 7 7v10"/><path d="M9 21v-6h6v6"/></svg></div>
+            <div class="list-item-content">
+              <div class="list-item-title">Marriott Heathrow · hotel check-in</div>
+              <div class="list-item-sub">Shared: passport scan for hotel registry</div>
+            </div>
+            <div class="list-item-meta">Mar 17</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Hunting: recent logged harvests -->
+      <div class="card mt-6" data-doc-section="hunting" hidden>
+        <div class="card-header">
+          <div class="card-title">Recent Activity</div>
+        </div>
+        <ul class="list">
+          <li class="list-item">
+            <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></div>
+            <div class="list-item-content">
+              <div class="list-item-title">Wild turkey · Zone D-7</div>
+              <div class="list-item-sub">3-bearded gobbler · spring season · Tag UPLAND-2</div>
+            </div>
+            <div class="list-item-meta">Apr 24</div>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></div>
+            <div class="list-item-content">
+              <div class="list-item-title">Mallard ducks (2) · public marsh</div>
+              <div class="list-item-sub">Late waterfowl season · Tag WATERFOWL</div>
+            </div>
+            <div class="list-item-meta">Dec 02, 2025</div>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></div>
+            <div class="list-item-content">
+              <div class="list-item-title">Whitetail buck (4-pt, 145 lb) · Zone B-13</div>
+              <div class="list-item-sub">General firearm season · Tag DEER-A1</div>
+            </div>
+            <div class="list-item-meta">Nov 14, 2025</div>
           </li>
         </ul>
       </div>
@@ -993,10 +999,23 @@
 
     function toggleQR() {
       const flip = document.getElementById('licenseFlip');
-      const btn = document.getElementById('licQrBtn');
       const flipped = flip.classList.toggle('flipped');
-      btn.lastChild.textContent = flipped ? ' Show front' : ' Show QR for verification';
+      flip.setAttribute('aria-label', flipped
+        ? 'Tap to flip the license back — show license front'
+        : 'Tap to flip the license — show QR for verification');
     }
+
+    function shareLicense() {
+      alert('Selective disclosure: prove an attribute (e.g. age over 21) without revealing the rest of your license. (Demo)');
+    }
+
+    // Keyboard activation for the role="button" license flip.
+    document.getElementById('licenseFlip')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleQR();
+      }
+    });
 
     // ============ Tab switching ============
     function switchDoc(doc) {
@@ -1016,13 +1035,25 @@
     }
 
     // ============ Per-doc flip-to-QR ============
-    function toggleDocFlip(doc, btn) {
+    function toggleDocFlip(doc) {
       const id = 'docFlip' + doc.charAt(0).toUpperCase() + doc.slice(1);
       const flip = document.getElementById(id);
       if (!flip) return;
       const flipped = flip.classList.toggle('flipped');
-      if (btn) btn.lastChild.textContent = flipped ? ' Show front' : ' Show QR for verification';
+      flip.setAttribute('aria-label', flipped
+        ? 'Tap to flip back — show document front'
+        : 'Tap to flip — show QR for verification');
     }
+
+    // Keyboard activation for the role="button" doc flip wrappers.
+    document.querySelectorAll('.doc-flip[role="button"]').forEach(el => {
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          el.click();
+        }
+      });
+    });
 
     function genQr(data, size = 240) {
       const enc = encodeURIComponent(data);
