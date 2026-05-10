@@ -2301,6 +2301,11 @@ footer {
   transition: background 0.15s ease;
 }
 .list-item:hover { background: var(--surface-2); }
+/* List rows that are just an action button (e.g. "+ Upload additional
+   document" on the taxes page) shouldn't get the row hover-bg — the
+   button has its own hover state, and stacking a second highlight on
+   the parent row reads as a bug. */
+.list-item:has(> .btn-block):hover { background: transparent; }
 .list-item-icon {
   width: 38px;
   height: 38px;
