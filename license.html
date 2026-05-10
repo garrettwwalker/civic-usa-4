@@ -123,7 +123,7 @@
       <div class="doc-panel" data-doc="passport" hidden>
         <div class="grid-2">
           <div>
-           <div class="doc-flip" id="docFlipPassport">
+           <div class="doc-flip" id="docFlipPassport" onclick="toggleDocFlip('passport')" role="button" tabindex="0" aria-label="Tap to flip — show QR for verification">
             <div class="doc-flip-inner">
             <div class="doc-card passport-card doc-front">
               <div class="passport-watermark"></div>
@@ -196,16 +196,6 @@
             </div>
             </div>
            </div>
-            <div class="license-actions">
-              <button class="btn btn-primary" id="passQrBtn" onclick="toggleDocFlip('passport', this)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v3M17 17v4h4"/></svg>
-                Show QR for verification
-              </button>
-              <button class="btn btn-secondary" onclick="alert('Mobile passport check-in initiated. (Demo)');">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-                Mobile check-in
-              </button>
-            </div>
           </div>
 
           <div class="card">
@@ -231,7 +221,7 @@
       <div class="doc-panel" data-doc="hunting" hidden>
         <div class="grid-2">
           <div>
-           <div class="doc-flip" id="docFlipHunting">
+           <div class="doc-flip" id="docFlipHunting" onclick="toggleDocFlip('hunting')" role="button" tabindex="0" aria-label="Tap to flip — show QR for verification">
             <div class="doc-flip-inner">
             <div class="doc-card hunting-card doc-front">
               <div class="hunting-watermark"></div>
@@ -263,16 +253,6 @@
             </div>
             </div>
            </div>
-            <div class="license-actions">
-              <button class="btn btn-primary" id="huntQrBtn" onclick="toggleDocFlip('hunting', this)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v3M17 17v4h4"/></svg>
-                Show QR for verification
-              </button>
-              <button class="btn btn-secondary" onclick="alert('Tag inventory and harvest log. (Demo)');">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                Log harvest
-              </button>
-            </div>
           </div>
 
           <div class="card">
@@ -298,7 +278,7 @@
       <div class="doc-panel" data-doc="vehicle" hidden>
         <div class="grid-2">
           <div>
-           <div class="doc-flip" id="docFlipVehicle">
+           <div class="doc-flip" id="docFlipVehicle" onclick="toggleDocFlip('vehicle')" role="button" tabindex="0" aria-label="Tap to flip — show QR for verification">
             <div class="doc-flip-inner">
             <div class="doc-card vehicle-card doc-front">
               <div class="vehicle-stamp">REGISTERED</div>
@@ -330,16 +310,6 @@
             </div>
             </div>
            </div>
-            <div class="license-actions">
-              <button class="btn btn-primary" id="vehQrBtn" onclick="toggleDocFlip('vehicle', this)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v3M17 17v4h4"/></svg>
-                Show QR for verification
-              </button>
-              <button class="btn btn-secondary" onclick="alert('Renewal flow opens. (Demo)');">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>
-                Renew online
-              </button>
-            </div>
           </div>
 
           <div class="card">
@@ -365,7 +335,7 @@
       <div class="doc-panel" data-doc="birth" hidden>
         <div class="grid-2">
           <div>
-           <div class="doc-flip" id="docFlipBirth">
+           <div class="doc-flip" id="docFlipBirth" onclick="toggleDocFlip('birth')" role="button" tabindex="0" aria-label="Tap to flip — show QR for verification">
             <div class="doc-flip-inner">
             <div class="doc-card birth-card doc-front">
               <div class="birth-corner birth-corner-tl"></div>
@@ -400,16 +370,6 @@
             </div>
             </div>
            </div>
-            <div class="license-actions">
-              <button class="btn btn-primary" id="birthQrBtn" onclick="toggleDocFlip('birth', this)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v3M17 17v4h4"/></svg>
-                Show QR for verification
-              </button>
-              <button class="btn btn-secondary" onclick="alert('Certified copy request — $25, mails in 3-5 business days. (Demo)');">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/></svg>
-                Request copy
-              </button>
-            </div>
           </div>
 
           <div class="card">
@@ -435,7 +395,7 @@
       <div class="doc-panel" data-doc="health" hidden>
         <div class="grid-2">
           <div>
-           <div class="doc-flip" id="docFlipHealth">
+           <div class="doc-flip" id="docFlipHealth" onclick="toggleDocFlip('health')" role="button" tabindex="0" aria-label="Tap to flip — show QR for verification">
             <div class="doc-flip-inner">
             <div class="doc-card health-card doc-front">
               <div class="health-header">
@@ -469,16 +429,6 @@
             </div>
             </div>
            </div>
-            <div class="license-actions">
-              <button class="btn btn-primary" id="healthQrBtn" onclick="toggleDocFlip('health', this)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v3M17 17v4h4"/></svg>
-                Show at provider
-              </button>
-              <a class="btn btn-secondary" href="healthcare.html">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3l-9 9M10 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></svg>
-                Open insurance
-              </a>
-            </div>
           </div>
 
           <div class="card">
@@ -1017,13 +967,25 @@
     }
 
     // ============ Per-doc flip-to-QR ============
-    function toggleDocFlip(doc, btn) {
+    function toggleDocFlip(doc) {
       const id = 'docFlip' + doc.charAt(0).toUpperCase() + doc.slice(1);
       const flip = document.getElementById(id);
       if (!flip) return;
       const flipped = flip.classList.toggle('flipped');
-      if (btn) btn.lastChild.textContent = flipped ? ' Show front' : ' Show QR for verification';
+      flip.setAttribute('aria-label', flipped
+        ? 'Tap to flip back — show document front'
+        : 'Tap to flip — show QR for verification');
     }
+
+    // Keyboard activation for the role="button" doc flip wrappers.
+    document.querySelectorAll('.doc-flip[role="button"]').forEach(el => {
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          el.click();
+        }
+      });
+    });
 
     function genQr(data, size = 240) {
       const enc = encodeURIComponent(data);

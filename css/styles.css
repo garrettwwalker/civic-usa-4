@@ -1809,6 +1809,12 @@ footer {
   aspect-ratio: 1.586 / 1;
   perspective: 1400px;
   position: relative;
+  cursor: pointer;
+}
+.doc-flip:focus-visible {
+  outline: 2px solid var(--license-accent, #0d0d0d);
+  outline-offset: 4px;
+  border-radius: 18px;
 }
 .doc-flip-inner {
   position: relative;
