@@ -2268,11 +2268,12 @@ footer {
 }
 .town-hall:hover { background: var(--bg); }
 .town-hall:last-child { border-bottom: none; }
-/* When a .card wraps the town-hall list, trim its vertical padding by
-   the same 14px the .town-hall items add — so the first/last items
-   keep their full padding (balanced hover background) without adding
-   extra whitespace inside the card. */
-.card:has(> .town-hall-list) { padding-top: 10px; padding-bottom: 10px; }
+/* When a .card wraps the town-hall list, trim its vertical padding so
+   the hover-background corners of the first/last items sit the same
+   distance from the card edges as they do horizontally (item margin
+   -6 + card-edge buffer = 18px each side; matching that here with
+   18px vertical padding). */
+.card:has(> .town-hall-list) { padding-top: 18px; padding-bottom: 18px; }
 .town-hall-summary {
   display: flex;
   align-items: center;
