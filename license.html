@@ -49,7 +49,7 @@
         <div class="grid-2">
           <div>
             <div class="license-wrap">
-             <div class="license-flip" id="licenseFlip">
+             <div class="license-flip" id="licenseFlip" onclick="toggleQR()" role="button" tabindex="0" aria-label="Tap to flip the license — show QR for verification">
               <div class="license-flip-inner">
               <div class="license-card license-front" id="licenseCard">
                 <div class="license-glyph" id="licGlyph" aria-hidden="true"></div>
@@ -74,6 +74,9 @@
                   <div><span>Eyes</span><strong id="licEyes">—</strong></div>
                   <div><span>Hair</span><strong id="licHair">—</strong></div>
                 </div>
+                <button class="license-share-btn" type="button" onclick="event.stopPropagation();shareLicense()" aria-label="Selective share — prove a single attribute without showing the rest of the license">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>
+                </button>
                 <div class="license-shine" aria-hidden="true"></div>
               </div>
 
@@ -86,16 +89,6 @@
               </div>
               </div>
              </div>
-              <div class="license-actions">
-                <button class="btn btn-primary" id="licQrBtn" onclick="toggleQR()">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v3M17 17v4h4"/></svg>
-                  Show QR for verification
-                </button>
-                <button class="btn btn-secondary" onclick="alert('Selective disclosure: prove an attribute (e.g. age over 21) without revealing the rest of your license. (Demo)');">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
-                  Selective share
-                </button>
-              </div>
             </div>
           </div>
 
@@ -988,10 +981,23 @@
 
     function toggleQR() {
       const flip = document.getElementById('licenseFlip');
-      const btn = document.getElementById('licQrBtn');
       const flipped = flip.classList.toggle('flipped');
-      btn.lastChild.textContent = flipped ? ' Show front' : ' Show QR for verification';
+      flip.setAttribute('aria-label', flipped
+        ? 'Tap to flip the license back — show license front'
+        : 'Tap to flip the license — show QR for verification');
     }
+
+    function shareLicense() {
+      alert('Selective disclosure: prove an attribute (e.g. age over 21) without revealing the rest of your license. (Demo)');
+    }
+
+    // Keyboard activation for the role="button" license flip.
+    document.getElementById('licenseFlip')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleQR();
+      }
+    });
 
     // ============ Tab switching ============
     function switchDoc(doc) {

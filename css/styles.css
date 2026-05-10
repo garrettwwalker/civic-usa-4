@@ -1068,6 +1068,12 @@ footer {
   aspect-ratio: 1.586 / 1;
   perspective: 1400px;
   position: relative;
+  cursor: pointer;
+}
+.license-flip:focus-visible {
+  outline: 2px solid var(--license-accent, #0d0d0d);
+  outline-offset: 4px;
+  border-radius: 18px;
 }
 .license-flip-inner {
   position: relative;
@@ -1182,6 +1188,41 @@ footer {
 }
 
 .license-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+
+/* Floating share/selective-disclosure button on the license front. Sits
+   in the empty bottom-right cell of the .license-meta grid (4 cols, 7
+   meta fields → row 2 has an empty 4th cell). Frosted white circle
+   with the body gradient softened through it; click opens the
+   selective-share demo. event.stopPropagation in the inline handler
+   prevents the parent .license-flip from also flipping. */
+.license-share-btn {
+  position: absolute;
+  bottom: clamp(10px, 3.46cqi, 18px);
+  right: clamp(10px, 3.46cqi, 18px);
+  width: clamp(28px, 7.31cqi, 36px);
+  height: clamp(28px, 7.31cqi, 36px);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: white;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  z-index: 4;
+  transition: background 0.15s ease, transform 0.18s ease, border-color 0.15s ease;
+}
+.license-share-btn:hover {
+  background: rgba(255, 255, 255, 0.24);
+  border-color: rgba(255, 255, 255, 0.36);
+  transform: translateY(-1px);
+}
+.license-share-btn:focus-visible {
+  outline: 2px solid var(--license-accent, #0d0d0d);
+  outline-offset: 2px;
+}
+.license-share-btn svg { width: 60%; height: 60%; }
 
 /* === Wallet tabs + document panels === */
 .doc-tabs {
