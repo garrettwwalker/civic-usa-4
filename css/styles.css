@@ -2260,19 +2260,26 @@ footer {
 .town-hall {
   list-style: none;
   border-bottom: 1px solid var(--border);
-  padding: 14px 6px;
-  margin: 0 -6px;
+  padding: 14px 24px;
+  margin: 0;
   cursor: pointer;
-  border-radius: var(--radius-sm);
   transition: background 0.12s ease;
 }
 .town-hall:hover { background: var(--bg); }
-.town-hall:last-child { border-bottom: none; }
-/* When a .card wraps the town-hall list, trim its vertical padding by
-   the same 14px the .town-hall items add — so the first/last items
-   keep their full padding (balanced hover background) without adding
-   extra whitespace inside the card. */
-.card:has(> .town-hall-list) { padding-top: 10px; padding-bottom: 10px; }
+/* First/last items absorb the card's rounded corners so the hover
+   background nests perfectly into the card edge instead of competing
+   with it. The wrapping .card has padding:0 (scoped via :has) so the
+   items run flush to the card edges. */
+.town-hall:first-child {
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+}
+.town-hall:last-child {
+  border-bottom: none;
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+}
+.card:has(> .town-hall-list) { padding: 0; }
 .town-hall-summary {
   display: flex;
   align-items: center;
