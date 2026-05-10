@@ -1190,14 +1190,13 @@ footer {
 .license-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
 
 /* Floating share/selective-disclosure button on the license front. Sits
-   in the empty bottom-right cell of the .license-meta grid (4 cols, 7
-   meta fields → row 2 has an empty 4th cell). Frosted white circle
-   with the body gradient softened through it; click opens the
+   in the upper-right corner — the driver's license front leaves that
+   area empty (no passport flag). Frosted white circle; click opens the
    selective-share demo. event.stopPropagation in the inline handler
    prevents the parent .license-flip from also flipping. */
 .license-share-btn {
   position: absolute;
-  bottom: clamp(10px, 3.46cqi, 18px);
+  top: clamp(10px, 3.46cqi, 18px);
   right: clamp(10px, 3.46cqi, 18px);
   width: clamp(28px, 7.31cqi, 36px);
   height: clamp(28px, 7.31cqi, 36px);
