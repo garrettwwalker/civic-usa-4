@@ -211,7 +211,7 @@
       </div>
       <div class="card mb-6">
         <ul class="list town-hall-list">
-          <li class="town-hall" onclick="toggleTownHall(this);">
+          <li class="town-hall" onclick="openTownHall(this);">
             <div class="town-hall-summary">
               <div class="list-item-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
@@ -269,7 +269,7 @@
               </div>
             </div>
           </li>
-          <li class="town-hall" onclick="toggleTownHall(this);">
+          <li class="town-hall" onclick="openTownHall(this);">
             <div class="town-hall-summary">
               <div class="list-item-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
@@ -327,7 +327,7 @@
               </div>
             </div>
           </li>
-          <li class="town-hall" onclick="toggleTownHall(this);">
+          <li class="town-hall" onclick="openTownHall(this);">
             <div class="town-hall-summary">
               <div class="list-item-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
@@ -385,7 +385,7 @@
               </div>
             </div>
           </li>
-          <li class="town-hall" onclick="toggleTownHall(this);">
+          <li class="town-hall" onclick="openTownHall(this);">
             <div class="town-hall-summary">
               <div class="list-item-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
@@ -523,6 +523,21 @@
 
         <div class="petition-links mt-4" id="modalLinks"></div>
       </div>
+    </div>
+  </div>
+
+  <!-- Town hall details modal — populated from the clicked <li>'s contents -->
+  <div class="modal-backdrop" id="townHallModal" hidden onclick="if(event.target===this)closeTownHall()">
+    <div class="modal-pane" role="dialog" aria-modal="true" aria-labelledby="townHallTitle">
+      <button class="modal-close" type="button" onclick="closeTownHall()" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-header">
+        <span class="badge badge-info">Town hall</span>
+        <h2 id="townHallTitle" class="mt-2" style="font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.2;">—</h2>
+        <p id="townHallSub" class="text-muted mt-2" style="font-size:15px;line-height:1.5;">—</p>
+      </div>
+      <div class="modal-body" id="townHallBody">—</div>
     </div>
   </div>
 
@@ -861,18 +876,26 @@
     }
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        const modal = document.getElementById('petitionModal');
-        if (modal && !modal.hidden) closePetition();
-      }
+      if (e.key !== 'Escape') return;
+      const petition = document.getElementById('petitionModal');
+      const townHall = document.getElementById('townHallModal');
+      if (petition && !petition.hidden) closePetition();
+      if (townHall && !townHall.hidden) closeTownHall();
     });
 
-    function toggleTownHall(li) {
+    function openTownHall(li) {
+      const title = li.querySelector('.list-item-title')?.textContent.trim() || '';
+      const sub = li.querySelector('.list-item-sub')?.textContent.trim() || '';
       const details = li.querySelector('.town-hall-details');
-      if (!details) return;
-      const isOpen = !details.hidden;
-      details.hidden = isOpen;
-      li.classList.toggle('expanded', !isOpen);
+      document.getElementById('townHallTitle').textContent = title;
+      document.getElementById('townHallSub').textContent = sub;
+      document.getElementById('townHallBody').innerHTML = details ? details.innerHTML : '';
+      document.getElementById('townHallModal').hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function closeTownHall() {
+      document.getElementById('townHallModal').hidden = true;
+      document.body.style.overflow = '';
     }
   </script>
 </body>
