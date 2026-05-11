@@ -14,205 +14,196 @@
       <div class="page-header">
         <div class="page-title">
           <h1 id="taxTitle">Taxes</h1>
-          <p id="taxSub">Federal and state, pre-filled from your payroll, 1099s, DMV record, prior returns, and retirement accounts. Review, edit any line, and file both in one flow.</p>
+          <p id="taxSub">Federal and state, pre-filled and tracked across years.</p>
+        </div>
+      </div>
+
+      <h2 class="text-xl mb-4">Filing status · Tax year 2025</h2>
+      <div class="grid-2 mb-6">
+        <div class="card">
+          <div class="row-between mb-3">
+            <div class="card-title">Federal</div>
+            <span class="badge badge-warning" id="fedStatusBadge"><span class="dot"></span>Not filed</span>
+          </div>
+          <div class="scanned-info">
+            <div class="info-field"><label>Estimated refund</label><div class="value" id="fedRefundAmt">—</div></div>
+            <div class="info-field"><label>Withheld YTD</label><div class="value" id="fedWithheldAmt">—</div></div>
+            <div class="info-field"><label>Filing deadline</label><div class="value">Apr 15, 2026 · extension to Oct 15</div></div>
+            <div class="info-field"><label>Documents</label><div class="value">5 imported · IRS-verified</div></div>
+          </div>
+        </div>
+        <div class="card" id="stateStatusCard">
+          <div class="row-between mb-3">
+            <div class="card-title" id="stateStatusTitle">State</div>
+            <span class="badge badge-warning" id="stateStatusBadge"><span class="dot"></span>Not filed</span>
+          </div>
+          <div class="scanned-info" id="stateStatusFields">
+            <div class="info-field"><label>Estimated refund</label><div class="value" id="stateRefundAmt">—</div></div>
+            <div class="info-field"><label>Withheld YTD</label><div class="value" id="stateWithheldAmt">—</div></div>
+            <div class="info-field"><label>Filing deadline</label><div class="value" id="stateDeadline">Apr 15, 2026</div></div>
+            <div class="info-field"><label>Documents</label><div class="value">3 imported</div></div>
+          </div>
         </div>
       </div>
 
       <div class="grid-3 mb-6">
-        <div class="stat">
-          <div class="stat-label">Federal estimated refund</div>
-          <div class="stat-value" id="fedRefundAmt">—</div>
-          <div class="stat-trend up">Direct deposit · 21 days (IRS)</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label" id="stateRefundLabel">State estimated refund</div>
-          <div class="stat-value" id="stateRefundAmt">—</div>
-          <div class="stat-trend" id="stateRefundSub">Direct deposit · 5–7 days</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Combined</div>
-          <div class="stat-value" id="totalRefundAmt">—</div>
-          <div class="stat-trend">Federal + state, 2025 return</div>
-        </div>
+        <a class="service-card" href="#" onclick="event.preventDefault();openFileModal();">
+          <div class="service-icon red">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v18l3-2 3 2 3-2 3 2 3-2V3"/><path d="M9 8h8M9 12h8M9 16h5"/></svg>
+          </div>
+          <h3 id="primaryFileTileTitle">File my 2025 taxes</h3>
+          <p>Federal and state, in one pre-filled flow.</p>
+        </a>
+        <a class="service-card" href="#" onclick="event.preventDefault();openPriorPrepModal();">
+          <div class="service-icon amber">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M12 14v4M10 16h4"/></svg>
+          </div>
+          <h3>Prepare a prior return</h3>
+          <p>File a return for a missed tax year.</p>
+        </a>
+        <a class="service-card" href="#" onclick="event.preventDefault();openPriorReturnsModal();">
+          <div class="service-icon green">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h8M8 17h6"/></svg>
+          </div>
+          <h3>View prior returns</h3>
+          <p>Browse and download past filings.</p>
+        </a>
+        <a class="service-card" href="#" onclick="event.preventDefault();openLinkAccountsModal();">
+          <div class="service-icon blue">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg>
+          </div>
+          <h3>Link accounts</h3>
+          <p>Payroll, banks, brokerages, retirement — for auto-import.</p>
+        </a>
+        <a class="service-card" href="#" onclick="event.preventDefault();openDocsModal();">
+          <div class="service-icon purple">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <h3>Upload documents</h3>
+          <p>8 on file · add a W-2, 1099, or receipt manually.</p>
+        </a>
       </div>
 
-      <h2 class="text-xl mb-4">Income we pulled in</h2>
-      <div class="grid-4 mb-6">
-        <div class="stat">
-          <div class="stat-label">Wages</div>
-          <div class="stat-value">$84,500</div>
-          <div class="stat-trend">W-2 · Acme Tech</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Self-employment</div>
-          <div class="stat-value">$12,800</div>
-          <div class="stat-trend">1099-NEC · Mitchell Design</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Dividends</div>
-          <div class="stat-value">$1,420</div>
-          <div class="stat-trend">1099-DIV · Vanguard</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Interest</div>
-          <div class="stat-value">$84</div>
-          <div class="stat-trend">1099-INT · BoA</div>
-        </div>
-      </div>
-
-      <div class="card mb-6">
-        <div class="card-header">
-          <div class="card-title">What we applied</div>
-          <span class="badge badge-success"><span class="dot"></span>3 auto-applied</span>
-        </div>
-        <div class="row" style="gap:8px;flex-wrap:wrap;">
-          <span class="badge badge-success" style="font-size:13px;padding:6px 12px;">Standard deduction · $15,000</span>
-          <span class="badge badge-success" style="font-size:13px;padding:6px 12px;">401(k) traditional · $6,200</span>
-          <span class="badge badge-success" style="font-size:13px;padding:6px 12px;">½ SE tax deduction · $904</span>
-        </div>
-        <div class="disclosure">
-          <button class="disclosure__toggle" type="button" onclick="toggleDisclosure(this)" aria-expanded="false">
-            7 more credits checked — none applicable to you
-            <svg class="disclosure__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="disclosure__panel">
-            <div class="row" style="gap:6px;flex-wrap:wrap;margin-top:10px;">
-              <span class="badge badge-neutral">EITC · AGI too high</span>
-              <span class="badge badge-neutral">Child Tax Credit · no dependents</span>
-              <span class="badge badge-neutral">Saver's Credit · AGI above $73k</span>
-              <span class="badge badge-neutral">Student loan interest · no 1098-E</span>
-              <span class="badge badge-neutral">Mortgage interest · no 1098</span>
-              <span class="badge badge-neutral">Education credits · no 1098-T</span>
-              <span class="badge badge-neutral">HSA deduction · plan is PPO</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card mb-6" style="text-align:center;">
-        <h2 class="text-xl mb-2">Ready to file</h2>
-        <p class="text-muted mb-4">Federal and state are pre-filled. Review the line items, edit anything, then submit.</p>
-        <button class="btn btn-primary btn-lg" onclick="openFileModal();" style="margin:0 auto;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          File federal &amp; state 2025
-        </button>
-        <div class="disclosure" style="margin-top:14px;">
-          <div style="display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;color:var(--text-muted);flex-wrap:wrap;">
-            <span>Free · no e-file fees, no upgrades</span>
-            <span aria-hidden="true">·</span>
-            <button class="disclosure__toggle" type="button" onclick="toggleDisclosure(this)" aria-expanded="false">
-              Show breakdown
-              <svg class="disclosure__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-          </div>
-          <div class="disclosure__panel" style="text-align:left;">
-            <h3 class="text-lg mt-4 mb-2" style="font-weight:600;">Federal</h3>
-            <table class="table">
-              <thead><tr><th>Source</th><th>Type</th><th>Amount</th><th>Fed withheld</th></tr></thead>
-              <tbody>
-                <tr><td>Acme Tech, Inc.</td><td>W-2 wages</td><td>$84,500</td><td id="fedW2Wh">—</td></tr>
-                <tr><td>Mitchell Design LLC</td><td>1099-NEC (self-employment)</td><td>$12,800</td><td>$0</td></tr>
-                <tr><td>Vanguard</td><td>1099-DIV (qualified dividends)</td><td>$1,420</td><td>$0</td></tr>
-                <tr><td>Bank of America</td><td>1099-INT (interest)</td><td>$84</td><td>$0</td></tr>
-                <tr><td colspan="2"><strong>Adjusted gross income</strong></td><td><strong>$98,804</strong></td><td></td></tr>
-                <tr><td colspan="2">Standard deduction (single)</td><td>−$15,000</td><td></td></tr>
-                <tr><td colspan="2">½ self-employment tax deduction</td><td>−$904</td><td></td></tr>
-                <tr><td colspan="2"><strong>Taxable income (federal)</strong></td><td><strong id="fedTaxable">—</strong></td><td></td></tr>
-                <tr><td colspan="2"><strong>Federal tax owed</strong></td><td><strong id="fedOwed">—</strong></td><td></td></tr>
-              </tbody>
-            </table>
-
-            <h3 id="stateSectionTitle" class="text-lg mt-6 mb-2" style="font-weight:600;">State</h3>
-            <table class="table" id="stateTable">
-              <thead><tr><th>Source</th><th>Type</th><th>Amount</th><th>State withheld</th></tr></thead>
-              <tbody>
-                <tr><td>Acme Tech, Inc.</td><td>W-2 wages (taxable to state)</td><td>$84,500</td><td id="stateW2Wh">—</td></tr>
-                <tr><td>Mitchell Design LLC</td><td>1099-NEC</td><td>$12,800</td><td>$0</td></tr>
-                <tr><td colspan="2"><strong>State AGI</strong></td><td><strong>$98,804</strong></td><td></td></tr>
-                <tr><td colspan="2">Standard deduction</td><td id="stateStdDedRow">−$5,540</td><td></td></tr>
-                <tr><td colspan="2"><strong>Taxable income (state)</strong></td><td><strong id="stateTaxable">—</strong></td><td></td></tr>
-                <tr><td colspan="2"><strong>State tax owed</strong></td><td><strong id="stateOwed">—</strong></td><td></td></tr>
-              </tbody>
-            </table>
-            <p id="noStateTaxNote" class="text-muted text-sm mt-2 hidden">No state income tax in <span id="noStateName">your state</span> — only the federal return needs filing.</p>
-          </div>
-        </div>
-      </div>
-
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-header"><div class="card-title">Past Returns</div></div>
-            <ul class="list">
-              <li class="list-item">
-                <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                </div>
-                <div class="list-item-content">
-                  <div class="list-item-title">Tax year 2024</div>
-                  <div class="list-item-sub">Refund $1,247 · Accepted Apr 12, 2025</div>
-                </div>
-                <a class="card-link" href="#">View</a>
-              </li>
-              <li class="list-item">
-                <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                </div>
-                <div class="list-item-content">
-                  <div class="list-item-title">Tax year 2023</div>
-                  <div class="list-item-sub">Refund $864 · Accepted Mar 18, 2024</div>
-                </div>
-                <a class="card-link" href="#">View</a>
-              </li>
-              <li class="list-item">
-                <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                </div>
-                <div class="list-item-content">
-                  <div class="list-item-title">Tax year 2022</div>
-                  <div class="list-item-sub">Owed $312 · Paid Apr 14, 2023</div>
-                </div>
-                <a class="card-link" href="#">View</a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <div class="card-title">Documents on File</div>
-              <a class="card-link" href="#" onclick="event.preventDefault();openDocsModal();">View all 8</a>
-            </div>
-            <ul class="list">
-              <li class="list-item">
-                <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/></svg></div>
-                <div class="list-item-content">
-                  <div class="list-item-title">W-2 · Acme Tech, Inc.</div>
-                  <div class="list-item-sub">Imported automatically · Jan 28, 2026</div>
-                </div>
-                <a class="card-link" href="#">PDF</a>
-              </li>
-              <li class="list-item">
-                <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/></svg></div>
-                <div class="list-item-content">
-                  <div class="list-item-title">1099-NEC · Mitchell Design LLC</div>
-                  <div class="list-item-sub">Self-reported · linked to your business</div>
-                </div>
-                <a class="card-link" href="#">PDF</a>
-              </li>
-              <li class="list-item">
-                <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/></svg></div>
-                <div class="list-item-content">
-                  <div class="list-item-title">1099-DIV · Vanguard</div>
-                  <div class="list-item-sub">Imported automatically · Feb 12, 2026</div>
-                </div>
-                <a class="card-link" href="#">PDF</a>
-              </li>
-              <li class="list-item">
-                <button class="btn btn-secondary btn-block" style="font-size:13px;">+ Upload additional document</button>
-              </li>
-            </ul>
-          </div>
-        </div>
     </main>
+  </div>
+
+  <!-- Prior returns modal — browse past filings -->
+  <div class="modal-backdrop" id="priorReturnsModal" hidden onclick="if(event.target===this)closePriorReturnsModal()">
+    <div class="modal-pane" role="dialog" aria-modal="true" aria-labelledby="priorReturnsTitle">
+      <button class="modal-close" type="button" onclick="closePriorReturnsModal()" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-header">
+        <span class="badge badge-success"><span class="dot"></span>All accepted</span>
+        <h2 id="priorReturnsTitle" class="mt-2" style="font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.2;">Prior returns</h2>
+        <p class="text-muted mt-2" style="font-size:15px;line-height:1.5;">Filings the state has on record. Download a PDF or open the full return for any year.</p>
+      </div>
+      <div class="modal-body">
+        <ul class="list">
+          <li class="list-item">
+            <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="list-item-content">
+              <div class="list-item-title">Tax year 2024</div>
+              <div class="list-item-sub">Refund $1,247 · Accepted Apr 12, 2025</div>
+            </div>
+            <a class="card-link" href="#">View</a>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="list-item-content">
+              <div class="list-item-title">Tax year 2023</div>
+              <div class="list-item-sub">Refund $864 · Accepted Mar 18, 2024</div>
+            </div>
+            <a class="card-link" href="#">View</a>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="list-item-content">
+              <div class="list-item-title">Tax year 2022</div>
+              <div class="list-item-sub">Owed $312 · Paid Apr 14, 2023</div>
+            </div>
+            <a class="card-link" href="#">View</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Prepare a prior return modal -->
+  <div class="modal-backdrop" id="priorPrepModal" hidden onclick="if(event.target===this)closePriorPrepModal()">
+    <div class="modal-pane" role="dialog" aria-modal="true" aria-labelledby="priorPrepTitle">
+      <button class="modal-close" type="button" onclick="closePriorPrepModal()" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-header">
+        <span class="badge badge-info">Up to 3 years back</span>
+        <h2 id="priorPrepTitle" class="mt-2" style="font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.2;">Prepare a prior-year return</h2>
+        <p class="text-muted mt-2" style="font-size:15px;line-height:1.5;">File a return for a missed year. The platform pulls archived records and pre-fills as much as the IRS retains.</p>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <label>Tax year to prepare</label>
+          <select id="priorYear">
+            <option value="2021">2021 (last year still e-fileable)</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019 (paper filing only)</option>
+          </select>
+        </div>
+        <p class="text-muted text-sm mt-4">Note: returns older than 3 years generally can't claim a refund, but can correct outstanding balances and stop collection actions.</p>
+        <div class="row-between mt-6">
+          <span class="text-sm text-muted">You'll be prompted for any documents not on file.</span>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-ghost" type="button" onclick="closePriorPrepModal()">Cancel</button>
+            <button class="btn btn-primary" type="button" onclick="alert('Prior-year return draft started. (Demo)');closePriorPrepModal();">Start prior return</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Link accounts modal -->
+  <div class="modal-backdrop" id="linkAccountsModal" hidden onclick="if(event.target===this)closeLinkAccountsModal()">
+    <div class="modal-pane" role="dialog" aria-modal="true" aria-labelledby="linkAccountsTitle">
+      <button class="modal-close" type="button" onclick="closeLinkAccountsModal()" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-header">
+        <span class="badge badge-success"><span class="dot"></span>4 linked</span>
+        <h2 id="linkAccountsTitle" class="mt-2" style="font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.2;">Linked accounts</h2>
+        <p class="text-muted mt-2" style="font-size:15px;line-height:1.5;">Accounts that auto-import tax forms each January. Add one to skip uploads next year.</p>
+      </div>
+      <div class="modal-body">
+        <ul class="list">
+          <li class="list-item">
+            <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="list-item-content"><div class="list-item-title">Acme Tech payroll</div><div class="list-item-sub">W-2, 401(k) statement · syncs each January</div></div>
+            <a class="card-link" href="#">Manage</a>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="list-item-content"><div class="list-item-title">Vanguard brokerage</div><div class="list-item-sub">1099-DIV, 1099-B, 1099-R</div></div>
+            <a class="card-link" href="#">Manage</a>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="list-item-content"><div class="list-item-title">Bank of America</div><div class="list-item-sub">1099-INT · interest income</div></div>
+            <a class="card-link" href="#">Manage</a>
+          </li>
+          <li class="list-item">
+            <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="list-item-content"><div class="list-item-title">Fidelity (401k administrator)</div><div class="list-item-sub">Annual contribution statement</div></div>
+            <a class="card-link" href="#">Manage</a>
+          </li>
+        </ul>
+        <button class="btn btn-secondary btn-block mt-4" style="font-size:13px;" onclick="alert('Account linking flow opens. (Demo)');">+ Link a new account</button>
+      </div>
+    </div>
   </div>
 
   <!-- File 2025 return modal — unified federal + state -->
@@ -410,14 +401,23 @@
       btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     }
 
-    function openDocsModal() {
-      document.getElementById('docsModal').hidden = false;
+    // Generic modal open/close helpers used by the tile launcher.
+    function openModal(id) {
+      document.getElementById(id).hidden = false;
       document.body.style.overflow = 'hidden';
     }
-    function closeDocsModal() {
-      document.getElementById('docsModal').hidden = true;
+    function closeModal(id) {
+      document.getElementById(id).hidden = true;
       document.body.style.overflow = '';
     }
+    const openDocsModal = () => openModal('docsModal');
+    const closeDocsModal = () => closeModal('docsModal');
+    const openPriorReturnsModal = () => openModal('priorReturnsModal');
+    const closePriorReturnsModal = () => closeModal('priorReturnsModal');
+    const openPriorPrepModal = () => openModal('priorPrepModal');
+    const closePriorPrepModal = () => closeModal('priorPrepModal');
+    const openLinkAccountsModal = () => openModal('linkAccountsModal');
+    const closeLinkAccountsModal = () => closeModal('linkAccountsModal');
 
     // Pre-fill base values from the citizen's records. All editable in the modal.
     const PREFILL = {
@@ -448,44 +448,40 @@
       return Math.round(owed);
     }
 
-    // Initial page populate: federal always shows; state only if hasIncomeTax.
+    // Populate the two status cards (Federal + State). Federal always shows;
+    // State swaps to "No income tax" mode for TX/FL/WA/etc.
     (function populate() {
       const u = getCitizen();
       const tax = u ? (STATE_TAX[u.state] || STATE_TAX.default) : STATE_TAX.default;
-      if (u) document.getElementById('taxTitle').textContent = `${u.stateName} & Federal Taxes`;
 
-      // Federal computation
+      // Federal
       const grossAgi = PREFILL.w2 + PREFILL.nec1099 + PREFILL.div1099 + PREFILL.int1099;
       const fedAgi = grossAgi - PREFILL.halfSeTax - PREFILL.k401;
       const fedTaxable = Math.max(fedAgi - PREFILL.fedStd, 0);
       const fedOwed = federalTax(fedTaxable);
       const fedRefund = Math.max(PREFILL.fedWh - fedOwed, 0);
       document.getElementById('fedRefundAmt').textContent = formatCurrency(fedRefund);
-      document.getElementById('fedW2Wh').textContent = formatCurrency(PREFILL.fedWh);
-      document.getElementById('fedTaxable').textContent = formatCurrency(fedTaxable);
-      document.getElementById('fedOwed').textContent = formatCurrency(fedOwed);
+      document.getElementById('fedWithheldAmt').textContent = formatCurrency(PREFILL.fedWh);
 
-      // State computation
+      // State
+      if (u) {
+        document.getElementById('stateStatusTitle').textContent = `${u.stateName} state`;
+      }
       if (tax.hasIncomeTax) {
-        const stateAgi = grossAgi - PREFILL.k401; // state usually doesn't deduct ½ SE; simplify
+        const stateAgi = grossAgi - PREFILL.k401;
         const stateTaxable = Math.max(stateAgi - PREFILL.stateStdDefault, 0);
         const stateOwed = Math.round(stateTaxable * tax.rate);
         const stateWh = Math.round(PREFILL.w2 * tax.rate * PREFILL.stateWhPctOfWageTax);
         const stateRefund = Math.max(stateWh - stateOwed, 0);
         document.getElementById('stateRefundAmt').textContent = formatCurrency(stateRefund);
-        document.getElementById('stateW2Wh').textContent = formatCurrency(stateWh);
-        document.getElementById('stateTaxable').textContent = formatCurrency(stateTaxable);
-        document.getElementById('stateOwed').textContent = formatCurrency(stateOwed);
-        document.getElementById('totalRefundAmt').textContent = formatCurrency(fedRefund + stateRefund);
+        document.getElementById('stateWithheldAmt').textContent = formatCurrency(stateWh);
       } else {
-        document.getElementById('stateRefundLabel').textContent = 'State income tax';
-        document.getElementById('stateRefundAmt').textContent = 'None';
-        document.getElementById('stateRefundSub').textContent = `${u ? u.stateName : 'Your state'} doesn't levy one`;
-        document.getElementById('totalRefundAmt').textContent = formatCurrency(fedRefund);
-        document.getElementById('stateTable').classList.add('hidden');
-        const note = document.getElementById('noStateTaxNote');
-        note.classList.remove('hidden');
-        if (u) document.getElementById('noStateName').textContent = u.stateName;
+        // No-income-tax state — collapse the status card into a single line
+        const badge = document.getElementById('stateStatusBadge');
+        badge.className = 'badge badge-info';
+        badge.innerHTML = '<span class="dot"></span>No state income tax';
+        document.getElementById('stateStatusFields').innerHTML =
+          `<div class="info-field full"><label>${u ? u.stateName : 'This state'}</label><div class="value">No personal income tax. Federal return still required.</div></div>`;
       }
     })();
 
@@ -603,10 +599,10 @@
 
     document.addEventListener('keydown', e => {
       if (e.key !== 'Escape') return;
-      const fileModal = document.getElementById('fileModal');
-      const docsModal = document.getElementById('docsModal');
-      if (fileModal && !fileModal.hidden) closeFileModal();
-      if (docsModal && !docsModal.hidden) closeDocsModal();
+      ['fileModal', 'docsModal', 'priorReturnsModal', 'priorPrepModal', 'linkAccountsModal'].forEach(id => {
+        const m = document.getElementById(id);
+        if (m && !m.hidden) { m.hidden = true; document.body.style.overflow = ''; }
+      });
     });
   </script>
 </body>
