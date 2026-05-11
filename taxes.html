@@ -13,59 +13,96 @@
     <main class="main-content">
       <div class="page-header">
         <div class="page-title">
-          <h1 id="taxTitle">State Taxes</h1>
-          <p id="taxSub">Pre-filled from your W-2, 1099, and DMV records.</p>
+          <h1 id="taxTitle">Taxes</h1>
+          <p id="taxSub">Federal and state, pre-filled from your payroll, 1099s, DMV record, prior returns, and retirement accounts. Review, edit any line, and file both in one flow.</p>
         </div>
       </div>
 
-      <div id="noTaxState" class="card hidden" style="text-align:center;padding:48px;">
-        <div style="font-size:48px;margin-bottom:8px;">🎉</div>
-        <h2 class="text-xl mb-2" id="noTaxTitle">Good news.</h2>
-        <p class="text-muted" id="noTaxText">Your state has no personal income tax. We'll still help with sales tax, business filings, and property tax records.</p>
+      <div class="grid-3 mb-6">
+        <div class="stat">
+          <div class="stat-label">Federal estimated refund</div>
+          <div class="stat-value" id="fedRefundAmt">—</div>
+          <div class="stat-trend up">Direct deposit · 21 days (IRS)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label" id="stateRefundLabel">State estimated refund</div>
+          <div class="stat-value" id="stateRefundAmt">—</div>
+          <div class="stat-trend" id="stateRefundSub">Direct deposit · 5–7 days</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Combined</div>
+          <div class="stat-value" id="totalRefundAmt">—</div>
+          <div class="stat-trend">Federal + state, 2025 return</div>
+        </div>
       </div>
 
-      <div id="hasTaxContent">
-        <div class="grid-3 mb-6">
-          <div class="stat">
-            <div class="stat-label">Estimated refund</div>
-            <div class="stat-value" id="refundAmt">—</div>
-            <div class="stat-trend up">Direct deposit · 5–7 days</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Total state tax (2025)</div>
-            <div class="stat-value" id="taxOwed">—</div>
-            <div class="stat-trend">Effective rate <span id="effRate">—</span></div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Withheld YTD</div>
-            <div class="stat-value" id="withheld">—</div>
-            <div class="stat-trend">From 1 W-2, 0 1099s</div>
-          </div>
+      <div class="card mb-6">
+        <div class="card-header">
+          <div class="card-title">2025 Return — Pre-Filled Summary</div>
+          <a class="card-link" href="#" onclick="alert('Full return PDF would download. (Demo)');return false;">Download draft (PDF)</a>
         </div>
 
-        <div class="card mb-6">
-          <div class="card-header">
-            <div class="card-title">2025 Return — Pre-Filled Summary</div>
-            <a class="card-link" href="#" onclick="alert('Full return PDF would download. (Demo)');return false;">Download draft (PDF)</a>
-          </div>
-          <table class="table">
-            <thead><tr><th>Source</th><th>Type</th><th>Amount</th><th>Withheld</th></tr></thead>
-            <tbody>
-              <tr><td>Acme Tech, Inc.</td><td>W-2 wages</td><td>$84,500</td><td id="w2Wh">—</td></tr>
-              <tr><td>Mitchell Design LLC</td><td>1099-NEC (self-employment)</td><td>$12,800</td><td>$0</td></tr>
-              <tr><td>Vanguard 1099-DIV</td><td>Qualified dividends</td><td>$1,420</td><td>$0</td></tr>
-              <tr><td colspan="2"><strong>Adjusted gross income</strong></td><td><strong>$98,720</strong></td><td></td></tr>
-              <tr><td colspan="2">Standard deduction</td><td>−$5,540</td><td></td></tr>
-              <tr><td colspan="2"><strong>Taxable income</strong></td><td><strong id="taxableIncome">—</strong></td><td></td></tr>
-            </tbody>
-          </table>
-          <div class="row mt-4" style="gap:10px;">
-            <button class="btn btn-primary" onclick="openFileModal();">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              File 2025 return
-            </button>
-          </div>
+        <h3 class="text-lg mt-2 mb-2" style="font-weight:600;">Federal</h3>
+        <table class="table">
+          <thead><tr><th>Source</th><th>Type</th><th>Amount</th><th>Fed withheld</th></tr></thead>
+          <tbody>
+            <tr><td>Acme Tech, Inc.</td><td>W-2 wages</td><td>$84,500</td><td id="fedW2Wh">—</td></tr>
+            <tr><td>Mitchell Design LLC</td><td>1099-NEC (self-employment)</td><td>$12,800</td><td>$0</td></tr>
+            <tr><td>Vanguard</td><td>1099-DIV (qualified dividends)</td><td>$1,420</td><td>$0</td></tr>
+            <tr><td>Bank of America</td><td>1099-INT (interest)</td><td>$84</td><td>$0</td></tr>
+            <tr><td colspan="2"><strong>Adjusted gross income</strong></td><td><strong>$98,804</strong></td><td></td></tr>
+            <tr><td colspan="2">Standard deduction (single)</td><td>−$15,000</td><td></td></tr>
+            <tr><td colspan="2">½ self-employment tax deduction</td><td>−$904</td><td></td></tr>
+            <tr><td colspan="2"><strong>Taxable income (federal)</strong></td><td><strong id="fedTaxable">—</strong></td><td></td></tr>
+            <tr><td colspan="2"><strong>Federal tax owed</strong></td><td><strong id="fedOwed">—</strong></td><td></td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="stateSectionTitle" class="text-lg mt-6 mb-2" style="font-weight:600;">State</h3>
+        <table class="table" id="stateTable">
+          <thead><tr><th>Source</th><th>Type</th><th>Amount</th><th>State withheld</th></tr></thead>
+          <tbody>
+            <tr><td>Acme Tech, Inc.</td><td>W-2 wages (taxable to state)</td><td>$84,500</td><td id="stateW2Wh">—</td></tr>
+            <tr><td>Mitchell Design LLC</td><td>1099-NEC</td><td>$12,800</td><td>$0</td></tr>
+            <tr><td colspan="2"><strong>State AGI</strong></td><td><strong>$98,804</strong></td><td></td></tr>
+            <tr><td colspan="2">Standard deduction</td><td id="stateStdDedRow">−$5,540</td><td></td></tr>
+            <tr><td colspan="2"><strong>Taxable income (state)</strong></td><td><strong id="stateTaxable">—</strong></td><td></td></tr>
+            <tr><td colspan="2"><strong>State tax owed</strong></td><td><strong id="stateOwed">—</strong></td><td></td></tr>
+          </tbody>
+        </table>
+        <p id="noStateTaxNote" class="text-muted text-sm mt-2 hidden" style="margin-top:8px;">No state income tax in <span id="noStateName">your state</span> — only the federal return needs filing.</p>
+
+        <div class="row mt-4" style="gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="openFileModal();">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            File federal &amp; state 2025
+          </button>
+          <span class="text-sm text-muted" style="margin-left:auto;align-self:center;">Free · no e-file fees, no upgrades</span>
         </div>
+      </div>
+
+      <div class="card mb-6">
+        <div class="card-header">
+          <div class="card-title">Credits &amp; deductions we checked</div>
+          <span class="badge badge-success"><span class="dot"></span>Auto-applied</span>
+        </div>
+        <p class="text-muted text-sm mb-4">Every credit and deduction the platform can verify from your records — applied or marked not applicable. Override anything in the filing flow.</p>
+        <table class="table">
+          <thead><tr><th>Credit / deduction</th><th>Verified from</th><th>Applied</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Standard deduction</strong></td><td>Filing status: single</td><td><span class="badge badge-success">$15,000</span></td></tr>
+            <tr><td><strong>½ self-employment tax</strong></td><td>1099-NEC · Mitchell Design LLC</td><td><span class="badge badge-success">$904</span></td></tr>
+            <tr><td><strong>401(k) traditional contribution</strong></td><td>Acme Tech payroll · pre-tax</td><td><span class="badge badge-success">$6,200</span></td></tr>
+            <tr><td><strong>Earned Income Tax Credit</strong></td><td>AGI too high (single, no dependents)</td><td><span class="badge badge-neutral">N/A</span></td></tr>
+            <tr><td><strong>Child Tax Credit</strong></td><td>No dependents on file</td><td><span class="badge badge-neutral">N/A</span></td></tr>
+            <tr><td><strong>Saver's Credit</strong></td><td>AGI above $73k single threshold</td><td><span class="badge badge-neutral">N/A</span></td></tr>
+            <tr><td><strong>Student loan interest</strong></td><td>No 1098-E on file</td><td><span class="badge badge-neutral">N/A</span></td></tr>
+            <tr><td><strong>Mortgage interest</strong></td><td>No 1098 on file (renting per DMV address)</td><td><span class="badge badge-neutral">N/A</span></td></tr>
+            <tr><td><strong>Education credits</strong></td><td>No 1098-T on file</td><td><span class="badge badge-neutral">N/A</span></td></tr>
+            <tr><td><strong>HSA deduction</strong></td><td>BlueShield plan is PPO (no HSA)</td><td><span class="badge badge-neutral">N/A</span></td></tr>
+          </tbody>
+        </table>
+      </div>
 
         <div class="grid-2">
           <div class="card">
@@ -132,79 +169,149 @@
                 <a class="card-link" href="#">PDF</a>
               </li>
               <li class="list-item">
+                <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/></svg></div>
+                <div class="list-item-content">
+                  <div class="list-item-title">1099-INT · Bank of America</div>
+                  <div class="list-item-sub">Imported automatically · Feb 04, 2026 · $84 interest</div>
+                </div>
+                <a class="card-link" href="#">PDF</a>
+              </li>
+              <li class="list-item">
+                <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/></svg></div>
+                <div class="list-item-content">
+                  <div class="list-item-title">1099-G · Prior-year state refund</div>
+                  <div class="list-item-sub" id="priorRefundSub">From your 2024 return · $1,247 · informational</div>
+                </div>
+                <a class="card-link" href="#">PDF</a>
+              </li>
+              <li class="list-item">
+                <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/></svg></div>
+                <div class="list-item-content">
+                  <div class="list-item-title">401(k) annual statement · Fidelity</div>
+                  <div class="list-item-sub">Pre-tax contributions through Acme Tech payroll · $6,200</div>
+                </div>
+                <a class="card-link" href="#">PDF</a>
+              </li>
+              <li class="list-item">
+                <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/></svg></div>
+                <div class="list-item-content">
+                  <div class="list-item-title">1095-B · BlueShield (health coverage)</div>
+                  <div class="list-item-sub">Full-year MEC · no individual mandate penalty</div>
+                </div>
+                <a class="card-link" href="#">PDF</a>
+              </li>
+              <li class="list-item">
+                <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7l9 5 9-5-9-5z"/><path d="M3 17l9 5 9-5M3 12l9 5 9-5"/></svg></div>
+                <div class="list-item-content">
+                  <div class="list-item-title">Prior-year AGI · IRS verification</div>
+                  <div class="list-item-sub">$94,180 (2024) · used to authenticate e-file</div>
+                </div>
+                <span class="badge badge-success" style="font-size:11px;"><span class="dot"></span>Verified</span>
+              </li>
+              <li class="list-item">
                 <button class="btn btn-secondary btn-block" style="font-size:13px;">+ Upload additional document</button>
               </li>
             </ul>
           </div>
         </div>
-      </div>
     </main>
   </div>
 
-  <!-- File 2025 return modal -->
+  <!-- File 2025 return modal — unified federal + state -->
   <div class="modal-backdrop" id="fileModal" hidden onclick="if(event.target===this)closeFileModal()">
     <div class="modal-pane" role="dialog" aria-modal="true" aria-labelledby="fileTitle">
       <button class="modal-close" type="button" onclick="closeFileModal()" aria-label="Close">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="modal-header">
-        <span class="badge badge-info" id="fileBadge">Tax year 2025</span>
+        <span class="badge badge-info">Tax year 2025</span>
         <h2 id="fileTitle" class="mt-2" style="font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.2;">Review &amp; File 2025 Return</h2>
-        <p class="text-muted mt-2" style="font-size:15px;line-height:1.5;">Pre-filled from your W-2, 1099, and DMV records. Edit any line below — totals update live — then submit.</p>
+        <p class="text-muted mt-2" style="font-size:15px;line-height:1.5;">Federal and state, in one flow. Every line is pre-filled from your records — payroll, 1099s, retirement, DMV. Edit anything; totals update live.</p>
       </div>
       <div class="modal-body">
-        <div class="grid-2 mb-6">
+        <h3 class="text-lg mb-2" style="font-weight:600;">Income</h3>
+        <div class="grid-2 mb-4">
           <div class="form-row">
-            <label>W-2 wages · Acme Tech, Inc.</label>
+            <label>W-2 wages · Acme Tech</label>
             <input type="number" id="fileW2" min="0" step="100">
           </div>
           <div class="form-row">
-            <label>W-2 withheld</label>
-            <input type="number" id="fileW2Wh" min="0" step="50">
+            <label>Filing status</label>
+            <select id="fileStatus">
+              <option value="single" selected>Single</option>
+              <option value="mfj">Married filing jointly</option>
+              <option value="mfs">Married filing separately</option>
+              <option value="hoh">Head of household</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label>Federal withheld (W-2 box 2)</label>
+            <input type="number" id="fileFedWh" min="0" step="50">
+          </div>
+          <div class="form-row">
+            <label>State withheld (W-2 box 17)</label>
+            <input type="number" id="fileStateWh" min="0" step="50">
           </div>
           <div class="form-row">
             <label>1099-NEC · Mitchell Design LLC</label>
             <input type="number" id="file1099Nec" min="0" step="100">
           </div>
           <div class="form-row">
-            <label>1099-DIV · Vanguard</label>
+            <label>1099-DIV (qualified) · Vanguard</label>
             <input type="number" id="file1099Div" min="0" step="50">
           </div>
           <div class="form-row">
-            <label>Standard deduction</label>
-            <input type="number" id="fileStdDed" min="0" step="50">
+            <label>1099-INT · Bank of America</label>
+            <input type="number" id="file1099Int" min="0" step="10">
           </div>
           <div class="form-row">
-            <label>Filing status</label>
-            <select id="fileStatus">
-              <option selected>Single</option>
-              <option>Married filing jointly</option>
-              <option>Married filing separately</option>
-              <option>Head of household</option>
-            </select>
+            <label>401(k) traditional contribution</label>
+            <input type="number" id="file401k" min="0" step="100">
           </div>
         </div>
 
-        <div class="card" style="background:var(--surface-2);padding:16px;margin-bottom:20px;">
+        <h3 class="text-lg mb-2" style="font-weight:600;">Adjustments</h3>
+        <div class="grid-2 mb-4">
+          <div class="form-row">
+            <label>Federal standard deduction</label>
+            <input type="number" id="fileFedStd" min="0" step="50">
+          </div>
+          <div class="form-row">
+            <label>State standard deduction</label>
+            <input type="number" id="fileStateStd" min="0" step="50">
+          </div>
+        </div>
+
+        <div class="card" style="background:var(--surface-2);padding:16px;margin-bottom:14px;">
+          <h3 class="text-sm text-muted mb-2" style="font-weight:600;text-transform:uppercase;letter-spacing:0.04em;">Federal</h3>
           <div class="grid-3" style="gap:12px;">
-            <div class="info-field"><label>Adjusted gross income</label><div class="value" id="fileAgi">—</div></div>
-            <div class="info-field"><label>Taxable income</label><div class="value" id="fileTaxable">—</div></div>
-            <div class="info-field"><label>Estimated <span id="fileResultLabel">refund</span></label><div class="value" id="fileResult" style="color:var(--success);">—</div></div>
+            <div class="info-field"><label>AGI</label><div class="value" id="fileFedAgi">—</div></div>
+            <div class="info-field"><label>Taxable income</label><div class="value" id="fileFedTaxable">—</div></div>
+            <div class="info-field"><label>Estimated <span id="fileFedResultLabel">refund</span></label><div class="value" id="fileFedResult" style="color:var(--success);">—</div></div>
+          </div>
+        </div>
+
+        <div class="card" id="fileStateBlock" style="background:var(--surface-2);padding:16px;margin-bottom:20px;">
+          <h3 class="text-sm text-muted mb-2" style="font-weight:600;text-transform:uppercase;letter-spacing:0.04em;" id="fileStateBlockLabel">State</h3>
+          <div class="grid-3" style="gap:12px;">
+            <div class="info-field"><label>Taxable income</label><div class="value" id="fileStateTaxable">—</div></div>
+            <div class="info-field"><label>State tax owed</label><div class="value" id="fileStateOwed">—</div></div>
+            <div class="info-field"><label>Estimated <span id="fileStateResultLabel">refund</span></label><div class="value" id="fileStateResult" style="color:var(--success);">—</div></div>
           </div>
         </div>
 
         <div class="form-row" style="margin-top:14px;">
           <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;font-weight:400;">
             <input type="checkbox" id="fileSign" style="width:auto;margin-top:3px;">
-            <span class="text-sm">I declare under penalty of perjury that the information above is correct to the best of my knowledge.</span>
+            <span class="text-sm">I declare under penalty of perjury that the information above is correct to the best of my knowledge. By submitting, I authorize the filing of both my federal (IRS) and state returns.</span>
           </label>
         </div>
 
         <div class="row-between mt-6">
-          <span class="text-sm text-muted">You'll receive a confirmation by email and text.</span>
+          <span class="text-sm text-muted">Free · no e-file fees, no upgrades · IRS and state confirmations within 24 hours.</span>
           <div style="display:flex;gap:8px;">
             <button class="btn btn-ghost" type="button" onclick="closeFileModal()">Cancel</button>
-            <button class="btn btn-primary" type="button" onclick="submitReturn()">Submit return</button>
+            <button class="btn btn-primary" type="button" onclick="submitReturn()">Submit federal &amp; state</button>
           </div>
         </div>
       </div>
@@ -213,45 +320,105 @@
 
   <script src="js/app.js"></script>
   <script>
-    const u = getCitizen();
-    if (u) {
-      const tax = STATE_TAX[u.state] || STATE_TAX.default;
-      document.getElementById('taxTitle').textContent = `${u.stateName} State Taxes`;
-      if (!tax.hasIncomeTax) {
-        document.getElementById('hasTaxContent').classList.add('hidden');
-        document.getElementById('noTaxState').classList.remove('hidden');
-        document.getElementById('noTaxText').textContent =
-          `${u.stateName} has no personal income tax. We'll still help with sales tax, business filings, and property tax records.`;
-      } else {
-        const agi = 98720;
-        const stdDed = 5540;
-        const taxable = agi - stdDed;
-        const owed = Math.round(taxable * tax.rate);
-        const withheld = Math.round(84500 * tax.rate * 1.13);
-        const refund = Math.max(withheld - owed, 0);
-        document.getElementById('refundAmt').textContent = formatCurrency(refund);
-        document.getElementById('taxOwed').textContent = formatCurrency(owed);
-        document.getElementById('withheld').textContent = formatCurrency(withheld);
-        document.getElementById('effRate').textContent = (owed / agi * 100).toFixed(1) + '%';
-        document.getElementById('w2Wh').textContent = formatCurrency(withheld);
-        document.getElementById('taxableIncome').textContent = formatCurrency(taxable);
+    // Pre-fill base values from the citizen's records. All editable in the modal.
+    const PREFILL = {
+      w2: 84500, fedWh: 15300, stateWhPctOfWageTax: 1.13,
+      nec1099: 12800, div1099: 1420, int1099: 84,
+      k401: 6200, halfSeTax: 904,
+      fedStd: 15000, stateStdDefault: 5540
+    };
+
+    // 2025 federal brackets (single). For demo we use single brackets regardless
+    // of filing status — real tax software would dispatch by status.
+    function federalTax(taxable) {
+      const brackets = [
+        [11600,  0.10],
+        [47150,  0.12],
+        [100525, 0.22],
+        [191950, 0.24],
+        [243725, 0.32],
+        [609350, 0.35]
+      ];
+      let owed = 0, prev = 0;
+      for (const [lim, rate] of brackets) {
+        if (taxable <= lim) { owed += (taxable - prev) * rate; return Math.round(owed); }
+        owed += (lim - prev) * rate;
+        prev = lim;
       }
+      owed += (taxable - prev) * 0.37;
+      return Math.round(owed);
     }
 
+    // Initial page populate: federal always shows; state only if hasIncomeTax.
+    (function populate() {
+      const u = getCitizen();
+      const tax = u ? (STATE_TAX[u.state] || STATE_TAX.default) : STATE_TAX.default;
+      if (u) document.getElementById('taxTitle').textContent = `${u.stateName} & Federal Taxes`;
+
+      // Federal computation
+      const grossAgi = PREFILL.w2 + PREFILL.nec1099 + PREFILL.div1099 + PREFILL.int1099;
+      const fedAgi = grossAgi - PREFILL.halfSeTax - PREFILL.k401;
+      const fedTaxable = Math.max(fedAgi - PREFILL.fedStd, 0);
+      const fedOwed = federalTax(fedTaxable);
+      const fedRefund = Math.max(PREFILL.fedWh - fedOwed, 0);
+      document.getElementById('fedRefundAmt').textContent = formatCurrency(fedRefund);
+      document.getElementById('fedW2Wh').textContent = formatCurrency(PREFILL.fedWh);
+      document.getElementById('fedTaxable').textContent = formatCurrency(fedTaxable);
+      document.getElementById('fedOwed').textContent = formatCurrency(fedOwed);
+
+      // State computation
+      if (tax.hasIncomeTax) {
+        const stateAgi = grossAgi - PREFILL.k401; // state usually doesn't deduct ½ SE; simplify
+        const stateTaxable = Math.max(stateAgi - PREFILL.stateStdDefault, 0);
+        const stateOwed = Math.round(stateTaxable * tax.rate);
+        const stateWh = Math.round(PREFILL.w2 * tax.rate * PREFILL.stateWhPctOfWageTax);
+        const stateRefund = Math.max(stateWh - stateOwed, 0);
+        document.getElementById('stateRefundAmt').textContent = formatCurrency(stateRefund);
+        document.getElementById('stateW2Wh').textContent = formatCurrency(stateWh);
+        document.getElementById('stateTaxable').textContent = formatCurrency(stateTaxable);
+        document.getElementById('stateOwed').textContent = formatCurrency(stateOwed);
+        document.getElementById('totalRefundAmt').textContent = formatCurrency(fedRefund + stateRefund);
+      } else {
+        document.getElementById('stateRefundLabel').textContent = 'State income tax';
+        document.getElementById('stateRefundAmt').textContent = 'None';
+        document.getElementById('stateRefundSub').textContent = `${u ? u.stateName : 'Your state'} doesn't levy one`;
+        document.getElementById('totalRefundAmt').textContent = formatCurrency(fedRefund);
+        document.getElementById('stateTable').classList.add('hidden');
+        const note = document.getElementById('noStateTaxNote');
+        note.classList.remove('hidden');
+        if (u) document.getElementById('noStateName').textContent = u.stateName;
+      }
+    })();
+
+    // === Filing modal ===
     function openFileModal() {
       const cu = getCitizen();
       const tax = cu ? (STATE_TAX[cu.state] || STATE_TAX.default) : STATE_TAX.default;
-      if (!tax.hasIncomeTax) {
-        alert('Your state has no personal income tax. Nothing to file.');
-        return;
-      }
-      const initWithheld = Math.round(84500 * tax.rate * 1.13);
-      document.getElementById('fileW2').value = 84500;
-      document.getElementById('fileW2Wh').value = initWithheld;
-      document.getElementById('file1099Nec').value = 12800;
-      document.getElementById('file1099Div').value = 1420;
-      document.getElementById('fileStdDed').value = 5540;
+      const stateWh = tax.hasIncomeTax ? Math.round(PREFILL.w2 * tax.rate * PREFILL.stateWhPctOfWageTax) : 0;
+      document.getElementById('fileW2').value = PREFILL.w2;
+      document.getElementById('fileFedWh').value = PREFILL.fedWh;
+      document.getElementById('fileStateWh').value = stateWh;
+      document.getElementById('file1099Nec').value = PREFILL.nec1099;
+      document.getElementById('file1099Div').value = PREFILL.div1099;
+      document.getElementById('file1099Int').value = PREFILL.int1099;
+      document.getElementById('file401k').value = PREFILL.k401;
+      document.getElementById('fileFedStd').value = PREFILL.fedStd;
+      document.getElementById('fileStateStd').value = PREFILL.stateStdDefault;
       document.getElementById('fileSign').checked = false;
+      // Hide state block + state-only inputs when state doesn't levy income tax
+      const stateBlock = document.getElementById('fileStateBlock');
+      const stateWhRow = document.getElementById('fileStateWh').closest('.form-row');
+      const stateStdRow = document.getElementById('fileStateStd').closest('.form-row');
+      if (tax.hasIncomeTax) {
+        stateBlock.classList.remove('hidden');
+        stateWhRow.classList.remove('hidden');
+        stateStdRow.classList.remove('hidden');
+        if (cu) document.getElementById('fileStateBlockLabel').textContent = `${cu.stateName} state`;
+      } else {
+        stateBlock.classList.add('hidden');
+        stateWhRow.classList.add('hidden');
+        stateStdRow.classList.add('hidden');
+      }
       recalcReturn();
       document.getElementById('fileModal').hidden = false;
       document.body.style.overflow = 'hidden';
@@ -265,19 +432,41 @@
     function recalcReturn() {
       const cu = getCitizen();
       const tax = cu ? (STATE_TAX[cu.state] || STATE_TAX.default) : STATE_TAX.default;
-      const w2 = Number(document.getElementById('fileW2').value) || 0;
-      const w2wh = Number(document.getElementById('fileW2Wh').value) || 0;
-      const nec = Number(document.getElementById('file1099Nec').value) || 0;
-      const div = Number(document.getElementById('file1099Div').value) || 0;
-      const std = Number(document.getElementById('fileStdDed').value) || 0;
-      const agi = w2 + nec + div;
-      const taxable = Math.max(agi - std, 0);
-      const owed = Math.round(taxable * tax.rate);
-      const net = w2wh - owed;
-      document.getElementById('fileAgi').textContent = formatCurrency(agi);
-      document.getElementById('fileTaxable').textContent = formatCurrency(taxable);
-      const result = document.getElementById('fileResult');
-      const label = document.getElementById('fileResultLabel');
+      const val = id => Number(document.getElementById(id).value) || 0;
+      const w2   = val('fileW2');
+      const fedW = val('fileFedWh');
+      const stW  = val('fileStateWh');
+      const nec  = val('file1099Nec');
+      const div  = val('file1099Div');
+      const intc = val('file1099Int');
+      const k401 = val('file401k');
+      const fedStd = val('fileFedStd');
+      const stStd  = val('fileStateStd');
+      const halfSe = Math.round(0.0765 * 0.9235 * nec); // ½ SE tax
+
+      // Federal
+      const grossAgi = w2 + nec + div + intc;
+      const fedAgi = Math.max(grossAgi - halfSe - k401, 0);
+      const fedTaxable = Math.max(fedAgi - fedStd, 0);
+      const fedOwed = federalTax(fedTaxable);
+      const fedNet = fedW - fedOwed;
+      document.getElementById('fileFedAgi').textContent = formatCurrency(fedAgi);
+      document.getElementById('fileFedTaxable').textContent = formatCurrency(fedTaxable);
+      writeNet('fileFedResult', 'fileFedResultLabel', fedNet);
+
+      // State
+      if (tax.hasIncomeTax) {
+        const stTaxable = Math.max((grossAgi - k401) - stStd, 0);
+        const stOwed = Math.round(stTaxable * tax.rate);
+        const stNet = stW - stOwed;
+        document.getElementById('fileStateTaxable').textContent = formatCurrency(stTaxable);
+        document.getElementById('fileStateOwed').textContent = formatCurrency(stOwed);
+        writeNet('fileStateResult', 'fileStateResultLabel', stNet);
+      }
+    }
+    function writeNet(elId, labelId, net) {
+      const result = document.getElementById(elId);
+      const label = document.getElementById(labelId);
       if (net >= 0) {
         label.textContent = 'refund';
         result.textContent = formatCurrency(net);
@@ -289,7 +478,7 @@
       }
     }
 
-    ['fileW2','fileW2Wh','file1099Nec','file1099Div','fileStdDed'].forEach(id => {
+    ['fileW2','fileFedWh','fileStateWh','file1099Nec','file1099Div','fileFedStd','fileStateStd','file1099Int','file401k'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.addEventListener('input', recalcReturn);
     });
@@ -299,9 +488,17 @@
         alert('Please confirm the perjury declaration before submitting.');
         return;
       }
-      const result = document.getElementById('fileResult').textContent;
-      const label = document.getElementById('fileResultLabel').textContent;
-      alert(`Return submitted. Estimated ${label}: ${result}. (Demo)`);
+      const cu = getCitizen();
+      const tax = cu ? (STATE_TAX[cu.state] || STATE_TAX.default) : STATE_TAX.default;
+      const fedLabel = document.getElementById('fileFedResultLabel').textContent;
+      const fedResult = document.getElementById('fileFedResult').textContent;
+      let msg = `Federal return submitted to the IRS. Estimated ${fedLabel}: ${fedResult}.`;
+      if (tax.hasIncomeTax) {
+        const stLabel = document.getElementById('fileStateResultLabel').textContent;
+        const stResult = document.getElementById('fileStateResult').textContent;
+        msg += `\n${cu ? cu.stateName : 'State'} return submitted. Estimated ${stLabel}: ${stResult}.`;
+      }
+      alert(msg + '\n(Demo)');
       closeFileModal();
     }
 
