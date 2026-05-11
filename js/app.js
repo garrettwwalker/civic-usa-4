@@ -192,6 +192,10 @@ function applyStateTheme(stateCode) {
   const theme = getStateTheme(stateCode);
   document.body.style.setProperty('--license-accent', theme.accent);
   document.body.style.setProperty('--license-deep', theme.deep);
+  // Cache for the inline <head> bootstrap on the next page load — sets
+  // the variables on <html> before first paint so primary buttons don't
+  // flash their fallback color while waiting for DOMContentLoaded.
+  try { sessionStorage.setItem('civic_theme', JSON.stringify(theme)); } catch (e) {}
   return theme;
 }
 
