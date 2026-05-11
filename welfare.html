@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Benefits — ePluribus</title>
+  <script>try{var t=JSON.parse(sessionStorage.getItem('civic_theme')||'null');if(t){var s=document.documentElement.style;s.setProperty('--license-accent',t.accent);s.setProperty('--license-deep',t.deep);}}catch(e){}</script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-page="welfare">
@@ -19,14 +20,14 @@
 
       <div class="banner-success">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <div>You qualify for <strong>3 additional programs</strong> based on your income, household, and recent filings. Estimated value: <strong>$2,160/year</strong>.</div>
+        <div>You qualify for <strong>3 additional programs</strong> based on your income, household, and recent filings. Estimated value: <strong>$5,300/year</strong>.</div>
       </div>
 
       <h2 class="text-xl mb-4 mt-6">Active Benefits</h2>
       <div class="grid-2 mb-6">
         <div class="card">
           <div class="row-between mb-2">
-            <div class="card-title">SNAP (CalFresh)</div>
+            <div class="card-title" id="snapCardTitle">SNAP</div>
             <span class="badge badge-success"><span class="dot"></span>Active</span>
           </div>
           <p class="text-muted mb-4">Supplemental Nutrition Assistance Program · monthly food benefits.</p>
@@ -46,7 +47,7 @@
           <p class="text-muted mb-4">Low-Income Home Energy Assistance · utility bill credit.</p>
           <div class="grid-2" style="gap:12px;">
             <div class="info-field"><label>Annual credit</label><div class="value">$480</div></div>
-            <div class="info-field"><label>Applied to</label><div class="value">SoCal Edison</div></div>
+            <div class="info-field"><label>Applied to</label><div class="value" id="liheapUtility">your local utility</div></div>
             <div class="info-field"><label>Status</label><div class="value">Credit posted Mar 2026</div></div>
             <div class="info-field"><label>Renews</label><div class="value">Jan 2027</div></div>
           </div>
@@ -57,16 +58,16 @@
       <div class="grid-2 mb-6">
         <div class="card">
           <div class="row-between mb-2">
-            <div class="card-title">Earned Income Tax Credit (EITC)</div>
+            <div class="card-title">Child Care Assistance</div>
             <span class="badge badge-info">Eligible</span>
           </div>
-          <p class="text-muted mb-4">State + federal credit for low-to-moderate income workers.</p>
+          <p class="text-muted mb-4">Subsidized child care for working families. State-administered under the federal CCDF block grant.</p>
           <div class="row-between">
             <div>
-              <div class="text-sm text-muted">Estimated credit</div>
-              <div class="text-xl">$1,240</div>
+              <div class="text-sm text-muted">Estimated subsidy</div>
+              <div class="text-xl">$5,200/yr</div>
             </div>
-            <button class="btn btn-primary" onclick="alert('Pre-filled application opened. (Demo)');">Claim now</button>
+            <button class="btn btn-primary" onclick="alert('Pre-filled application opened. (Demo)');">Apply</button>
           </div>
         </div>
         <div class="card">
@@ -85,7 +86,7 @@
         </div>
         <div class="card">
           <div class="row-between mb-2">
-            <div class="card-title">CalWORKs (TANF)</div>
+            <div class="card-title" id="tanfCardTitle">TANF</div>
             <span class="badge badge-warning">Partial match</span>
           </div>
           <p class="text-muted mb-4">Cash aid for families with children. Eligibility depends on household details.</p>
@@ -110,19 +111,19 @@
       </div>
 
       <div class="card">
-        <div class="card-header"><div class="card-title">All California Assistance Programs</div></div>
+        <div class="card-header"><div class="card-title" id="allProgramsTitle">All Assistance Programs</div></div>
         <table class="table">
           <thead><tr><th>Program</th><th>What it covers</th><th>Status</th></tr></thead>
           <tbody>
-            <tr><td><strong>SNAP / CalFresh</strong></td><td>Monthly food benefits</td><td><span class="badge badge-success">Active</span></td></tr>
+            <tr><td><strong id="rowSnap">SNAP</strong></td><td>Monthly food benefits</td><td><span class="badge badge-success">Active</span></td></tr>
             <tr><td><strong>LIHEAP</strong></td><td>Utility bill assistance</td><td><span class="badge badge-success">Active</span></td></tr>
-            <tr><td><strong>EITC</strong></td><td>Low-income tax credit</td><td><span class="badge badge-info">Eligible</span></td></tr>
+            <tr><td><strong>Child Care Assistance</strong></td><td>Subsidized child care for working families</td><td><span class="badge badge-info">Eligible</span></td></tr>
             <tr><td><strong>Lifeline</strong></td><td>Phone & internet discount</td><td><span class="badge badge-info">Eligible</span></td></tr>
-            <tr><td><strong>CalWORKs</strong></td><td>Family cash assistance</td><td><span class="badge badge-warning">Check details</span></td></tr>
+            <tr><td><strong id="rowTanf">TANF</strong></td><td>Family cash assistance</td><td><span class="badge badge-warning">Check details</span></td></tr>
             <tr><td><strong>WIC</strong></td><td>Nutrition for women & children</td><td><span class="badge badge-neutral">Not eligible</span></td></tr>
-            <tr><td><strong>Medi-Cal</strong></td><td>Free/low-cost health coverage</td><td><span class="badge badge-neutral">Income above threshold</span></td></tr>
+            <tr><td><strong id="rowMedicaid">Medicaid</strong></td><td>Free/low-cost health coverage</td><td><span class="badge badge-neutral">Income above threshold</span></td></tr>
             <tr><td><strong>Unemployment Insurance</strong></td><td>Wage replacement if you lose your job</td><td><span class="badge badge-neutral">Not currently filed</span></td></tr>
-            <tr><td><strong>SDI / Paid Family Leave</strong></td><td>Disability and family leave wage replacement</td><td><span class="badge badge-info">Pre-enrolled via W-2</span></td></tr>
+            <tr><td><strong id="rowDisability">Disability / Paid Family Leave</strong></td><td>Disability and family leave wage replacement</td><td><span class="badge badge-info">Pre-enrolled via W-2</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -130,5 +131,78 @@
   </div>
 
   <script src="js/app.js"></script>
+  <script>
+    // Per-state assistance-program naming overrides + dominant utility.
+    // Fields here are demo-realistic substitutions for the user's state;
+    // any state not listed falls back to the generic federal names.
+    const WELFARE_BY_STATE = {
+      AL: { snap: 'SNAP',                       tanf: 'Family Assistance (TANF)',  medicaid: 'Alabama Medicaid',     utility: 'Alabama Power' },
+      AK: { snap: 'SNAP',                       tanf: 'ATAP (TANF)',               medicaid: 'DenaliCare',           utility: 'Chugach Electric' },
+      AZ: { snap: 'Nutrition Assistance (SNAP)', tanf: 'Cash Assistance (TANF)',   medicaid: 'AHCCCS',               utility: 'APS' },
+      AR: { snap: 'SNAP',                       tanf: 'TEA (TANF)',                medicaid: 'Arkansas Medicaid',    utility: 'Entergy Arkansas' },
+      CA: { snap: 'SNAP (CalFresh)',            tanf: 'CalWORKs (TANF)',           medicaid: 'Medi-Cal',             disability: 'SDI / Paid Family Leave', utility: 'SoCal Edison' },
+      CO: { snap: 'SNAP',                       tanf: 'Colorado Works (TANF)',     medicaid: 'Health First Colorado', disability: 'FAMLI',                  utility: 'Xcel Energy' },
+      CT: { snap: 'SNAP',                       tanf: 'Jobs First (TANF)',         medicaid: 'HUSKY Health',         disability: 'CT PFMLA',               utility: 'Eversource' },
+      DE: { snap: 'SNAP',                       tanf: 'TANF',                      medicaid: 'Delaware Medicaid',    disability: 'FAMLI',                  utility: 'Delmarva Power' },
+      FL: { snap: 'SNAP',                       tanf: 'Temporary Cash Assistance (TCA)', medicaid: 'Florida Medicaid', utility: 'FPL' },
+      GA: { snap: 'SNAP',                       tanf: 'TANF',                      medicaid: 'Georgia Medicaid',     utility: 'Georgia Power' },
+      HI: { snap: 'SNAP',                       tanf: 'Family Assistance (TANF)',  medicaid: 'Hawaii QUEST',         disability: 'Hawaii TDI',             utility: 'Hawaiian Electric' },
+      ID: { snap: 'SNAP',                       tanf: 'TAFI (TANF)',               medicaid: 'Idaho Medicaid',       utility: 'Idaho Power' },
+      IL: { snap: 'SNAP',                       tanf: 'TANF',                      medicaid: 'Illinois Medicaid',    utility: 'ComEd' },
+      IN: { snap: 'Hoosier Works (SNAP)',       tanf: 'TANF',                      medicaid: 'HIP (Healthy Indiana Plan)', utility: 'Duke Energy Indiana' },
+      IA: { snap: 'SNAP',                       tanf: 'FIP (TANF)',                medicaid: 'Iowa Health Link',     utility: 'MidAmerican Energy' },
+      KS: { snap: 'SNAP',                       tanf: 'Successful Families (TANF)', medicaid: 'KanCare',             utility: 'Evergy' },
+      KY: { snap: 'SNAP',                       tanf: 'K-TAP (TANF)',              medicaid: 'Kentucky Medicaid',    utility: 'Kentucky Utilities' },
+      LA: { snap: 'SNAP',                       tanf: 'FITAP (TANF)',              medicaid: 'Healthy Louisiana',    utility: 'Entergy Louisiana' },
+      ME: { snap: 'SNAP',                       tanf: 'TANF',                      medicaid: 'MaineCare',            utility: 'Central Maine Power' },
+      MD: { snap: 'SNAP',                       tanf: 'TCA (TANF)',                medicaid: 'Maryland Medicaid',    disability: 'FAMLI',                  utility: 'BGE' },
+      MA: { snap: 'SNAP',                       tanf: 'TAFDC (TANF)',              medicaid: 'MassHealth',           disability: 'PFML',                   utility: 'Eversource' },
+      MI: { snap: 'FAP (SNAP)',                 tanf: 'FIP (TANF)',                medicaid: 'Michigan Medicaid',    utility: 'DTE Energy' },
+      MN: { snap: 'SNAP',                       tanf: 'MFIP (TANF)',               medicaid: 'Medical Assistance',   disability: 'Paid Leave Minnesota',   utility: 'Xcel Energy' },
+      MS: { snap: 'SNAP',                       tanf: 'TANF',                      medicaid: 'Mississippi Medicaid', utility: 'Entergy Mississippi' },
+      MO: { snap: 'SNAP',                       tanf: 'Temporary Assistance (TANF)', medicaid: 'MO HealthNet',       utility: 'Ameren Missouri' },
+      MT: { snap: 'SNAP',                       tanf: 'TANF',                      medicaid: 'Montana Medicaid',     utility: 'NorthWestern Energy' },
+      NE: { snap: 'SNAP',                       tanf: 'Employment First (TANF)',   medicaid: 'Heritage Health',      utility: 'OPPD' },
+      NV: { snap: 'SNAP',                       tanf: 'TANF',                      medicaid: 'Nevada Medicaid',      utility: 'NV Energy' },
+      NH: { snap: 'SNAP',                       tanf: 'FANF (TANF)',               medicaid: 'NH Medicaid',          utility: 'Eversource' },
+      NJ: { snap: 'NJ SNAP',                    tanf: 'WorkFirst NJ (TANF)',       medicaid: 'NJ FamilyCare',        disability: 'TDI / FLI',              utility: 'PSE&G' },
+      NM: { snap: 'SNAP',                       tanf: 'NM Works (TANF)',           medicaid: 'Centennial Care',      utility: 'PNM' },
+      NY: { snap: 'SNAP',                       tanf: 'Family Assistance (TANF)',  medicaid: 'NY Medicaid',          disability: 'NYSDI / PFL',            utility: 'Con Edison' },
+      NC: { snap: 'FNS (SNAP)',                 tanf: 'Work First (TANF)',         medicaid: 'NC Medicaid',          utility: 'Duke Energy' },
+      ND: { snap: 'SNAP',                       tanf: 'TANF',                      medicaid: 'ND Medicaid',          utility: 'Xcel Energy' },
+      OH: { snap: 'SNAP',                       tanf: 'Ohio Works First (TANF)',   medicaid: 'Ohio Medicaid',        utility: 'AEP Ohio' },
+      OK: { snap: 'SNAP',                       tanf: 'TANF',                      medicaid: 'SoonerCare',           utility: 'OG&E' },
+      OR: { snap: 'SNAP',                       tanf: 'TANF',                      medicaid: 'Oregon Health Plan',   disability: 'Paid Leave Oregon',      utility: 'PGE' },
+      PA: { snap: 'SNAP',                       tanf: 'TANF',                      medicaid: 'PA Medical Assistance', utility: 'PECO' },
+      RI: { snap: 'SNAP',                       tanf: 'RI Works (TANF)',           medicaid: 'Rhode Island Medicaid', disability: 'TDI / TCI',             utility: 'Rhode Island Energy' },
+      SC: { snap: 'SNAP',                       tanf: 'Family Independence (TANF)', medicaid: 'Healthy Connections', utility: 'Duke Energy' },
+      SD: { snap: 'SNAP',                       tanf: 'TANF',                      medicaid: 'SD Medicaid',          utility: 'Black Hills Energy' },
+      TN: { snap: 'SNAP',                       tanf: 'Families First (TANF)',     medicaid: 'TennCare',             utility: 'TVA' },
+      TX: { snap: 'SNAP',                       tanf: 'TANF',                      medicaid: 'Texas Medicaid',       utility: 'Oncor' },
+      UT: { snap: 'SNAP',                       tanf: 'FEP (TANF)',                medicaid: 'Utah Medicaid',        utility: 'Rocky Mountain Power' },
+      VT: { snap: '3SquaresVT (SNAP)',          tanf: 'Reach Up (TANF)',           medicaid: 'Green Mountain Care',  utility: 'Green Mountain Power' },
+      VA: { snap: 'SNAP',                       tanf: 'TANF',                      medicaid: 'Cardinal Care',        utility: 'Dominion Energy' },
+      WA: { snap: 'Basic Food (SNAP)',          tanf: 'WorkFirst (TANF)',          medicaid: 'Apple Health',         disability: 'PFML',                   utility: 'Puget Sound Energy' },
+      WV: { snap: 'SNAP',                       tanf: 'TANF',                      medicaid: 'WV Medicaid',          utility: 'Appalachian Power' },
+      WI: { snap: 'FoodShare (SNAP)',           tanf: 'Wisconsin Works (W-2)',     medicaid: 'BadgerCare Plus',      utility: 'We Energies' },
+      WY: { snap: 'SNAP',                       tanf: 'POWER (TANF)',              medicaid: 'Wyoming Medicaid',     utility: 'Rocky Mountain Power' },
+      default: { snap: 'SNAP', tanf: 'TANF', medicaid: 'Medicaid', disability: 'Disability / Paid Family Leave', utility: 'your local utility' }
+    };
+
+    (function applyWelfareState() {
+      const u = getCitizen();
+      if (!u) return;
+      const data = Object.assign({}, WELFARE_BY_STATE.default, WELFARE_BY_STATE[u.state] || {});
+      const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+      set('snapCardTitle', data.snap);
+      set('tanfCardTitle', data.tanf);
+      set('liheapUtility', data.utility);
+      set('allProgramsTitle', `All ${u.stateName} Assistance Programs`);
+      set('rowSnap', data.snap);
+      set('rowTanf', data.tanf);
+      set('rowMedicaid', data.medicaid);
+      if (data.disability) set('rowDisability', data.disability);
+    })();
+  </script>
 </body>
 </html>
