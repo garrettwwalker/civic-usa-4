@@ -2372,6 +2372,16 @@ footer {
 }
 .tax-details[open] > summary::after { transform: rotate(180deg); }
 .tax-details > summary:hover { color: var(--text); }
+/* Smooth height transition via grid-template-rows 0fr ↔ 1fr. The
+   .tax-details__panel wrapper around the disclosure body lets us
+   animate auto-height growth without JS. */
+.tax-details__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tax-details[open] > .tax-details__panel { grid-template-rows: 1fr; }
+.tax-details__inner { overflow: hidden; min-height: 0; }
 
 .banner-success {
   background: rgba(4, 120, 87, 0.10);
