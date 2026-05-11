@@ -2347,7 +2347,8 @@ footer {
 
 /* === Status banners === */
 /* Disclosure widget for collapsible "show more" sections on the taxes
-   page. Clean inline-svg chevron after the text; underline on hover. */
+   page. Matches the .card-link style (13px, muted → text on hover) with
+   a small chevron that flips on open. */
 .tax-details { margin-top: 14px; }
 .tax-details > summary {
   cursor: pointer;
@@ -2356,28 +2357,21 @@ footer {
   align-items: center;
   gap: 6px;
   font-size: 13px;
-  font-weight: 500;
   color: var(--text-muted);
-  padding: 4px 0;
   transition: color 0.12s ease;
 }
 .tax-details > summary::-webkit-details-marker { display: none; }
 .tax-details > summary::after {
   content: "";
-  width: 12px;
-  height: 12px;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235a5c66' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  width: 10px;
+  height: 10px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235a5c66' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
   background-repeat: no-repeat;
   background-position: center;
   transition: transform 0.18s ease;
 }
 .tax-details[open] > summary::after { transform: rotate(180deg); }
-.tax-details > summary:hover {
-  color: var(--text);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-thickness: 1px;
-}
+.tax-details > summary:hover { color: var(--text); }
 
 .banner-success {
   background: rgba(4, 120, 87, 0.10);
