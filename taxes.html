@@ -27,9 +27,7 @@
           </div>
           <div class="scanned-info">
             <div class="info-field"><label>Estimated refund</label><div class="value" id="fedRefundAmt">—</div></div>
-            <div class="info-field"><label>Withheld YTD</label><div class="value" id="fedWithheldAmt">—</div></div>
             <div class="info-field"><label>Filing deadline</label><div class="value">Apr 15, 2026 · extension to Oct 15</div></div>
-            <div class="info-field"><label>Documents</label><div class="value">5 imported · IRS-verified</div></div>
           </div>
         </div>
         <div class="card" id="stateStatusCard">
@@ -39,9 +37,7 @@
           </div>
           <div class="scanned-info" id="stateStatusFields">
             <div class="info-field"><label>Estimated refund</label><div class="value" id="stateRefundAmt">—</div></div>
-            <div class="info-field"><label>Withheld YTD</label><div class="value" id="stateWithheldAmt">—</div></div>
             <div class="info-field"><label>Filing deadline</label><div class="value" id="stateDeadline">Apr 15, 2026</div></div>
-            <div class="info-field"><label>Documents</label><div class="value">3 imported</div></div>
           </div>
         </div>
       </div>
@@ -513,7 +509,6 @@
       const fedOwed = federalTax(fedTaxable);
       const fedRefund = Math.max(PREFILL.fedWh - fedOwed, 0);
       document.getElementById('fedRefundAmt').textContent = formatCurrency(fedRefund);
-      document.getElementById('fedWithheldAmt').textContent = formatCurrency(PREFILL.fedWh);
 
       // State
       if (u) {
@@ -526,7 +521,6 @@
         const stateWh = Math.round(PREFILL.w2 * tax.rate * PREFILL.stateWhPctOfWageTax);
         const stateRefund = Math.max(stateWh - stateOwed, 0);
         document.getElementById('stateRefundAmt').textContent = formatCurrency(stateRefund);
-        document.getElementById('stateWithheldAmt').textContent = formatCurrency(stateWh);
       } else {
         // No-income-tax state — collapse the status card into a single line
         const badge = document.getElementById('stateStatusBadge');
