@@ -2346,6 +2346,35 @@ footer {
 }
 
 /* === Status banners === */
+/* Disclosure widget for collapsible "show more" sections on the taxes
+   page — quiet summary trigger, rotates the chevron when open. */
+.tax-details { margin-top: 14px; }
+.tax-details > summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: 13px;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.tax-details > summary::-webkit-details-marker { display: none; }
+.tax-details > summary::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-right: 1.6px solid currentColor;
+  border-bottom: 1.6px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.18s ease;
+  margin-right: 2px;
+}
+.tax-details[open] > summary::before { transform: rotate(45deg); }
+.tax-details > summary:hover { background: var(--surface-2); color: var(--text); }
+
 .banner-success {
   background: rgba(4, 120, 87, 0.10);
   color: #065f46;

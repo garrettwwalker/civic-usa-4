@@ -36,72 +36,94 @@
         </div>
       </div>
 
-      <div class="card mb-6">
-        <div class="card-header">
-          <div class="card-title">2025 Return — Pre-Filled Summary</div>
-          <a class="card-link" href="#" onclick="alert('Full return PDF would download. (Demo)');return false;">Download draft (PDF)</a>
+      <h2 class="text-xl mb-4">Income we pulled in</h2>
+      <div class="grid-4 mb-6">
+        <div class="stat">
+          <div class="stat-label">Wages</div>
+          <div class="stat-value">$84,500</div>
+          <div class="stat-trend">W-2 · Acme Tech</div>
         </div>
-
-        <h3 class="text-lg mt-2 mb-2" style="font-weight:600;">Federal</h3>
-        <table class="table">
-          <thead><tr><th>Source</th><th>Type</th><th>Amount</th><th>Fed withheld</th></tr></thead>
-          <tbody>
-            <tr><td>Acme Tech, Inc.</td><td>W-2 wages</td><td>$84,500</td><td id="fedW2Wh">—</td></tr>
-            <tr><td>Mitchell Design LLC</td><td>1099-NEC (self-employment)</td><td>$12,800</td><td>$0</td></tr>
-            <tr><td>Vanguard</td><td>1099-DIV (qualified dividends)</td><td>$1,420</td><td>$0</td></tr>
-            <tr><td>Bank of America</td><td>1099-INT (interest)</td><td>$84</td><td>$0</td></tr>
-            <tr><td colspan="2"><strong>Adjusted gross income</strong></td><td><strong>$98,804</strong></td><td></td></tr>
-            <tr><td colspan="2">Standard deduction (single)</td><td>−$15,000</td><td></td></tr>
-            <tr><td colspan="2">½ self-employment tax deduction</td><td>−$904</td><td></td></tr>
-            <tr><td colspan="2"><strong>Taxable income (federal)</strong></td><td><strong id="fedTaxable">—</strong></td><td></td></tr>
-            <tr><td colspan="2"><strong>Federal tax owed</strong></td><td><strong id="fedOwed">—</strong></td><td></td></tr>
-          </tbody>
-        </table>
-
-        <h3 id="stateSectionTitle" class="text-lg mt-6 mb-2" style="font-weight:600;">State</h3>
-        <table class="table" id="stateTable">
-          <thead><tr><th>Source</th><th>Type</th><th>Amount</th><th>State withheld</th></tr></thead>
-          <tbody>
-            <tr><td>Acme Tech, Inc.</td><td>W-2 wages (taxable to state)</td><td>$84,500</td><td id="stateW2Wh">—</td></tr>
-            <tr><td>Mitchell Design LLC</td><td>1099-NEC</td><td>$12,800</td><td>$0</td></tr>
-            <tr><td colspan="2"><strong>State AGI</strong></td><td><strong>$98,804</strong></td><td></td></tr>
-            <tr><td colspan="2">Standard deduction</td><td id="stateStdDedRow">−$5,540</td><td></td></tr>
-            <tr><td colspan="2"><strong>Taxable income (state)</strong></td><td><strong id="stateTaxable">—</strong></td><td></td></tr>
-            <tr><td colspan="2"><strong>State tax owed</strong></td><td><strong id="stateOwed">—</strong></td><td></td></tr>
-          </tbody>
-        </table>
-        <p id="noStateTaxNote" class="text-muted text-sm mt-2 hidden" style="margin-top:8px;">No state income tax in <span id="noStateName">your state</span> — only the federal return needs filing.</p>
-
-        <div class="row mt-4" style="gap:10px;flex-wrap:wrap;">
-          <button class="btn btn-primary" onclick="openFileModal();">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            File federal &amp; state 2025
-          </button>
-          <span class="text-sm text-muted" style="margin-left:auto;align-self:center;">Free · no e-file fees, no upgrades</span>
+        <div class="stat">
+          <div class="stat-label">Self-employment</div>
+          <div class="stat-value">$12,800</div>
+          <div class="stat-trend">1099-NEC · Mitchell Design</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Dividends</div>
+          <div class="stat-value">$1,420</div>
+          <div class="stat-trend">1099-DIV · Vanguard</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Interest</div>
+          <div class="stat-value">$84</div>
+          <div class="stat-trend">1099-INT · BoA</div>
         </div>
       </div>
 
       <div class="card mb-6">
         <div class="card-header">
-          <div class="card-title">Credits &amp; deductions we checked</div>
-          <span class="badge badge-success"><span class="dot"></span>Auto-applied</span>
+          <div class="card-title">What we applied</div>
+          <span class="badge badge-success"><span class="dot"></span>3 auto-applied</span>
         </div>
-        <p class="text-muted text-sm mb-4">Every credit and deduction the platform can verify from your records — applied or marked not applicable. Override anything in the filing flow.</p>
-        <table class="table">
-          <thead><tr><th>Credit / deduction</th><th>Verified from</th><th>Applied</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Standard deduction</strong></td><td>Filing status: single</td><td><span class="badge badge-success">$15,000</span></td></tr>
-            <tr><td><strong>½ self-employment tax</strong></td><td>1099-NEC · Mitchell Design LLC</td><td><span class="badge badge-success">$904</span></td></tr>
-            <tr><td><strong>401(k) traditional contribution</strong></td><td>Acme Tech payroll · pre-tax</td><td><span class="badge badge-success">$6,200</span></td></tr>
-            <tr><td><strong>Earned Income Tax Credit</strong></td><td>AGI too high (single, no dependents)</td><td><span class="badge badge-neutral">N/A</span></td></tr>
-            <tr><td><strong>Child Tax Credit</strong></td><td>No dependents on file</td><td><span class="badge badge-neutral">N/A</span></td></tr>
-            <tr><td><strong>Saver's Credit</strong></td><td>AGI above $73k single threshold</td><td><span class="badge badge-neutral">N/A</span></td></tr>
-            <tr><td><strong>Student loan interest</strong></td><td>No 1098-E on file</td><td><span class="badge badge-neutral">N/A</span></td></tr>
-            <tr><td><strong>Mortgage interest</strong></td><td>No 1098 on file (renting per DMV address)</td><td><span class="badge badge-neutral">N/A</span></td></tr>
-            <tr><td><strong>Education credits</strong></td><td>No 1098-T on file</td><td><span class="badge badge-neutral">N/A</span></td></tr>
-            <tr><td><strong>HSA deduction</strong></td><td>BlueShield plan is PPO (no HSA)</td><td><span class="badge badge-neutral">N/A</span></td></tr>
-          </tbody>
-        </table>
+        <div class="row" style="gap:8px;flex-wrap:wrap;">
+          <span class="badge badge-success" style="font-size:13px;padding:6px 12px;">Standard deduction · $15,000</span>
+          <span class="badge badge-success" style="font-size:13px;padding:6px 12px;">401(k) traditional · $6,200</span>
+          <span class="badge badge-success" style="font-size:13px;padding:6px 12px;">½ SE tax deduction · $904</span>
+        </div>
+        <details class="tax-details">
+          <summary>7 more credits checked — none applicable to you</summary>
+          <div class="row" style="gap:6px;flex-wrap:wrap;margin-top:10px;">
+            <span class="badge badge-neutral">EITC · AGI too high</span>
+            <span class="badge badge-neutral">Child Tax Credit · no dependents</span>
+            <span class="badge badge-neutral">Saver's Credit · AGI above $73k</span>
+            <span class="badge badge-neutral">Student loan interest · no 1098-E</span>
+            <span class="badge badge-neutral">Mortgage interest · no 1098</span>
+            <span class="badge badge-neutral">Education credits · no 1098-T</span>
+            <span class="badge badge-neutral">HSA deduction · plan is PPO</span>
+          </div>
+        </details>
+      </div>
+
+      <div class="card mb-6" style="text-align:center;">
+        <h2 class="text-xl mb-2">Ready to file</h2>
+        <p class="text-muted mb-4">Federal and state are pre-filled. Review the line items, edit anything, then submit.</p>
+        <button class="btn btn-primary btn-lg" onclick="openFileModal();" style="margin:0 auto;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          File federal &amp; state 2025
+        </button>
+        <p class="text-sm text-muted mt-3">Free · no e-file fees, no upgrades</p>
+        <details class="tax-details" style="text-align:left;">
+          <summary>Show full line-item breakdown</summary>
+          <h3 class="text-lg mt-4 mb-2" style="font-weight:600;">Federal</h3>
+          <table class="table">
+            <thead><tr><th>Source</th><th>Type</th><th>Amount</th><th>Fed withheld</th></tr></thead>
+            <tbody>
+              <tr><td>Acme Tech, Inc.</td><td>W-2 wages</td><td>$84,500</td><td id="fedW2Wh">—</td></tr>
+              <tr><td>Mitchell Design LLC</td><td>1099-NEC (self-employment)</td><td>$12,800</td><td>$0</td></tr>
+              <tr><td>Vanguard</td><td>1099-DIV (qualified dividends)</td><td>$1,420</td><td>$0</td></tr>
+              <tr><td>Bank of America</td><td>1099-INT (interest)</td><td>$84</td><td>$0</td></tr>
+              <tr><td colspan="2"><strong>Adjusted gross income</strong></td><td><strong>$98,804</strong></td><td></td></tr>
+              <tr><td colspan="2">Standard deduction (single)</td><td>−$15,000</td><td></td></tr>
+              <tr><td colspan="2">½ self-employment tax deduction</td><td>−$904</td><td></td></tr>
+              <tr><td colspan="2"><strong>Taxable income (federal)</strong></td><td><strong id="fedTaxable">—</strong></td><td></td></tr>
+              <tr><td colspan="2"><strong>Federal tax owed</strong></td><td><strong id="fedOwed">—</strong></td><td></td></tr>
+            </tbody>
+          </table>
+
+          <h3 id="stateSectionTitle" class="text-lg mt-6 mb-2" style="font-weight:600;">State</h3>
+          <table class="table" id="stateTable">
+            <thead><tr><th>Source</th><th>Type</th><th>Amount</th><th>State withheld</th></tr></thead>
+            <tbody>
+              <tr><td>Acme Tech, Inc.</td><td>W-2 wages (taxable to state)</td><td>$84,500</td><td id="stateW2Wh">—</td></tr>
+              <tr><td>Mitchell Design LLC</td><td>1099-NEC</td><td>$12,800</td><td>$0</td></tr>
+              <tr><td colspan="2"><strong>State AGI</strong></td><td><strong>$98,804</strong></td><td></td></tr>
+              <tr><td colspan="2">Standard deduction</td><td id="stateStdDedRow">−$5,540</td><td></td></tr>
+              <tr><td colspan="2"><strong>Taxable income (state)</strong></td><td><strong id="stateTaxable">—</strong></td><td></td></tr>
+              <tr><td colspan="2"><strong>State tax owed</strong></td><td><strong id="stateOwed">—</strong></td><td></td></tr>
+            </tbody>
+          </table>
+          <p id="noStateTaxNote" class="text-muted text-sm mt-2 hidden">No state income tax in <span id="noStateName">your state</span> — only the federal return needs filing.</p>
+        </details>
       </div>
 
         <div class="grid-2">
