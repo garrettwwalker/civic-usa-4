@@ -2372,21 +2372,23 @@ footer {
 }
 .tax-details[open] > summary::after { transform: rotate(180deg); }
 .tax-details > summary:hover { color: var(--text); }
-/* Smooth height transition via grid-template-rows 0fr ↔ 1fr. The
-   .tax-details > .tax-details__panel selector intentionally boosts
-   specificity (2 classes vs UA's `details:not([open]) > :not(summary)`)
-   so our `display: grid` overrides the UA's default `display: none`
-   on closed-details children — otherwise the panel just disappears
-   without transitioning. */
+/* Smooth open/close transition via max-height. Specificity (.tax-details
+   > .tax-details__panel = 2 classes) intentionally beats the UA rule
+   `details:not([open]) > :not(summary) { display: none }` so the panel
+   stays in the layout when closed and the max-height transition has
+   something to animate against. 2000px is a generous upper bound —
+   anything taller just snaps the remaining height after the transition. */
 .tax-details > .tax-details__panel {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.tax-details[open] > .tax-details__panel { grid-template-rows: 1fr; }
-.tax-details > .tax-details__panel > .tax-details__inner {
+  display: block;
+  max-height: 0;
   overflow: hidden;
-  min-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s ease;
+}
+.tax-details[open] > .tax-details__panel {
+  max-height: 2000px;
+  opacity: 1;
 }
 
 .banner-success {
