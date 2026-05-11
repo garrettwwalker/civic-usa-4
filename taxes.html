@@ -70,9 +70,12 @@
           <span class="badge badge-success" style="font-size:13px;padding:6px 12px;">401(k) traditional · $6,200</span>
           <span class="badge badge-success" style="font-size:13px;padding:6px 12px;">½ SE tax deduction · $904</span>
         </div>
-        <details class="tax-details">
-          <summary>7 more credits checked — none applicable to you</summary>
-          <div class="tax-details__panel"><div class="tax-details__inner">
+        <div class="disclosure">
+          <button class="disclosure__toggle" type="button" onclick="toggleDisclosure(this)" aria-expanded="false">
+            7 more credits checked — none applicable to you
+            <svg class="disclosure__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="disclosure__panel">
             <div class="row" style="gap:6px;flex-wrap:wrap;margin-top:10px;">
               <span class="badge badge-neutral">EITC · AGI too high</span>
               <span class="badge badge-neutral">Child Tax Credit · no dependents</span>
@@ -82,8 +85,8 @@
               <span class="badge badge-neutral">Education credits · no 1098-T</span>
               <span class="badge badge-neutral">HSA deduction · plan is PPO</span>
             </div>
-          </div></div>
-        </details>
+          </div>
+        </div>
       </div>
 
       <div class="card mb-6" style="text-align:center;">
@@ -94,9 +97,12 @@
           File federal &amp; state 2025
         </button>
         <p class="text-sm text-muted mt-3">Free · no e-file fees, no upgrades</p>
-        <details class="tax-details" style="text-align:left;">
-          <summary>Show full line-item breakdown</summary>
-          <div class="tax-details__panel"><div class="tax-details__inner">
+        <div class="disclosure" style="text-align:left;">
+          <button class="disclosure__toggle" type="button" onclick="toggleDisclosure(this)" aria-expanded="false">
+            Show full line-item breakdown
+            <svg class="disclosure__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="disclosure__panel">
             <h3 class="text-lg mt-4 mb-2" style="font-weight:600;">Federal</h3>
             <table class="table">
               <thead><tr><th>Source</th><th>Type</th><th>Amount</th><th>Fed withheld</th></tr></thead>
@@ -126,8 +132,8 @@
               </tbody>
             </table>
             <p id="noStateTaxNote" class="text-muted text-sm mt-2 hidden">No state income tax in <span id="noStateName">your state</span> — only the federal return needs filing.</p>
-          </div></div>
-        </details>
+          </div>
+        </div>
       </div>
 
         <div class="grid-2">
@@ -346,6 +352,16 @@
 
   <script src="js/app.js"></script>
   <script>
+    // Custom disclosure toggle — slides the .disclosure__panel via max-height
+    // (transition on a real <button>+<div>, since native <details> bypasses
+    // CSS transitions in Chromium).
+    function toggleDisclosure(btn) {
+      const wrap = btn.closest('.disclosure');
+      if (!wrap) return;
+      const isOpen = wrap.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+
     // Pre-fill base values from the citizen's records. All editable in the modal.
     const PREFILL = {
       w2: 84500, fedWh: 15300, stateWhPctOfWageTax: 1.13,
