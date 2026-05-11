@@ -2372,19 +2372,19 @@ footer {
 }
 .tax-details[open] > summary::after { transform: rotate(180deg); }
 .tax-details > summary:hover { color: var(--text); }
-/* Smooth open/close transition via max-height. Specificity (.tax-details
-   > .tax-details__panel = 2 classes) intentionally beats the UA rule
-   `details:not([open]) > :not(summary) { display: none }` so the panel
-   stays in the layout when closed and the max-height transition has
-   something to animate against. 2000px is a generous upper bound —
-   anything taller just snaps the remaining height after the transition. */
+/* Smooth open/close transition via max-height. The UA's
+   `details:not([open]) > :not(summary)` rule may use `!important`
+   (Chromium's UA stylesheet does), so we use `!important` on
+   `display: block` to guarantee the panel stays in the layout when
+   closed. Otherwise the panel display:nones and there's nothing to
+   transition. 2000px is a generous upper bound. */
 .tax-details > .tax-details__panel {
-  display: block;
+  display: block !important;
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.2s ease;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s ease;
 }
 .tax-details[open] > .tax-details__panel {
   max-height: 2000px;
