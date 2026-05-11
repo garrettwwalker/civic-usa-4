@@ -96,13 +96,16 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           File federal &amp; state 2025
         </button>
-        <p class="text-sm text-muted mt-3">Free · no e-file fees, no upgrades</p>
-        <div class="disclosure" style="text-align:left;">
-          <button class="disclosure__toggle" type="button" onclick="toggleDisclosure(this)" aria-expanded="false">
-            Show full line-item breakdown
-            <svg class="disclosure__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="disclosure__panel">
+        <div class="disclosure" style="margin-top:14px;">
+          <div style="display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;color:var(--text-muted);flex-wrap:wrap;">
+            <span>Free · no e-file fees, no upgrades</span>
+            <span aria-hidden="true">·</span>
+            <button class="disclosure__toggle" type="button" onclick="toggleDisclosure(this)" aria-expanded="false">
+              Show breakdown
+              <svg class="disclosure__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </div>
+          <div class="disclosure__panel" style="text-align:left;">
             <h3 class="text-lg mt-4 mb-2" style="font-weight:600;">Federal</h3>
             <table class="table">
               <thead><tr><th>Source</th><th>Type</th><th>Amount</th><th>Fed withheld</th></tr></thead>
