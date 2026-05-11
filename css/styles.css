@@ -2347,33 +2347,37 @@ footer {
 
 /* === Status banners === */
 /* Disclosure widget for collapsible "show more" sections on the taxes
-   page — quiet summary trigger, rotates the chevron when open. */
+   page. Clean inline-svg chevron after the text; underline on hover. */
 .tax-details { margin-top: 14px; }
 .tax-details > summary {
   cursor: pointer;
   list-style: none;
-  font-size: 13px;
-  color: var(--text-muted);
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 10px;
-  border-radius: var(--radius-sm);
-  transition: background 0.12s ease, color 0.12s ease;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 4px 0;
+  transition: color 0.12s ease;
 }
 .tax-details > summary::-webkit-details-marker { display: none; }
-.tax-details > summary::before {
+.tax-details > summary::after {
   content: "";
-  width: 9px;
-  height: 9px;
-  border-right: 1.6px solid currentColor;
-  border-bottom: 1.6px solid currentColor;
-  transform: rotate(-45deg);
+  width: 12px;
+  height: 12px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235a5c66' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
   transition: transform 0.18s ease;
-  margin-right: 2px;
 }
-.tax-details[open] > summary::before { transform: rotate(45deg); }
-.tax-details > summary:hover { background: var(--surface-2); color: var(--text); }
+.tax-details[open] > summary::after { transform: rotate(180deg); }
+.tax-details > summary:hover {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
 
 .banner-success {
   background: rgba(4, 120, 87, 0.10);
