@@ -3379,20 +3379,6 @@ body {
 .tickets-hero .btn-primary:hover {
   background: rgba(255, 255, 255, 0.92);
 }
-/* Pass-tile primary buttons inherit their category color so the action
-   doesn't introduce a third color (tile gradient + state accent + button). */
-.pass-tile:has(.pass-tile__hero.transit)  .btn-primary { background: #1e6091; color: white; }
-.pass-tile:has(.pass-tile__hero.transit)  .btn-primary:hover { background: #185079; }
-.pass-tile:has(.pass-tile__hero.parks)    .btn-primary { background: #2d8659; color: white; }
-.pass-tile:has(.pass-tile__hero.parks)    .btn-primary:hover { background: #246b48; }
-.pass-tile:has(.pass-tile__hero.museum)   .btn-primary { background: #7e3c8a; color: white; }
-.pass-tile:has(.pass-tile__hero.museum)   .btn-primary:hover { background: #672e72; }
-.pass-tile:has(.pass-tile__hero.pool)     .btn-primary { background: #1f6fa6; color: white; }
-.pass-tile:has(.pass-tile__hero.pool)     .btn-primary:hover { background: #195a87; }
-.pass-tile:has(.pass-tile__hero.election) .btn-primary { background: #1a3a8c; color: white; }
-.pass-tile:has(.pass-tile__hero.election) .btn-primary:hover { background: #142e70; }
-.pass-tile:has(.pass-tile__hero.school)   .btn-primary { background: #b04f1a; color: white; }
-.pass-tile:has(.pass-tile__hero.school)   .btn-primary:hover { background: #944215; }
 .tickets-hero__summary {
   font-size: 13px;
   opacity: 0.7;
