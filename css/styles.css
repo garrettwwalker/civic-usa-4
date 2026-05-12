@@ -3379,6 +3379,22 @@ body {
 .tickets-hero .btn-primary:hover {
   background: rgba(255, 255, 255, 0.92);
 }
+/* Per-page hero palettes — form follows function. Tickets keeps the
+   state-deep palette (transit/passes are state-bound). Vote leans into
+   a civic burgundy. Jobs uses a warm teal that reads as opportunity
+   rather than government-cold. */
+body[data-page="vote"] .tickets-hero {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,0.10) 0%, transparent 45%),
+    linear-gradient(135deg, #6e1f24 0%, #2e0d11 100%);
+}
+body[data-page="vote"] .tickets-hero .btn-primary { color: #6e1f24; }
+body[data-page="jobs"] .tickets-hero {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,0.10) 0%, transparent 45%),
+    linear-gradient(135deg, #1a5a5a 0%, #0a2828 100%);
+}
+body[data-page="jobs"] .tickets-hero .btn-primary { color: #1a5a5a; }
 .tickets-hero__summary {
   font-size: 13px;
   opacity: 0.7;
