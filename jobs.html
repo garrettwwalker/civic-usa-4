@@ -18,24 +18,17 @@
         </div>
       </div>
 
-      <!-- Interview-invite card — light, calendar-style. Replaces the
-           generic dark hero with a treatment that says "schedule item",
-           which is what the user actually has on the line. -->
-      <div class="interview-card">
-        <div class="interview-card__date">
-          <div class="interview-card__day">Thu</div>
-          <div class="interview-card__num">14</div>
-          <div class="interview-card__month">May</div>
-          <div class="interview-card__time">10:00 AM</div>
-        </div>
-        <div class="interview-card__body">
-          <div class="interview-card__eyebrow">Upcoming interview</div>
-          <h2 class="interview-card__title">Civic Engagement Coordinator</h2>
-          <p class="interview-card__sub">Mayor's Office · 30-min video panel with Director Lopez. Prep guide and join link are in your inbox.</p>
-          <div class="interview-card__actions">
-            <button class="btn btn-primary" onclick="alert('Interview prep guide opens. (Demo)');">Open interview prep</button>
-            <button class="btn btn-secondary" onclick="alert('Added to your calendar. (Demo)');">Add to calendar</button>
-          </div>
+      <!-- Hero zone: state-deep gradient + interview spotlight + primary CTA -->
+      <div class="tickets-hero">
+        <svg class="tickets-hero__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        <div class="tickets-hero__eyebrow">May 14 · 10:00 AM · Video interview</div>
+        <h2 class="tickets-hero__title">Civic Engagement Coordinator</h2>
+        <p class="tickets-hero__sub">Mayor's Office · 30-min panel with Director Lopez. Prep guide and join link are in your inbox.</p>
+        <div class="tickets-hero__actions">
+          <button class="btn btn-primary btn-lg" onclick="alert('Interview prep guide opens. (Demo)');">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h8M8 17h6"/></svg>
+            Open interview prep
+          </button>
         </div>
       </div>
 
