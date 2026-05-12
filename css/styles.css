@@ -3314,3 +3314,158 @@ body {
   background-attachment: fixed;
   background-color: var(--bg);
 }
+
+/* === Tickets & Passes redesign === */
+
+/* Hero band at the top of the Tickets page — state-themed dark gradient
+   anchored to a primary CTA, like the brand zone you see on Apple Wallet
+   / Diia. Decorative SVG glyph sits in the upper-right at low opacity. */
+.tickets-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  padding: 36px 36px 32px;
+  margin-bottom: 24px;
+  color: white;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,0.10) 0%, transparent 45%),
+    linear-gradient(135deg,
+      var(--license-deep, #0a1f3a) 0%,
+      color-mix(in srgb, var(--license-deep, #0a1f3a) 70%, black) 100%);
+  box-shadow: var(--shadow-2);
+}
+.tickets-hero__glyph {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 240px;
+  height: 240px;
+  color: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+.tickets-hero__eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+.tickets-hero__title {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  max-width: 480px;
+}
+.tickets-hero__sub {
+  font-size: 15px;
+  line-height: 1.5;
+  opacity: 0.8;
+  margin-bottom: 24px;
+  max-width: 520px;
+}
+.tickets-hero__actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.tickets-hero .btn-primary {
+  background: white;
+  color: var(--license-deep, #0a1f3a);
+}
+.tickets-hero .btn-primary:hover {
+  background: rgba(255, 255, 255, 0.92);
+}
+.tickets-hero__summary {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* Pass tile — visual header zone with a thematic gradient + large SVG
+   over text-content body. A stand-in for a photo treatment in production. */
+.pass-tile {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
+}
+.pass-tile:hover { box-shadow: var(--shadow-2); transform: translateY(-2px); }
+.pass-tile__hero {
+  position: relative;
+  height: 120px;
+  overflow: hidden;
+  color: white;
+  display: flex;
+  align-items: flex-end;
+  padding: 14px 18px;
+}
+.pass-tile__hero svg.pass-tile__glyph {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 140px;
+  height: 140px;
+  color: rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+}
+.pass-tile__hero h3 {
+  position: relative;
+  z-index: 1;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.pass-tile__body {
+  padding: 16px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.pass-tile__body .row-between { margin-bottom: 10px; }
+.pass-tile__sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+.pass-tile__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.pass-tile__meta label {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.pass-tile__meta strong { font-size: 14px; font-weight: 600; }
+.pass-tile__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+/* Per-pass thematic gradients */
+.pass-tile__hero.transit {
+  background: linear-gradient(135deg, #1e6091 0%, #0b3954 100%);
+}
+.pass-tile__hero.parks {
+  background: linear-gradient(135deg, #2d8659 0%, #143d28 100%);
+}
+.pass-tile__hero.museum {
+  background: linear-gradient(135deg, #7e3c8a 0%, #3a1f4a 100%);
+}
+.pass-tile__hero.pool {
+  background: linear-gradient(135deg, #4cb6e8 0%, #1f6fa6 100%);
+}

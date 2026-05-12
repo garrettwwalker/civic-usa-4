@@ -11,129 +11,138 @@
   <div class="app">
     <div id="sidebar-mount"></div>
     <main class="main-content">
-      <div class="page-header">
-        <div class="page-title">
-          <h1>Tickets &amp; Passes</h1>
-          <p id="ticketsSub">Transit, parks, museums, and rec facilities — pay once, tap anywhere.</p>
+      <!-- Hero zone: state-themed gradient + decorative glyph + primary CTA -->
+      <div class="tickets-hero">
+        <svg class="tickets-hero__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="16" rx="3"/><path d="M4 16h16M9 19v2M15 19v2"/><circle cx="9" cy="9" r="1.4"/><circle cx="15" cy="9" r="1.4"/></svg>
+        <div class="tickets-hero__eyebrow" id="ticketsEyebrow">Your city, on your phone</div>
+        <h1 class="tickets-hero__title">Tickets &amp; Passes</h1>
+        <p class="tickets-hero__sub" id="ticketsSub">Transit, parks, museums, and rec facilities — pay once, tap anywhere.</p>
+        <div class="tickets-hero__actions">
+          <button class="btn btn-primary btn-lg" onclick="alert('TAP card QR shown. (Demo)');">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v3M17 17v4h4"/></svg>
+            Show TAP card
+          </button>
+          <span class="tickets-hero__summary">4 passes active · $28.50 transit balance · $184 saved this year</span>
         </div>
       </div>
 
-      <div class="grid-4 mb-6">
-        <div class="stat">
-          <div class="stat-label">Active passes</div>
-          <div class="stat-value">4</div>
-          <div class="stat-trend">2 expire this year</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Transit balance</div>
-          <div class="stat-value">$28.50</div>
-          <div class="stat-trend">Auto-reload at $5</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Park visits this year</div>
-          <div class="stat-value">7</div>
-          <div class="stat-trend up">↑ 2 vs last year</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Total saved vs walk-up</div>
-          <div class="stat-value">$184</div>
-          <div class="stat-trend">Resident discounts</div>
-        </div>
-      </div>
-
-      <h2 class="text-xl mb-4">Active Passes</h2>
+      <h2 class="text-xl mb-4">Your passes</h2>
       <div class="grid-2 mb-6">
-        <div class="card">
-          <div class="row-between mb-2">
-            <div class="card-title">TAP · Transit (Metro &amp; Bus)</div>
-            <span class="badge badge-success"><span class="dot"></span>Active</span>
+        <div class="pass-tile">
+          <div class="pass-tile__hero transit">
+            <svg class="pass-tile__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 16h16M9 19v2M15 19v2"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="9" r="1"/></svg>
+            <h3>TAP · Transit</h3>
           </div>
-          <p class="text-muted mb-4">Stored-value card linked to your phone. Tap to ride buses, light rail, and Metrolink commuter trains.</p>
-          <div class="grid-2" style="gap:12px;">
-            <div class="info-field"><label>Balance</label><div class="value">$28.50</div></div>
-            <div class="info-field"><label>Last used</label><div class="value">May 3 · Expo/Bundy</div></div>
-            <div class="info-field"><label>Auto-reload</label><div class="value">+$25 at $5</div></div>
-            <div class="info-field"><label>Card</label><div class="value">···· 4408</div></div>
-          </div>
-          <div class="row mt-4" style="gap:8px;">
-            <button class="btn btn-primary" onclick="alert('TAP QR shown. (Demo)');">Show QR</button>
-            <button class="btn btn-secondary" onclick="alert('Reload added $20. (Demo)');">Reload $20</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="row-between mb-2">
-            <div class="card-title">State Parks · Annual Pass</div>
-            <span class="badge badge-success"><span class="dot"></span>Active</span>
-          </div>
-          <p class="text-muted mb-4">Vehicle-day-use access at all 280 state parks. Includes camping reservation priority.</p>
-          <div class="grid-2" style="gap:12px;">
-            <div class="info-field"><label>Renews</label><div class="value">Mar 14, 2027</div></div>
-            <div class="info-field"><label>Plate on file</label><div class="value">9KZA204</div></div>
-            <div class="info-field"><label>Visits this year</label><div class="value">7</div></div>
-            <div class="info-field"><label>Saved vs walk-up</label><div class="value">$110</div></div>
-          </div>
-          <div class="row mt-4" style="gap:8px;">
-            <button class="btn btn-primary" onclick="alert('Pass QR shown. (Demo)');">Show pass</button>
-            <button class="btn btn-secondary" onclick="alert('Camping reservation flow. (Demo)');">Reserve camping</button>
+          <div class="pass-tile__body">
+            <div class="row-between">
+              <span class="badge badge-success"><span class="dot"></span>Active</span>
+              <span class="text-sm text-muted">Metro &amp; Bus</span>
+            </div>
+            <p class="pass-tile__sub">Stored-value card linked to your phone. Tap to ride buses, light rail, and Metrolink commuter trains.</p>
+            <div class="pass-tile__meta">
+              <div><label>Balance</label><strong>$28.50</strong></div>
+              <div><label>Last used</label><strong>May 3 · Expo/Bundy</strong></div>
+              <div><label>Auto-reload</label><strong>+$25 at $5</strong></div>
+              <div><label>Card</label><strong>···· 4408</strong></div>
+            </div>
+            <div class="pass-tile__actions">
+              <button class="btn btn-primary" onclick="alert('TAP QR shown. (Demo)');">Show QR</button>
+              <button class="btn btn-secondary" onclick="alert('Reload added $20. (Demo)');">Reload $20</button>
+            </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="row-between mb-2">
-            <div class="card-title">LACMA &middot; Resident Membership</div>
-            <span class="badge badge-success"><span class="dot"></span>Active</span>
+        <div class="pass-tile">
+          <div class="pass-tile__hero parks">
+            <svg class="pass-tile__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 14h4l-3 7h14l-3-7h4z"/><path d="M11 21v-3h2v3"/></svg>
+            <h3>State Parks · Annual</h3>
           </div>
-          <p class="text-muted mb-4">Resident-discounted access plus +1 guest. Unlimited entry, members-only previews.</p>
-          <div class="grid-2" style="gap:12px;">
-            <div class="info-field"><label>Renews</label><div class="value">Sep 12, 2026</div></div>
-            <div class="info-field"><label>Tier</label><div class="value">Member +1</div></div>
-            <div class="info-field"><label>Visits this year</label><div class="value">3</div></div>
-            <div class="info-field"><label>Member events</label><div class="value">2 upcoming</div></div>
-          </div>
-          <div class="row mt-4" style="gap:8px;">
-            <button class="btn btn-primary" onclick="alert('Membership QR shown. (Demo)');">Show pass</button>
-            <button class="btn btn-secondary" onclick="alert('Event calendar opens. (Demo)');">Member events</button>
+          <div class="pass-tile__body">
+            <div class="row-between">
+              <span class="badge badge-success"><span class="dot"></span>Active</span>
+              <span class="text-sm text-muted">280 parks</span>
+            </div>
+            <p class="pass-tile__sub">Vehicle-day-use access at every state park. Includes camping reservation priority.</p>
+            <div class="pass-tile__meta">
+              <div><label>Renews</label><strong>Mar 14, 2027</strong></div>
+              <div><label>Plate on file</label><strong>9KZA204</strong></div>
+              <div><label>Visits this year</label><strong>7</strong></div>
+              <div><label>Saved vs walk-up</label><strong>$110</strong></div>
+            </div>
+            <div class="pass-tile__actions">
+              <button class="btn btn-primary" onclick="alert('Pass QR shown. (Demo)');">Show pass</button>
+              <button class="btn btn-secondary" onclick="alert('Camping reservation flow. (Demo)');">Reserve camping</button>
+            </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="row-between mb-2">
-            <div class="card-title">Rec &amp; Parks &middot; Pool Pass</div>
-            <span class="badge badge-warning"><span class="dot"></span>Expires soon</span>
+        <div class="pass-tile">
+          <div class="pass-tile__hero museum">
+            <svg class="pass-tile__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-6 9 6v12"/><path d="M3 21h18M7 21V11M11 21V11M15 21V11M19 21V11"/></svg>
+            <h3>LACMA · Resident</h3>
           </div>
-          <p class="text-muted mb-4">Summer-season access at all city pools, plus reservable lap-swim slots.</p>
-          <div class="grid-2" style="gap:12px;">
-            <div class="info-field"><label>Expires</label><div class="value">Jun 30, 2026</div></div>
-            <div class="info-field"><label>Tier</label><div class="value">Adult resident</div></div>
-            <div class="info-field"><label>Visits this year</label><div class="value">12</div></div>
-            <div class="info-field"><label>Locker rental</label><div class="value">Included</div></div>
+          <div class="pass-tile__body">
+            <div class="row-between">
+              <span class="badge badge-success"><span class="dot"></span>Active</span>
+              <span class="text-sm text-muted">+1 guest</span>
+            </div>
+            <p class="pass-tile__sub">Resident-discounted access plus a guest. Unlimited entry, members-only previews.</p>
+            <div class="pass-tile__meta">
+              <div><label>Renews</label><strong>Sep 12, 2026</strong></div>
+              <div><label>Tier</label><strong>Member +1</strong></div>
+              <div><label>Visits this year</label><strong>3</strong></div>
+              <div><label>Member events</label><strong>2 upcoming</strong></div>
+            </div>
+            <div class="pass-tile__actions">
+              <button class="btn btn-primary" onclick="alert('Membership QR shown. (Demo)');">Show pass</button>
+              <button class="btn btn-secondary" onclick="alert('Event calendar opens. (Demo)');">Member events</button>
+            </div>
           </div>
-          <div class="row mt-4" style="gap:8px;">
-            <button class="btn btn-primary" onclick="alert('Pass renewed through 2027. (Demo)');">Renew $40</button>
+        </div>
+
+        <div class="pass-tile">
+          <div class="pass-tile__hero pool">
+            <svg class="pass-tile__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16c2.5-2 5 2 7.5 0S14.5 14 17 16s4 0 5-1"/><path d="M2 20c2.5-2 5 2 7.5 0S14.5 18 17 20s4 0 5-1"/><path d="M7 13c-.5-1.5 1-2.5 3-2.5"/></svg>
+            <h3>Pool Pass · Summer</h3>
+          </div>
+          <div class="pass-tile__body">
+            <div class="row-between">
+              <span class="badge badge-warning"><span class="dot"></span>Expires soon</span>
+              <span class="text-sm text-muted">City pools</span>
+            </div>
+            <p class="pass-tile__sub">Summer-season access at all city pools, plus reservable lap-swim slots.</p>
+            <div class="pass-tile__meta">
+              <div><label>Expires</label><strong>Jun 30, 2026</strong></div>
+              <div><label>Tier</label><strong>Adult resident</strong></div>
+              <div><label>Visits this year</label><strong>12</strong></div>
+              <div><label>Locker rental</label><strong>Included</strong></div>
+            </div>
+            <div class="pass-tile__actions">
+              <button class="btn btn-primary" onclick="alert('Pass renewed through 2027. (Demo)');">Renew $40</button>
+            </div>
           </div>
         </div>
       </div>
 
-      <h2 class="text-xl mb-4">Browse &amp; Buy</h2>
+      <h2 class="text-xl mb-4">Browse &amp; buy</h2>
       <div class="grid-4 mb-6">
         <a class="service-card" href="#" onclick="event.preventDefault();alert('Metro day pass purchase flow. (Demo)');">
-          <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 16h16M9 19v2M15 19v2"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="9" r="1"/></svg></div>
+          <div class="service-icon blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 16h16M9 19v2M15 19v2"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="9" r="1"/></svg></div>
           <h3>Metro Day Pass</h3>
           <p>$5 · Unlimited rides for 24 hrs.</p>
         </a>
         <a class="service-card" href="#" onclick="event.preventDefault();alert('Park reservation form. (Demo)');">
-          <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L7 9h2L5 15h2.5L3 21h18l-4.5-6H19l-4-6h2zM11 19h2v3h-2z"/></svg></div>
+          <div class="service-icon green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L7 9h2L5 15h2.5L3 21h18l-4.5-6H19l-4-6h2zM11 19h2v3h-2z"/></svg></div>
           <h3>Park Entry</h3>
           <p>$10 day-use · 280 parks.</p>
         </a>
         <a class="service-card" href="#" onclick="event.preventDefault();alert('Museum ticket flow. (Demo)');">
-          <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-6 9 6v12"/><path d="M3 21h18M9 21V12h6v9"/></svg></div>
+          <div class="service-icon purple"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-6 9 6v12"/><path d="M3 21h18M9 21V12h6v9"/></svg></div>
           <h3>Museum Entry</h3>
           <p>Resident pricing applied at checkout.</p>
         </a>
         <a class="service-card" href="#" onclick="event.preventDefault();alert('Stadium event tickets. (Demo)');">
-          <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/></svg></div>
+          <div class="service-icon amber"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18"/></svg></div>
           <h3>Stadium &amp; Rec</h3>
           <p>City fields, courts, and event tickets.</p>
         </a>
