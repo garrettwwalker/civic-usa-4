@@ -11,79 +11,68 @@
   <div class="app">
     <div id="sidebar-mount"></div>
     <main class="main-content">
-      <div class="page-header">
-        <div class="page-title">
-          <h1>Voting &amp; Registration</h1>
-          <p id="voteSub">Your registration status, upcoming elections, and ballot history.</p>
-        </div>
-        <button class="btn btn-primary" onclick="alert('Update registration form would open. (Demo)');">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
-          Update registration
-        </button>
-      </div>
-
-      <div class="banner-success">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <div>You are <strong>registered to vote</strong> and your registration is <strong>active</strong>. Last verified against the state voter file 2 days ago.</div>
-      </div>
-
-      <div class="grid-4 mb-6">
-        <div class="stat">
-          <div class="stat-label">Status</div>
-          <div class="stat-value" style="font-size:18px;">Active <span class="badge badge-success" style="vertical-align:middle;">Verified</span></div>
-          <div class="stat-trend">Registered 2014</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Party affiliation</div>
-          <div class="stat-value" style="font-size:18px;" id="voteParty">Independent</div>
-          <div class="stat-trend">Last changed 2018</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Polling place</div>
-          <div class="stat-value" style="font-size:18px;" id="votePolling">Mar Vista Rec Ctr</div>
-          <div class="stat-trend">0.6 mi from home</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Next election</div>
-          <div class="stat-value" style="font-size:18px;">Jun 4, 2026</div>
-          <div class="stat-trend up">32 days · vote-by-mail open</div>
+      <!-- Hero zone: state-deep gradient + ballot-box glyph + countdown + CTAs -->
+      <div class="tickets-hero">
+        <svg class="tickets-hero__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18"/><path d="M9 9V5a3 3 0 0 1 6 0v4"/><path d="M8 17h8"/></svg>
+        <div class="tickets-hero__eyebrow">32 days · Jun 4, 2026 Primary</div>
+        <h1 class="tickets-hero__title">Your ballot is ready</h1>
+        <p class="tickets-hero__sub" id="voteSub">Vote-by-mail opens May 6, early voting May 25 – Jun 3, and your polling place is six blocks from home. Take a minute to review your sample ballot now.</p>
+        <div class="tickets-hero__actions">
+          <button class="btn btn-primary btn-lg" onclick="alert('Sample ballot opens. (Demo)');">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h8M8 17h6"/></svg>
+            View sample ballot
+          </button>
+          <button class="btn btn-secondary btn-lg" style="background:rgba(255,255,255,0.14);color:white;border:1px solid rgba(255,255,255,0.20);" onclick="alert('Mail ballot request submitted. (Demo)');">Request mail ballot</button>
+          <span class="tickets-hero__summary">Registered &amp; verified · Mar Vista Rec Ctr (0.6 mi)</span>
         </div>
       </div>
 
-      <h2 class="text-xl mb-4">Upcoming Elections</h2>
+      <h2 class="text-xl mb-4">Upcoming elections</h2>
       <div class="grid-2 mb-6">
-        <div class="card">
-          <div class="row-between mb-2">
-            <div class="card-title">Primary Election</div>
-            <span class="badge badge-warning"><span class="dot"></span>32 days</span>
+        <div class="pass-tile">
+          <div class="pass-tile__hero election">
+            <svg class="pass-tile__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18"/><path d="M9 9V5a3 3 0 0 1 6 0v4"/></svg>
+            <h3>Primary · Jun 4</h3>
           </div>
-          <p class="text-muted mb-4">State, county, and federal primaries. Vote-by-mail ballots are mailed 29 days before election day; early voting opens at 11 sites in your county.</p>
-          <div class="grid-2" style="gap:12px;">
-            <div class="info-field"><label>Election day</label><div class="value">Jun 4, 2026</div></div>
-            <div class="info-field"><label>Vote by mail</label><div class="value">Opens May 6</div></div>
-            <div class="info-field"><label>Early voting</label><div class="value">May 25 – Jun 3</div></div>
-            <div class="info-field"><label>Ballot drop boxes</label><div class="value">14 in district</div></div>
-          </div>
-          <div class="row mt-4" style="gap:8px;">
-            <button class="btn btn-primary" onclick="alert('Sample ballot opens. (Demo)');">View sample ballot</button>
-            <button class="btn btn-secondary" onclick="alert('Mail ballot request submitted. (Demo)');">Request mail ballot</button>
+          <div class="pass-tile__body">
+            <div class="row-between">
+              <span class="badge badge-warning"><span class="dot"></span>32 days</span>
+              <span class="text-sm text-muted">State · county · federal</span>
+            </div>
+            <p class="pass-tile__sub">Vote-by-mail ballots are mailed 29 days before election day; early voting opens at 11 sites in your county.</p>
+            <div class="pass-tile__meta">
+              <div><label>Election day</label><strong>Jun 4, 2026</strong></div>
+              <div><label>Vote by mail</label><strong>Opens May 6</strong></div>
+              <div><label>Early voting</label><strong>May 25 – Jun 3</strong></div>
+              <div><label>Drop boxes</label><strong>14 in district</strong></div>
+            </div>
+            <div class="pass-tile__actions">
+              <button class="btn btn-primary" onclick="alert('Sample ballot opens. (Demo)');">View sample ballot</button>
+              <button class="btn btn-secondary" onclick="alert('Mail ballot request submitted. (Demo)');">Request mail ballot</button>
+            </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="row-between mb-2">
-            <div class="card-title">School Board Special Election</div>
-            <span class="badge badge-info"><span class="dot"></span>Aug 12</span>
+        <div class="pass-tile">
+          <div class="pass-tile__hero school">
+            <svg class="pass-tile__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-5 9 5-9 5z"/><path d="M5 11v6c0 1 3 3 7 3s7-2 7-3v-6"/><path d="M21 9v6"/></svg>
+            <h3>School Board · Aug 12</h3>
           </div>
-          <p class="text-muted mb-4">Two open seats on the unified school district board, plus a measure on bond financing for facility upgrades.</p>
-          <div class="grid-2" style="gap:12px;">
-            <div class="info-field"><label>Election day</label><div class="value">Aug 12, 2026</div></div>
-            <div class="info-field"><label>Registration deadline</label><div class="value">Jul 28</div></div>
-            <div class="info-field"><label>Polling hours</label><div class="value">7 AM – 8 PM</div></div>
-            <div class="info-field"><label>Measures</label><div class="value">1 bond measure</div></div>
-          </div>
-          <div class="row mt-4" style="gap:8px;">
-            <button class="btn btn-secondary" onclick="alert('Reminder set. (Demo)');">Remind me</button>
+          <div class="pass-tile__body">
+            <div class="row-between">
+              <span class="badge badge-info"><span class="dot"></span>101 days</span>
+              <span class="text-sm text-muted">Special election</span>
+            </div>
+            <p class="pass-tile__sub">Two open seats on the unified school district board, plus a measure on bond financing for facility upgrades.</p>
+            <div class="pass-tile__meta">
+              <div><label>Election day</label><strong>Aug 12, 2026</strong></div>
+              <div><label>Registration deadline</label><strong>Jul 28</strong></div>
+              <div><label>Polling hours</label><strong>7 AM – 8 PM</strong></div>
+              <div><label>Measures</label><strong>1 bond measure</strong></div>
+            </div>
+            <div class="pass-tile__actions">
+              <button class="btn btn-secondary" onclick="alert('Reminder set. (Demo)');">Remind me</button>
+            </div>
           </div>
         </div>
       </div>
@@ -130,8 +119,6 @@
   <script>
     const u = getCitizen();
     if (u) {
-      document.getElementById('voteSub').textContent =
-        `Your registration in ${u.city}, ${u.stateName}, plus upcoming elections and ballot history.`;
       document.getElementById('voteAddr').textContent =
         `${u.address}, ${u.city}, ${u.state} ${u.zip}`;
       document.getElementById('voteVoterId').textContent =

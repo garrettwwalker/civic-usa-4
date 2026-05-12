@@ -3469,3 +3469,11 @@ body {
 .pass-tile__hero.pool {
   background: linear-gradient(135deg, #4cb6e8 0%, #1f6fa6 100%);
 }
+
+/* Voting page theme variants for the .pass-tile hero zones */
+.pass-tile__hero.election {
+  background: linear-gradient(135deg, #1a3a8c 0%, #0d1d4a 100%);
+}
+.pass-tile__hero.school {
+  background: linear-gradient(135deg, #b04f1a 0%, #5a230a 100%);
+}
