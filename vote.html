@@ -69,53 +69,31 @@
         </div>
       </div>
 
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">Voting History</div>
-            <a class="card-link" href="#">Export</a>
-          </div>
-          <table class="table">
-            <thead><tr><th>Date</th><th>Election</th><th>Method</th></tr></thead>
-            <tbody>
-              <tr><td>Nov 5, 2024</td><td>General Election</td><td>Mail</td></tr>
-              <tr><td>Mar 5, 2024</td><td>Primary Election</td><td>Mail</td></tr>
-              <tr><td>Nov 8, 2022</td><td>Midterm General</td><td>In person · early</td></tr>
-              <tr><td>Jun 7, 2022</td><td>Primary Election</td><td>Mail</td></tr>
-              <tr><td>Nov 3, 2020</td><td>Presidential General</td><td>In person</td></tr>
-              <tr><td>Mar 3, 2020</td><td>Presidential Primary</td><td>In person</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">Registration on File</div>
-            <span class="badge badge-success"><span class="dot"></span>Verified</span>
-          </div>
-          <div class="scanned-info">
-            <div class="info-field full"><label>Voter ID</label><div class="value" id="voteVoterId">VR-CA-4477-2014</div></div>
-            <div class="info-field"><label>Registered since</label><div class="value">Mar 14, 2014</div></div>
-            <div class="info-field"><label>Affiliation</label><div class="value">Independent</div></div>
-            <div class="info-field full"><label>Address on file</label><div class="value" id="voteAddr">—</div></div>
-            <div class="info-field"><label>Precinct</label><div class="value">8412</div></div>
-            <div class="info-field"><label>District</label><div class="value">CA-37</div></div>
-          </div>
-          <p class="text-sm text-muted mt-4">Your voter address must match your driver's license address. To change it, update your license details and the change propagates within 24 hours.</p>
-        </div>
+      <div class="grid-4">
+        <a class="service-card" href="#" onclick="event.preventDefault();alert('Registration editor opens. (Demo)');">
+          <div class="service-icon blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <h3>View &amp; Update Registration</h3>
+          <p>Affiliation, address, and contact info on file.</p>
+        </a>
+        <a class="service-card" href="#" onclick="event.preventDefault();alert('Voting history opens. (Demo)');">
+          <div class="service-icon purple"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg></div>
+          <h3>See Voting History</h3>
+          <p>Every election you've voted in, with method.</p>
+        </a>
+        <a class="service-card" href="#" onclick="event.preventDefault();alert('Voter registration card downloaded. (Demo)');">
+          <div class="service-icon green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h4M7 14h7"/></svg></div>
+          <h3>Get Voter Registration Card</h3>
+          <p>Download a printable copy or add to wallet.</p>
+        </a>
+        <a class="service-card" href="#" onclick="event.preventDefault();alert('Precinct map opens. (Demo)');">
+          <div class="service-icon amber"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Access Precinct Map</h3>
+          <p>Your precinct, polling place, and drop boxes.</p>
+        </a>
       </div>
     </main>
   </div>
 
   <script src="js/app.js"></script>
-  <script>
-    const u = getCitizen();
-    if (u) {
-      document.getElementById('voteAddr').textContent =
-        `${u.address}, ${u.city}, ${u.state} ${u.zip}`;
-      document.getElementById('voteVoterId').textContent =
-        `VR-${u.state}-${u.licenseNumber.replace(/[^0-9]/g, '').slice(-4)}-2014`;
-    }
-  </script>
 </body>
 </html>
