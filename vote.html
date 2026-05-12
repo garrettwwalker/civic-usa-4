@@ -14,129 +14,86 @@
       <div class="page-header">
         <div class="page-title">
           <h1>Voting &amp; Registration</h1>
-          <p id="voteSub">Your registration status, upcoming elections, and ballot history.</p>
-        </div>
-        <button class="btn btn-primary" onclick="alert('Update registration form would open. (Demo)');">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
-          Update registration
-        </button>
-      </div>
-
-      <div class="banner-success">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <div>You are <strong>registered to vote</strong> and your registration is <strong>active</strong>. Last verified against the state voter file 2 days ago.</div>
-      </div>
-
-      <div class="grid-4 mb-6">
-        <div class="stat">
-          <div class="stat-label">Status</div>
-          <div class="stat-value" style="font-size:18px;">Active <span class="badge badge-success" style="vertical-align:middle;">Verified</span></div>
-          <div class="stat-trend">Registered 2014</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Party affiliation</div>
-          <div class="stat-value" style="font-size:18px;" id="voteParty">Independent</div>
-          <div class="stat-trend">Last changed 2018</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Polling place</div>
-          <div class="stat-value" style="font-size:18px;" id="votePolling">Mar Vista Rec Ctr</div>
-          <div class="stat-trend">0.6 mi from home</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Next election</div>
-          <div class="stat-value" style="font-size:18px;">Jun 4, 2026</div>
-          <div class="stat-trend up">32 days · vote-by-mail open</div>
+          <p id="voteSub">Sample ballots, mail-ballot requests, polling places, and your full voting history — all tied to your verified registration.</p>
         </div>
       </div>
 
-      <h2 class="text-xl mb-4">Upcoming Elections</h2>
+      <!-- Hero zone: state-deep gradient + ballot-box glyph + countdown + CTAs -->
+      <div class="tickets-hero">
+        <svg class="tickets-hero__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18"/><path d="M9 9V5a3 3 0 0 1 6 0v4"/><path d="M8 17h8"/></svg>
+        <div class="tickets-hero__eyebrow">32 days · Jun 4, 2026 Primary</div>
+        <h2 class="tickets-hero__title">Your ballot is ready</h2>
+        <p class="tickets-hero__sub">Vote-by-mail opens May 6, early voting May 25 – Jun 3.</p>
+        <div class="tickets-hero__actions">
+          <button class="btn btn-primary btn-lg" onclick="alert('Sample ballot opens. (Demo)');">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h8M8 17h6"/></svg>
+            View sample ballot
+          </button>
+          <button class="btn btn-secondary btn-lg" style="background:rgba(255,255,255,0.14);color:white;border:1px solid rgba(255,255,255,0.20);" onclick="alert('Mail ballot request submitted. (Demo)');">Request mail ballot</button>
+        </div>
+      </div>
+
+      <h2 class="text-xl mb-4">Upcoming elections</h2>
       <div class="grid-2 mb-6">
-        <div class="card">
-          <div class="row-between mb-2">
-            <div class="card-title">Primary Election</div>
-            <span class="badge badge-warning"><span class="dot"></span>32 days</span>
+        <div class="pass-tile">
+          <div class="pass-tile__hero election">
+            <svg class="pass-tile__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18"/><path d="M9 9V5a3 3 0 0 1 6 0v4"/></svg>
+            <h3>Primary · Jun 4</h3>
           </div>
-          <p class="text-muted mb-4">State, county, and federal primaries. Vote-by-mail ballots are mailed 29 days before election day; early voting opens at 11 sites in your county.</p>
-          <div class="grid-2" style="gap:12px;">
-            <div class="info-field"><label>Election day</label><div class="value">Jun 4, 2026</div></div>
-            <div class="info-field"><label>Vote by mail</label><div class="value">Opens May 6</div></div>
-            <div class="info-field"><label>Early voting</label><div class="value">May 25 – Jun 3</div></div>
-            <div class="info-field"><label>Ballot drop boxes</label><div class="value">14 in district</div></div>
-          </div>
-          <div class="row mt-4" style="gap:8px;">
-            <button class="btn btn-primary" onclick="alert('Sample ballot opens. (Demo)');">View sample ballot</button>
-            <button class="btn btn-secondary" onclick="alert('Mail ballot request submitted. (Demo)');">Request mail ballot</button>
+          <div class="pass-tile__body">
+            <div class="pass-tile__meta">
+              <div><label>Election day</label><strong>Jun 4, 2026</strong></div>
+              <div><label>Vote by mail</label><strong>Opens May 6</strong></div>
+            </div>
+            <div class="pass-tile__actions">
+              <button class="btn btn-primary" onclick="alert('Sample ballot opens. (Demo)');">View sample ballot</button>
+              <button class="btn btn-secondary" onclick="alert('Mail ballot request submitted. (Demo)');">Request mail ballot</button>
+            </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="row-between mb-2">
-            <div class="card-title">School Board Special Election</div>
-            <span class="badge badge-info"><span class="dot"></span>Aug 12</span>
+        <div class="pass-tile">
+          <div class="pass-tile__hero school">
+            <svg class="pass-tile__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-5 9 5-9 5z"/><path d="M5 11v6c0 1 3 3 7 3s7-2 7-3v-6"/><path d="M21 9v6"/></svg>
+            <h3>School Board · Aug 12</h3>
           </div>
-          <p class="text-muted mb-4">Two open seats on the unified school district board, plus a measure on bond financing for facility upgrades.</p>
-          <div class="grid-2" style="gap:12px;">
-            <div class="info-field"><label>Election day</label><div class="value">Aug 12, 2026</div></div>
-            <div class="info-field"><label>Registration deadline</label><div class="value">Jul 28</div></div>
-            <div class="info-field"><label>Polling hours</label><div class="value">7 AM – 8 PM</div></div>
-            <div class="info-field"><label>Measures</label><div class="value">1 bond measure</div></div>
-          </div>
-          <div class="row mt-4" style="gap:8px;">
-            <button class="btn btn-secondary" onclick="alert('Reminder set. (Demo)');">Remind me</button>
+          <div class="pass-tile__body">
+            <div class="pass-tile__meta">
+              <div><label>Election day</label><strong>Aug 12, 2026</strong></div>
+              <div><label>Registration deadline</label><strong>Jul 28</strong></div>
+            </div>
+            <div class="pass-tile__actions">
+              <button class="btn btn-secondary" onclick="alert('Reminder set. (Demo)');">Remind me</button>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">Voting History</div>
-            <a class="card-link" href="#">Export</a>
-          </div>
-          <table class="table">
-            <thead><tr><th>Date</th><th>Election</th><th>Method</th></tr></thead>
-            <tbody>
-              <tr><td>Nov 5, 2024</td><td>General Election</td><td>Mail</td></tr>
-              <tr><td>Mar 5, 2024</td><td>Primary Election</td><td>Mail</td></tr>
-              <tr><td>Nov 8, 2022</td><td>Midterm General</td><td>In person · early</td></tr>
-              <tr><td>Jun 7, 2022</td><td>Primary Election</td><td>Mail</td></tr>
-              <tr><td>Nov 3, 2020</td><td>Presidential General</td><td>In person</td></tr>
-              <tr><td>Mar 3, 2020</td><td>Presidential Primary</td><td>In person</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">Registration on File</div>
-            <span class="badge badge-success"><span class="dot"></span>Verified</span>
-          </div>
-          <div class="scanned-info">
-            <div class="info-field full"><label>Voter ID</label><div class="value" id="voteVoterId">VR-CA-4477-2014</div></div>
-            <div class="info-field"><label>Registered since</label><div class="value">Mar 14, 2014</div></div>
-            <div class="info-field"><label>Affiliation</label><div class="value">Independent</div></div>
-            <div class="info-field full"><label>Address on file</label><div class="value" id="voteAddr">—</div></div>
-            <div class="info-field"><label>Precinct</label><div class="value">8412</div></div>
-            <div class="info-field"><label>District</label><div class="value">CA-37</div></div>
-          </div>
-          <p class="text-sm text-muted mt-4">Your voter address must match your driver's license address. To change it, update your license details and the change propagates within 24 hours.</p>
-        </div>
+      <div class="grid-4">
+        <a class="service-card" href="#" onclick="event.preventDefault();alert('Registration editor opens. (Demo)');">
+          <div class="service-icon blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <h3>View &amp; Update Registration</h3>
+          <p>Affiliation, address, and contact info on file.</p>
+        </a>
+        <a class="service-card" href="#" onclick="event.preventDefault();alert('Voting history opens. (Demo)');">
+          <div class="service-icon purple"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg></div>
+          <h3>See Voting History</h3>
+          <p>Every election you've voted in, with method.</p>
+        </a>
+        <a class="service-card" href="#" onclick="event.preventDefault();alert('Voter registration card downloaded. (Demo)');">
+          <div class="service-icon green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h4M7 14h7"/></svg></div>
+          <h3>Get Voter Registration Card</h3>
+          <p>Download a printable copy or add to wallet.</p>
+        </a>
+        <a class="service-card" href="#" onclick="event.preventDefault();alert('Precinct map opens. (Demo)');">
+          <div class="service-icon amber"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Access Precinct Map</h3>
+          <p>Your precinct, polling place, and drop boxes.</p>
+        </a>
       </div>
     </main>
   </div>
 
   <script src="js/app.js"></script>
-  <script>
-    const u = getCitizen();
-    if (u) {
-      document.getElementById('voteSub').textContent =
-        `Your registration in ${u.city}, ${u.stateName}, plus upcoming elections and ballot history.`;
-      document.getElementById('voteAddr').textContent =
-        `${u.address}, ${u.city}, ${u.state} ${u.zip}`;
-      document.getElementById('voteVoterId').textContent =
-        `VR-${u.state}-${u.licenseNumber.replace(/[^0-9]/g, '').slice(-4)}-2014`;
-    }
-  </script>
 </body>
 </html>
