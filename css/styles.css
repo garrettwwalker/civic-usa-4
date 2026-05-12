@@ -3379,6 +3379,13 @@ body {
 .tickets-hero .btn-primary:hover {
   background: rgba(255, 255, 255, 0.92);
 }
+body[data-page="tickets"] .pass-tile .btn-primary {
+  background: #0d0d0d;
+  color: white;
+}
+body[data-page="tickets"] .pass-tile .btn-primary:hover {
+  background: #1f1f1f;
+}
 .tickets-hero__summary {
   font-size: 13px;
   opacity: 0.7;
