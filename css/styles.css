@@ -3379,22 +3379,113 @@ body {
 .tickets-hero .btn-primary:hover {
   background: rgba(255, 255, 255, 0.92);
 }
-/* Per-page hero palettes — form follows function. Tickets keeps the
-   state-deep palette (transit/passes are state-bound). Vote leans into
-   a civic burgundy. Jobs uses a warm teal that reads as opportunity
-   rather than government-cold. */
-body[data-page="vote"] .tickets-hero {
-  background:
-    radial-gradient(circle at 18% 18%, rgba(255,255,255,0.10) 0%, transparent 45%),
-    linear-gradient(135deg, #6e1f24 0%, #2e0d11 100%);
+/* Floating chip in the pass-tile hero band — used for time-sensitive
+   context (countdowns, "expires soon") without needing a separate hero
+   zone above the tile. */
+.pass-tile__chip {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.22);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(4px);
 }
-body[data-page="vote"] .tickets-hero .btn-primary { color: #6e1f24; }
-body[data-page="jobs"] .tickets-hero {
-  background:
-    radial-gradient(circle at 18% 18%, rgba(255,255,255,0.10) 0%, transparent 45%),
-    linear-gradient(135deg, #1a5a5a 0%, #0a2828 100%);
+
+/* Interview-invite card — light, calendar-style hero used on the jobs
+   page. Two-column: date block on the left, role detail on the right.
+   Reads like an event card from a scheduling app rather than a service
+   banner — keeps the jobs page warmer than the dark tickets/wallet hero. */
+.interview-card {
+  display: flex;
+  align-items: stretch;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid #1a5a5a;
+  box-shadow: var(--shadow-1);
+  margin-bottom: 24px;
+  overflow: hidden;
 }
-body[data-page="jobs"] .tickets-hero .btn-primary { color: #1a5a5a; }
+.interview-card__date {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 22px 28px;
+  background: #f3f8f7;
+  border-right: 1px solid var(--border);
+  min-width: 132px;
+  text-align: center;
+}
+.interview-card__day {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #1a5a5a;
+  margin-bottom: 4px;
+}
+.interview-card__num {
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.interview-card__month {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.interview-card__time {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.interview-card__body {
+  flex: 1;
+  padding: 22px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.interview-card__eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.interview-card__title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.interview-card__sub {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  max-width: 560px;
+}
+.interview-card__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
 .tickets-hero__summary {
   font-size: 13px;
   opacity: 0.7;
