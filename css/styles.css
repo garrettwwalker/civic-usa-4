@@ -3495,22 +3495,12 @@ body[data-page="jobs"] .tickets-hero .btn-primary { color: #1a5a5a; }
 }
 
 /* ==========================================================================
-   Vote page — lemonade.com-inspired redesign
-   Big friendly type, soft pink/cream gradient on a single focused card,
-   character-bearing secondary cards, conversational microcopy.
+   Vote page — lemonade-style structure (single focused "moment", big
+   friendly type, character cards, inline quick-actions, conversational
+   copy) but with the platform's own palette: state-accent for the
+   featured card, platform success/warning tints for secondary status.
    Scoped to body[data-page="vote"] so it doesn't leak elsewhere.
    ========================================================================== */
-body[data-page="vote"] {
-  --lem-pink:       #f73e6b;
-  --lem-pink-dark:  #d92858;
-  --lem-pink-soft:  #ffe6ee;
-  --lem-cream:      #fff5ed;
-  --lem-mint:       #ddf2e6;
-  --lem-mint-dark:  #2d8a5f;
-  --lem-lemon:      #fff3b3;
-  --lem-lemon-dark: #8a6a00;
-}
-
 body[data-page="vote"] .page-header { margin-bottom: 32px; }
 body[data-page="vote"] .page-header h1 {
   font-size: 38px;
@@ -3523,11 +3513,15 @@ body[data-page="vote"] .page-header p {
   max-width: 560px;
 }
 
+/* Featured moment — soft tint of the state accent. Per-state coloring
+   ties this card to the rest of the platform's identity. */
 .vote-feature {
   display: flex;
   align-items: center;
   gap: 32px;
-  background: linear-gradient(135deg, var(--lem-cream) 0%, var(--lem-pink-soft) 100%);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--license-accent, #0d0d0d) 4%, white) 0%,
+    color-mix(in srgb, var(--license-accent, #0d0d0d) 14%, white) 100%);
   border-radius: 28px;
   padding: 48px 52px;
   margin-bottom: 56px;
@@ -3539,12 +3533,12 @@ body[data-page="vote"] .page-header p {
   flex-shrink: 0;
   width: 220px;
   height: 220px;
-  color: var(--lem-pink);
+  color: var(--license-deep, var(--license-accent, #0d0d0d));
 }
 .vote-feature__art svg { width: 100%; height: 100%; display: block; }
 .vote-feature__chip {
   display: inline-block;
-  background: var(--lem-pink);
+  background: var(--license-accent, #0d0d0d);
   color: white;
   padding: 6px 14px;
   border-radius: 999px;
@@ -3572,41 +3566,31 @@ body[data-page="vote"] .page-header p {
 }
 .vote-feature__actions {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   align-items: center;
   flex-wrap: wrap;
 }
 
-/* Lemonade pill buttons — scoped to vote so they don't replace the
-   platform's button system globally. */
-body[data-page="vote"] .btn-lem {
+/* Inline text-link styled action for the "or request mail-in" pattern */
+.vote-text-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 15px 28px;
-  border-radius: 999px;
-  border: none;
-  font: inherit;
+  gap: 4px;
+  padding: 15px 12px;
+  color: var(--license-accent, var(--text));
   font-weight: 600;
   font-size: 15px;
-  cursor: pointer;
-  transition: background 0.15s ease, transform 0.15s ease, color 0.15s ease;
   letter-spacing: -0.005em;
-}
-body[data-page="vote"] .btn-lem--primary {
-  background: var(--lem-pink);
-  color: white;
-}
-body[data-page="vote"] .btn-lem--primary:hover {
-  background: var(--lem-pink-dark);
-  transform: translateY(-1px);
-}
-body[data-page="vote"] .btn-lem--text {
+  text-decoration: none;
+  transition: color 0.15s ease;
   background: transparent;
-  color: var(--lem-pink-dark);
-  padding: 15px 12px;
+  border: none;
+  cursor: pointer;
 }
-body[data-page="vote"] .btn-lem--text:hover { color: var(--lem-pink); }
+.vote-text-link:hover {
+  color: color-mix(in srgb, var(--license-accent, var(--text)) 75%, black);
+  text-decoration: underline;
+}
 
 .vote-section-title {
   font-size: 12px;
@@ -3619,7 +3603,7 @@ body[data-page="vote"] .btn-lem--text:hover { color: var(--lem-pink); }
 .vote-secondary { margin-bottom: 48px; }
 
 .vote-card {
-  background: white;
+  background: var(--surface);
   border-radius: 22px;
   padding: 28px 28px 24px;
   box-shadow: var(--shadow-1);
@@ -3637,21 +3621,31 @@ body[data-page="vote"] .btn-lem--text:hover { color: var(--lem-pink); }
   margin-bottom: 18px;
 }
 .vote-card__icon svg { width: 26px; height: 26px; }
-.vote-card__icon--mint  { background: var(--lem-mint);  color: var(--lem-mint-dark); }
-.vote-card__icon--lemon { background: var(--lem-lemon); color: var(--lem-lemon-dark); }
+/* Soft tints of platform status colors */
+.vote-card__icon--upcoming {
+  background: color-mix(in srgb, var(--warning) 18%, white);
+  color: color-mix(in srgb, var(--warning) 75%, black);
+}
+.vote-card__icon--verified {
+  background: color-mix(in srgb, var(--success) 18%, white);
+  color: color-mix(in srgb, var(--success) 75%, black);
+}
 .vote-card__chip {
   position: absolute;
   top: 28px;
   right: 28px;
-  background: var(--lem-pink-soft);
-  color: var(--lem-pink-dark);
   padding: 4px 11px;
   border-radius: 999px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.04em;
+  background: color-mix(in srgb, var(--warning) 18%, white);
+  color: color-mix(in srgb, var(--warning) 75%, black);
 }
-.vote-card__chip--success { background: var(--lem-mint); color: var(--lem-mint-dark); }
+.vote-card__chip--success {
+  background: color-mix(in srgb, var(--success) 18%, white);
+  color: color-mix(in srgb, var(--success) 75%, black);
+}
 .vote-card__title {
   font-size: 22px;
   font-weight: 700;
@@ -3688,11 +3682,11 @@ body[data-page="vote"] .btn-lem--text:hover { color: var(--lem-pink); }
 .vote-quick:hover {
   box-shadow: var(--shadow-2);
   transform: translateY(-1px);
-  color: var(--lem-pink-dark);
+  color: var(--license-accent, var(--text));
 }
 .vote-quick svg {
   width: 22px;
   height: 22px;
   flex-shrink: 0;
-  color: var(--lem-pink);
+  color: var(--license-accent, var(--text));
 }
