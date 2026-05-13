@@ -3495,19 +3495,19 @@ body[data-page="jobs"] .tickets-hero .btn-primary { color: #1a5a5a; }
 }
 
 /* ==========================================================================
-   Vote page — lemonade-style structure (single focused "moment", big
-   friendly type, character cards, inline quick-actions, conversational
-   copy) but with the platform's own palette: state-accent for the
-   featured card, platform success/warning tints for secondary status.
-   Scoped to body[data-page="vote"] so it doesn't leak elsewhere.
+   Lemonade-style structure with platform colors. A "featured moment"
+   card with state-accent gradient, character "focus cards" for
+   secondary content, and inline quick-actions. Used on vote, jobs, and
+   future pages. Page opts in by adding .page-header--lg to its header
+   and using the .feature-moment / .focus-card / .quick-action classes.
    ========================================================================== */
-body[data-page="vote"] .page-header { margin-bottom: 32px; }
-body[data-page="vote"] .page-header h1 {
+.page-header--lg { margin-bottom: 32px; }
+.page-header--lg h1 {
   font-size: 38px;
   font-weight: 700;
   letter-spacing: -0.028em;
 }
-body[data-page="vote"] .page-header p {
+.page-header--lg p {
   font-size: 16px;
   line-height: 1.5;
   max-width: 560px;
@@ -3515,7 +3515,7 @@ body[data-page="vote"] .page-header p {
 
 /* Featured moment — soft tint of the state accent. Per-state coloring
    ties this card to the rest of the platform's identity. */
-.vote-feature {
+.feature-moment {
   display: flex;
   align-items: center;
   gap: 32px;
@@ -3528,15 +3528,15 @@ body[data-page="vote"] .page-header p {
   position: relative;
   overflow: hidden;
 }
-.vote-feature__body { flex: 1; min-width: 0; }
-.vote-feature__art {
+.feature-moment__body { flex: 1; min-width: 0; }
+.feature-moment__art {
   flex-shrink: 0;
   width: 220px;
   height: 220px;
   color: var(--license-deep, var(--license-accent, #0d0d0d));
 }
-.vote-feature__art svg { width: 100%; height: 100%; display: block; }
-.vote-feature__chip {
+.feature-moment__art svg { width: 100%; height: 100%; display: block; }
+.feature-moment__chip {
   display: inline-block;
   background: var(--license-accent, #0d0d0d);
   color: white;
@@ -3548,7 +3548,7 @@ body[data-page="vote"] .page-header p {
   text-transform: uppercase;
   margin-bottom: 22px;
 }
-.vote-feature__title {
+.feature-moment__title {
   font-size: 44px;
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -3557,22 +3557,22 @@ body[data-page="vote"] .page-header p {
   color: var(--text);
   max-width: 480px;
 }
-.vote-feature__sub {
+.feature-moment__sub {
   font-size: 17px;
   line-height: 1.5;
   color: var(--text-muted);
   margin-bottom: 32px;
   max-width: 540px;
 }
-.vote-feature__actions {
+.feature-moment__actions {
   display: flex;
   gap: 8px;
   align-items: center;
   flex-wrap: wrap;
 }
 
-/* Inline text-link styled action for the "or request mail-in" pattern */
-.vote-text-link {
+/* Inline text-link styled action for "Or request mail-in →" patterns */
+.text-link-action {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -3587,12 +3587,12 @@ body[data-page="vote"] .page-header p {
   border: none;
   cursor: pointer;
 }
-.vote-text-link:hover {
+.text-link-action:hover {
   color: color-mix(in srgb, var(--license-accent, var(--text)) 75%, black);
   text-decoration: underline;
 }
 
-.vote-section-title {
+.section-eyebrow {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.10em;
@@ -3600,9 +3600,9 @@ body[data-page="vote"] .page-header p {
   color: var(--text-muted);
   margin: 0 0 18px;
 }
-.vote-secondary { margin-bottom: 48px; }
+.section-mb-lg { margin-bottom: 48px; }
 
-.vote-card {
+.focus-card {
   background: var(--surface);
   border-radius: 22px;
   padding: 28px 28px 24px;
@@ -3610,8 +3610,8 @@ body[data-page="vote"] .page-header p {
   position: relative;
   transition: box-shadow 0.18s ease, transform 0.18s ease;
 }
-.vote-card:hover { box-shadow: var(--shadow-2); transform: translateY(-2px); }
-.vote-card__icon {
+.focus-card:hover { box-shadow: var(--shadow-2); transform: translateY(-2px); }
+.focus-card__icon {
   width: 52px;
   height: 52px;
   border-radius: 16px;
@@ -3620,17 +3620,30 @@ body[data-page="vote"] .page-header p {
   justify-content: center;
   margin-bottom: 18px;
 }
-.vote-card__icon svg { width: 26px; height: 26px; }
-/* Soft tints of platform status colors */
-.vote-card__icon--upcoming {
+.focus-card__icon svg { width: 26px; height: 26px; }
+/* Soft tints. Status-based (--upcoming/--verified) use platform success
+   and warning. Color-based (--blue/--green/--amber/--purple) are for
+   plain category variety where no status is implied. */
+.focus-card__icon--upcoming,
+.focus-card__icon--amber {
   background: color-mix(in srgb, var(--warning) 18%, white);
   color: color-mix(in srgb, var(--warning) 75%, black);
 }
-.vote-card__icon--verified {
+.focus-card__icon--verified,
+.focus-card__icon--green {
   background: color-mix(in srgb, var(--success) 18%, white);
   color: color-mix(in srgb, var(--success) 75%, black);
 }
-.vote-card__chip {
+.focus-card__icon--blue {
+  background: color-mix(in srgb, #1e6091 18%, white);
+  color: color-mix(in srgb, #1e6091 78%, black);
+}
+.focus-card__icon--purple {
+  background: color-mix(in srgb, #7e3c8a 18%, white);
+  color: color-mix(in srgb, #7e3c8a 78%, black);
+}
+
+.focus-card__chip {
   position: absolute;
   top: 28px;
   right: 28px;
@@ -3642,30 +3655,50 @@ body[data-page="vote"] .page-header p {
   background: color-mix(in srgb, var(--warning) 18%, white);
   color: color-mix(in srgb, var(--warning) 75%, black);
 }
-.vote-card__chip--success {
+.focus-card__chip--success {
   background: color-mix(in srgb, var(--success) 18%, white);
   color: color-mix(in srgb, var(--success) 75%, black);
 }
-.vote-card__title {
+.focus-card__chip--info {
+  background: color-mix(in srgb, var(--license-accent, var(--text)) 12%, white);
+  color: color-mix(in srgb, var(--license-accent, var(--text)) 78%, black);
+}
+.focus-card__chip--neutral {
+  background: var(--surface-2);
+  color: var(--text-muted);
+}
+.focus-card__title {
   font-size: 22px;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 6px;
   line-height: 1.15;
 }
-.vote-card__sub {
+.focus-card__sub {
   font-size: 14px;
   color: var(--text-muted);
   line-height: 1.5;
   margin-bottom: 18px;
 }
+.focus-card__meta {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.focus-card__meta strong {
+  color: var(--text);
+  font-weight: 600;
+  margin-left: 4px;
+}
 
-.vote-quick-row {
+.quick-row {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
 }
-.vote-quick {
+.quick-action {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -3678,13 +3711,15 @@ body[data-page="vote"] .page-header p {
   font-size: 14.5px;
   flex: 1 1 220px;
   transition: box-shadow 0.18s ease, transform 0.18s ease, color 0.15s ease;
+  text-decoration: none;
+  cursor: pointer;
 }
-.vote-quick:hover {
+.quick-action:hover {
   box-shadow: var(--shadow-2);
   transform: translateY(-1px);
   color: var(--license-accent, var(--text));
 }
-.vote-quick svg {
+.quick-action svg {
   width: 22px;
   height: 22px;
   flex-shrink: 0;

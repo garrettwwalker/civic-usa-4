@@ -11,134 +11,114 @@
   <div class="app">
     <div id="sidebar-mount"></div>
     <main class="main-content">
-      <div class="page-header">
+      <div class="page-header page-header--lg">
         <div class="page-title">
           <h1>Government Jobs</h1>
-          <p id="jobsSub">State, county, and federal openings filtered by your résumé and location.</p>
+          <p id="jobsSub">State, county, and federal openings — matched to your résumé.</p>
         </div>
       </div>
 
-      <!-- Hero zone: state-deep gradient + interview spotlight + primary CTA -->
-      <div class="tickets-hero">
-        <svg class="tickets-hero__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-        <div class="tickets-hero__eyebrow">May 14 · 10:00 AM · Video interview</div>
-        <h2 class="tickets-hero__title">Civic Engagement Coordinator</h2>
-        <p class="tickets-hero__sub">Mayor's Office · 30-min panel with Director Lopez. Prep guide and join link are in your inbox.</p>
-        <div class="tickets-hero__actions">
-          <button class="btn btn-primary btn-lg" onclick="alert('Interview prep guide opens. (Demo)');">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h8M8 17h6"/></svg>
-            Open interview prep
-          </button>
+      <section class="feature-moment">
+        <div class="feature-moment__body">
+          <span class="feature-moment__chip">tomorrow · 10:00 AM</span>
+          <h2 class="feature-moment__title">Your interview is&nbsp;tomorrow.</h2>
+          <p class="feature-moment__sub">Civic Engagement Coordinator · 30-min video panel with Director Lopez at the Mayor's Office. We've pulled together a prep guide tailored to the role.</p>
+          <div class="feature-moment__actions">
+            <button class="btn btn-primary btn-lg" onclick="alert('Interview prep guide opens. (Demo)');">Open prep guide</button>
+            <button class="text-link-action" onclick="alert('Added to your calendar. (Demo)');">Add to calendar →</button>
+          </div>
+        </div>
+        <div class="feature-moment__art" aria-hidden="true">
+          <svg viewBox="0 0 220 220" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="50" y="40" width="120" height="160" rx="10"/>
+            <rect x="90" y="28" width="40" height="22" rx="5"/>
+            <path d="M70 90 L77 97 L86 86"/>
+            <line x1="98" y1="91" x2="150" y2="91" stroke-width="2.6"/>
+            <path d="M70 122 L77 129 L86 118"/>
+            <line x1="98" y1="123" x2="150" y2="123" stroke-width="2.6"/>
+            <path d="M70 154 L77 161 L86 150"/>
+            <line x1="98" y1="155" x2="150" y2="155" stroke-width="2.6"/>
+            <line x1="70" y1="184" x2="138" y2="184" stroke-width="2.6"/>
+          </svg>
+        </div>
+      </section>
+
+      <h3 class="section-eyebrow">Open roles for you</h3>
+      <div class="grid-2 section-mb-lg">
+        <div class="focus-card">
+          <div class="focus-card__chip focus-card__chip--info">Top match</div>
+          <div class="focus-card__icon focus-card__icon--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="6" cy="6" r="1.4"/></svg>
+          </div>
+          <h4 class="focus-card__title">Senior UX Designer</h4>
+          <p class="focus-card__sub">Department of Technology</p>
+          <div class="focus-card__meta">
+            <span>$118k–$146k</span>
+            <span>Hybrid · Sacramento</span>
+          </div>
+          <button class="text-link-action" onclick="openApplyModal('Senior UX Designer', 'Department of Technology', '$118k – $146k', 'Hybrid · Sacramento');">Apply with profile →</button>
+        </div>
+
+        <div class="focus-card">
+          <div class="focus-card__chip focus-card__chip--info">Strong match</div>
+          <div class="focus-card__icon focus-card__icon--purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="13" width="3" height="5"/><rect x="12" y="9" width="3" height="9"/><rect x="17" y="5" width="3" height="13"/></svg>
+          </div>
+          <h4 class="focus-card__title">Data Analyst II</h4>
+          <p class="focus-card__sub">Department of Public Health</p>
+          <div class="focus-card__meta">
+            <span>$92k–$114k</span>
+            <span>Remote (in-state)</span>
+          </div>
+          <button class="text-link-action" onclick="openApplyModal('Data Analyst II', 'Department of Public Health', '$92k – $114k', 'Remote (in-state)');">Apply with profile →</button>
+        </div>
+
+        <div class="focus-card">
+          <div class="focus-card__chip focus-card__chip--neutral">Open</div>
+          <div class="focus-card__icon focus-card__icon--green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 14h4l-3 7h14l-3-7h4z"/><path d="M11 21v-3h2v3"/></svg>
+          </div>
+          <h4 class="focus-card__title">Park Ranger I</h4>
+          <p class="focus-card__sub">State Parks</p>
+          <div class="focus-card__meta">
+            <span>$58k–$72k</span>
+            <span>Topanga, CA</span>
+          </div>
+          <button class="text-link-action" onclick="openApplyModal('Park Ranger I', 'State Parks', '$58k – $72k', 'Topanga, CA');">Apply with profile →</button>
+        </div>
+
+        <div class="focus-card">
+          <div class="focus-card__chip focus-card__chip--neutral">Open</div>
+          <div class="focus-card__icon focus-card__icon--amber">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 13h8M8 17h5"/></svg>
+          </div>
+          <h4 class="focus-card__title">Public Records Specialist</h4>
+          <p class="focus-card__sub">County Clerk's Office</p>
+          <div class="focus-card__meta">
+            <span>$64k–$79k</span>
+            <span>Onsite · Los Angeles</span>
+          </div>
+          <button class="text-link-action" onclick="openApplyModal('Public Records Specialist', 'County Clerk’s Office', '$64k – $79k', 'Onsite · Los Angeles');">Apply with profile →</button>
         </div>
       </div>
 
-      <h2 class="text-xl mb-4">Open roles for you</h2>
-      <div class="grid-2 mb-6">
-        <div class="pass-tile">
-          <div class="pass-tile__hero transit">
-            <svg class="pass-tile__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="6" cy="6" r="1.4"/></svg>
-            <h3>Senior UX Designer</h3>
-          </div>
-          <div class="pass-tile__body">
-            <div class="row-between">
-              <span class="badge badge-info"><span class="dot"></span>Top match</span>
-              <span class="text-sm text-muted">Dept. of Technology</span>
-            </div>
-            <div class="pass-tile__meta">
-              <div><label>Salary</label><strong>$118k – $146k</strong></div>
-              <div><label>Location</label><strong>Hybrid · Sacramento</strong></div>
-            </div>
-            <div class="pass-tile__actions">
-              <button class="btn btn-primary" onclick="openApplyModal('Senior UX Designer', 'Department of Technology', '$118k – $146k', 'Hybrid · Sacramento');">Apply with profile</button>
-              <button class="btn btn-secondary" onclick="alert('Saved to your shortlist. (Demo)');">Save</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="pass-tile">
-          <div class="pass-tile__hero museum">
-            <svg class="pass-tile__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="13" width="3" height="5"/><rect x="12" y="9" width="3" height="9"/><rect x="17" y="5" width="3" height="13"/></svg>
-            <h3>Data Analyst II</h3>
-          </div>
-          <div class="pass-tile__body">
-            <div class="row-between">
-              <span class="badge badge-info"><span class="dot"></span>Strong match</span>
-              <span class="text-sm text-muted">Dept. of Public Health</span>
-            </div>
-            <div class="pass-tile__meta">
-              <div><label>Salary</label><strong>$92k – $114k</strong></div>
-              <div><label>Location</label><strong>Remote (in-state)</strong></div>
-            </div>
-            <div class="pass-tile__actions">
-              <button class="btn btn-primary" onclick="openApplyModal('Data Analyst II', 'Department of Public Health', '$92k – $114k', 'Remote (in-state)');">Apply with profile</button>
-              <button class="btn btn-secondary" onclick="alert('Saved. (Demo)');">Save</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="pass-tile">
-          <div class="pass-tile__hero parks">
-            <svg class="pass-tile__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 14h4l-3 7h14l-3-7h4z"/><path d="M11 21v-3h2v3"/></svg>
-            <h3>Park Ranger I</h3>
-          </div>
-          <div class="pass-tile__body">
-            <div class="row-between">
-              <span class="badge badge-neutral"><span class="dot"></span>Open</span>
-              <span class="text-sm text-muted">State Parks</span>
-            </div>
-            <div class="pass-tile__meta">
-              <div><label>Salary</label><strong>$58k – $72k</strong></div>
-              <div><label>Location</label><strong>Topanga, CA</strong></div>
-            </div>
-            <div class="pass-tile__actions">
-              <button class="btn btn-primary" onclick="openApplyModal('Park Ranger I', 'State Parks', '$58k – $72k', 'Topanga, CA');">Apply with profile</button>
-              <button class="btn btn-secondary" onclick="alert('Saved. (Demo)');">Save</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="pass-tile">
-          <div class="pass-tile__hero election">
-            <svg class="pass-tile__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 13h8M8 17h5"/></svg>
-            <h3>Public Records Specialist</h3>
-          </div>
-          <div class="pass-tile__body">
-            <div class="row-between">
-              <span class="badge badge-neutral"><span class="dot"></span>Open</span>
-              <span class="text-sm text-muted">County Clerk's Office</span>
-            </div>
-            <div class="pass-tile__meta">
-              <div><label>Salary</label><strong>$64k – $79k</strong></div>
-              <div><label>Location</label><strong>Onsite · Los Angeles</strong></div>
-            </div>
-            <div class="pass-tile__actions">
-              <button class="btn btn-primary" onclick="openApplyModal('Public Records Specialist', 'County Clerk’s Office', '$64k – $79k', 'Onsite · Los Angeles');">Apply with profile</button>
-              <button class="btn btn-secondary" onclick="alert('Saved. (Demo)');">Save</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid-4">
-        <a class="service-card" href="#" onclick="event.preventDefault();alert('Applications list opens. (Demo)');">
-          <div class="service-icon purple"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h6M8 17h4"/></svg></div>
-          <h3>See My Applications</h3>
-          <p>4 active · 1 interview scheduled.</p>
+      <h3 class="section-eyebrow">Anything else</h3>
+      <div class="quick-row">
+        <a class="quick-action" href="#" onclick="event.preventDefault();alert('Applications list opens. (Demo)');">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h6M8 17h4"/></svg>
+          <span>See my applications</span>
         </a>
-        <a class="service-card" href="#" onclick="event.preventDefault();alert('Saved searches editor opens. (Demo)');">
-          <div class="service-icon blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
-          <h3>Manage Saved Searches</h3>
-          <p>3 searches · daily digest on.</p>
+        <a class="quick-action" href="#" onclick="event.preventDefault();alert('Saved searches editor opens. (Demo)');">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <span>Manage saved searches</span>
         </a>
-        <a class="service-card" href="#" onclick="event.preventDefault();openProfileModal();">
-          <div class="service-icon green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
-          <h3>Update Hiring Profile</h3>
-          <p>Résumé, references, summary.</p>
+        <a class="quick-action" href="#" onclick="event.preventDefault();openProfileModal();">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          <span>Update hiring profile</span>
         </a>
-        <a class="service-card" href="#" onclick="event.preventDefault();alert('Full openings list opens. (Demo)');">
-          <div class="service-icon amber"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
-          <h3>Browse All Openings</h3>
-          <p>23 roles match your profile.</p>
+        <a class="quick-action" href="#" onclick="event.preventDefault();alert('Full openings list opens. (Demo)');">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <span>Browse all openings</span>
         </a>
       </div>
     </main>
@@ -297,7 +277,7 @@
     const u = getCitizen();
     if (u) {
       document.getElementById('jobsSub').textContent =
-        `${u.stateName} state, county, and federal openings filtered by your résumé and location.`;
+        `${u.stateName}, county, and federal openings — matched to your résumé.`;
     }
 
     function openApplyModal(title, dept, salary, location) {
