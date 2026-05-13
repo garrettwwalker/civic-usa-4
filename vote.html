@@ -13,82 +13,75 @@
     <main class="main-content">
       <div class="page-header">
         <div class="page-title">
-          <h1>Voting &amp; Registration</h1>
-          <p id="voteSub">Sample ballots, mail-ballot requests, polling places, and your full voting history — all tied to your verified registration.</p>
+          <h1>Voting</h1>
+          <p>Your registration, ballots, and election reminders — in one calm place.</p>
         </div>
       </div>
 
-      <!-- Hero zone: state-deep gradient + ballot-box glyph + countdown + CTAs -->
-      <div class="tickets-hero">
-        <svg class="tickets-hero__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18"/><path d="M9 9V5a3 3 0 0 1 6 0v4"/><path d="M8 17h8"/></svg>
-        <div class="tickets-hero__eyebrow">32 days · Jun 4, 2026 Primary</div>
-        <h2 class="tickets-hero__title">Your ballot is ready</h2>
-        <p class="tickets-hero__sub">Vote-by-mail opens May 6, early voting May 25 – Jun 3.</p>
-        <div class="tickets-hero__actions">
-          <button class="btn btn-primary btn-lg" onclick="alert('Sample ballot opens. (Demo)');">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h8M8 17h6"/></svg>
-            View sample ballot
-          </button>
-          <button class="btn btn-secondary btn-lg" style="background:rgba(255,255,255,0.14);color:white;border:1px solid rgba(255,255,255,0.20);" onclick="alert('Mail ballot request submitted. (Demo)');">Request mail ballot</button>
+      <!-- Featured: next election. One focused "moment" in the lemonade style. -->
+      <section class="vote-feature">
+        <div class="vote-feature__body">
+          <span class="vote-feature__chip">31 days · primary</span>
+          <h2 class="vote-feature__title">Your June 4 ballot is&nbsp;ready.</h2>
+          <p class="vote-feature__sub">Take 60 seconds to look it over now. The real one shows up in your mailbox starting May 6.</p>
+          <div class="vote-feature__actions">
+            <button class="btn-lem btn-lem--primary" onclick="alert('Sample ballot opens. (Demo)');">See my ballot</button>
+            <button class="btn-lem btn-lem--text" onclick="alert('Mail-in ballot requested. (Demo)');">Or request mail-in →</button>
+          </div>
+        </div>
+        <div class="vote-feature__art" aria-hidden="true">
+          <svg viewBox="0 0 220 220" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Ballot box -->
+            <rect x="34" y="118" width="152" height="76" rx="8"/>
+            <path d="M58 118 L58 102 L162 102 L162 118"/>
+            <line x1="82" y1="110" x2="138" y2="110" stroke-width="4"/>
+            <!-- Ballot being dropped in -->
+            <rect x="90" y="38" width="40" height="62" rx="3"/>
+            <line x1="100" y1="56" x2="120" y2="56" stroke-width="2"/>
+            <line x1="100" y1="66" x2="120" y2="66" stroke-width="2"/>
+            <line x1="100" y1="76" x2="120" y2="76" stroke-width="2"/>
+            <!-- Checkmark accent -->
+            <circle cx="155" cy="55" r="14" stroke-width="2.5"/>
+            <path d="M148 55 L153 60 L162 50" stroke-width="2.5"/>
+          </svg>
+        </div>
+      </section>
+
+      <h3 class="vote-section-title">Also on your radar</h3>
+      <div class="grid-2 vote-secondary">
+        <div class="vote-card">
+          <div class="vote-card__chip">100 days</div>
+          <div class="vote-card__icon vote-card__icon--mint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-5 9 5-9 5z"/><path d="M5 11v6c0 1 3 3 7 3s7-2 7-3v-6"/><path d="M21 9v6"/></svg>
+          </div>
+          <h4 class="vote-card__title">School Board election</h4>
+          <p class="vote-card__sub">Aug 12, 2026. Register by Jul 28 if you haven't yet.</p>
+          <button class="btn-lem btn-lem--text" onclick="alert('Reminder set. (Demo)');">Remind me →</button>
+        </div>
+        <div class="vote-card">
+          <div class="vote-card__chip vote-card__chip--success">Verified</div>
+          <div class="vote-card__icon vote-card__icon--lemon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h4 class="vote-card__title">You're registered</h4>
+          <p class="vote-card__sub">Independent, since 2014. Address matches your driver's license.</p>
+          <button class="btn-lem btn-lem--text" onclick="alert('Registration editor opens. (Demo)');">Update details →</button>
         </div>
       </div>
 
-      <h2 class="text-xl mb-4">Upcoming elections</h2>
-      <div class="grid-2 mb-6">
-        <div class="pass-tile">
-          <div class="pass-tile__hero election">
-            <svg class="pass-tile__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18"/><path d="M9 9V5a3 3 0 0 1 6 0v4"/></svg>
-            <h3>Primary · Jun 4</h3>
-          </div>
-          <div class="pass-tile__body">
-            <div class="pass-tile__meta">
-              <div><label>Election day</label><strong>Jun 4, 2026</strong></div>
-              <div><label>Vote by mail</label><strong>Opens May 6</strong></div>
-            </div>
-            <div class="pass-tile__actions">
-              <button class="btn btn-primary" onclick="alert('Sample ballot opens. (Demo)');">View sample ballot</button>
-              <button class="btn btn-secondary" onclick="alert('Mail ballot request submitted. (Demo)');">Request mail ballot</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="pass-tile">
-          <div class="pass-tile__hero school">
-            <svg class="pass-tile__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-5 9 5-9 5z"/><path d="M5 11v6c0 1 3 3 7 3s7-2 7-3v-6"/><path d="M21 9v6"/></svg>
-            <h3>School Board · Aug 12</h3>
-          </div>
-          <div class="pass-tile__body">
-            <div class="pass-tile__meta">
-              <div><label>Election day</label><strong>Aug 12, 2026</strong></div>
-              <div><label>Registration deadline</label><strong>Jul 28</strong></div>
-            </div>
-            <div class="pass-tile__actions">
-              <button class="btn btn-secondary" onclick="alert('Reminder set. (Demo)');">Remind me</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid-4">
-        <a class="service-card" href="#" onclick="event.preventDefault();alert('Registration editor opens. (Demo)');">
-          <div class="service-icon blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-          <h3>View &amp; Update Registration</h3>
-          <p>Affiliation, address, and contact info on file.</p>
+      <h3 class="vote-section-title">Anything else</h3>
+      <div class="vote-quick-row">
+        <a class="vote-quick" href="#" onclick="event.preventDefault();alert('Voting history opens. (Demo)');">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+          <span>See my voting history</span>
         </a>
-        <a class="service-card" href="#" onclick="event.preventDefault();alert('Voting history opens. (Demo)');">
-          <div class="service-icon purple"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg></div>
-          <h3>See Voting History</h3>
-          <p>Every election you've voted in, with method.</p>
+        <a class="vote-quick" href="#" onclick="event.preventDefault();alert('Voter registration card downloaded. (Demo)');">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h4M7 14h7"/></svg>
+          <span>Download my voter card</span>
         </a>
-        <a class="service-card" href="#" onclick="event.preventDefault();alert('Voter registration card downloaded. (Demo)');">
-          <div class="service-icon green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h4M7 14h7"/></svg></div>
-          <h3>Get Voter Registration Card</h3>
-          <p>Download a printable copy or add to wallet.</p>
-        </a>
-        <a class="service-card" href="#" onclick="event.preventDefault();alert('Precinct map opens. (Demo)');">
-          <div class="service-icon amber"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <h3>Access Precinct Map</h3>
-          <p>Your precinct, polling place, and drop boxes.</p>
+        <a class="vote-quick" href="#" onclick="event.preventDefault();alert('Precinct map opens. (Demo)');">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Find my polling place</span>
         </a>
       </div>
     </main>
