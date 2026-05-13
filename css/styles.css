@@ -3520,13 +3520,14 @@ body[data-page="jobs"] .tickets-hero .btn-primary { color: #1a5a5a; }
   align-items: center;
   gap: 32px;
   background: linear-gradient(135deg,
-    color-mix(in srgb, var(--license-accent, #0d0d0d) 4%, white) 0%,
-    color-mix(in srgb, var(--license-accent, #0d0d0d) 14%, white) 100%);
+    color-mix(in srgb, var(--license-accent, #0d0d0d) 10%, white) 0%,
+    color-mix(in srgb, var(--license-accent, #0d0d0d) 26%, white) 100%);
   border-radius: 28px;
   padding: 48px 52px;
   margin-bottom: 56px;
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-2);
 }
 .feature-moment__body { flex: 1; min-width: 0; }
 .feature-moment__art {
