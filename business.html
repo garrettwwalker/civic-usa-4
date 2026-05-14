@@ -11,167 +11,292 @@
   <div class="app">
     <div id="sidebar-mount"></div>
     <main class="main-content">
-      <div class="page-header">
+      <div class="page-header page-header--lg">
         <div class="page-title">
           <h1>Business</h1>
-          <p>Registered entities, licenses, sales tax, and filings.</p>
-        </div>
-        <button class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-          Register new business
-        </button>
-      </div>
-
-      <div class="grid-3 mb-6">
-        <div class="stat">
-          <div class="stat-label">Active entities</div>
-          <div class="stat-value">1</div>
-          <div class="stat-trend">Mitchell Design LLC</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Sales tax due</div>
-          <div class="stat-value">$1,184</div>
-          <div class="stat-trend down">Due May 31, 2026</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">YTD gross receipts</div>
-          <div class="stat-value">$23,460</div>
-          <div class="stat-trend up">↑ 18% vs last year</div>
+          <p id="bizSub">Your registered entity, permits, sales tax, and filings — handled together.</p>
         </div>
       </div>
 
-      <div class="card mb-6">
-        <div class="card-header">
-          <div>
-            <div class="card-title">Mitchell Design LLC</div>
-            <div class="text-sm text-muted">EIN 87-2340198 · Filed 2022-08-04</div>
+      <section class="feature-moment">
+        <div class="feature-moment__body">
+          <span class="feature-moment__chip">due May 31 · 18 days</span>
+          <h2 class="feature-moment__title">Your Q1 sales tax is&nbsp;ready to file.</h2>
+          <p class="feature-moment__sub">$1,184 pre-filled from your card reader and invoicing. Review and submit in two taps — payment auto-drafts from your linked account.</p>
+          <div class="feature-moment__actions">
+            <button class="btn btn-primary btn-lg" onclick="openFileTaxModal();">File Q1 sales tax</button>
+            <button class="text-link-action" onclick="alert('Q1 breakdown export. (Demo)');">See breakdown →</button>
           </div>
-          <span class="badge badge-success"><span class="dot"></span>In good standing</span>
         </div>
-        <div class="grid-4" style="gap:12px;">
-          <div class="info-field"><label>Entity type</label><div class="value">LLC (single-member)</div></div>
-          <div class="info-field"><label>State of formation</label><div class="value" id="bizState">California</div></div>
-          <div class="info-field"><label>Registered agent</label><div class="value">Sarah K. Mitchell</div></div>
-          <div class="info-field"><label>NAICS</label><div class="value">541430 · Graphic Design</div></div>
-          <div class="info-field"><label>Sales tax permit</label><div class="value">SR-EH 100-987654</div></div>
-          <div class="info-field"><label>Annual report due</label><div class="value">Aug 31, 2026</div></div>
-          <div class="info-field"><label>DBA</label><div class="value">Mitchell Design — exp Jul 12</div></div>
-          <div class="info-field"><label>Worker's comp</label><div class="value">Exempt (no employees)</div></div>
+        <div class="feature-moment__art" aria-hidden="true">
+          <svg viewBox="0 0 220 220" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="46" y="44" width="128" height="156" rx="10"/>
+            <path d="M62 78 h54 M62 92 h74 M62 106 h74 M62 120 h54"/>
+            <line x1="62" y1="138" x2="158" y2="138" stroke-width="1.6"/>
+            <path d="M62 154 h48 M62 168 h66"/>
+            <rect x="116" y="148" width="44" height="36" rx="6" stroke-width="2.4"/>
+            <path d="M126 166 l6 6 l16 -16" stroke-width="3"/>
+          </svg>
+        </div>
+      </section>
+
+      <h3 class="section-eyebrow">Your business</h3>
+      <div class="grid-2 section-mb-lg">
+        <div class="focus-card">
+          <div class="focus-card__chip focus-card__chip--success">In good standing</div>
+          <div class="focus-card__icon focus-card__icon--verified">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg>
+          </div>
+          <h4 class="focus-card__title">Mitchell Design LLC</h4>
+          <p class="focus-card__sub">Single-member LLC · <span id="bizState">California</span> · Filed Aug 2022</p>
+          <div class="focus-card__meta">
+            <span>EIN <strong>87-2340198</strong></span>
+            <span>NAICS 541430</span>
+          </div>
+          <button class="btn btn-secondary" onclick="openBizDetailsModal();">View details</button>
+        </div>
+
+        <div class="focus-card">
+          <div class="focus-card__chip focus-card__chip--success">Active</div>
+          <div class="focus-card__icon focus-card__icon--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/><path d="M9 13h6M9 17h4"/></svg>
+          </div>
+          <h4 class="focus-card__title">Seller's permit</h4>
+          <p class="focus-card__sub">CDTFA · for collecting and remitting state sales tax.</p>
+          <div class="focus-card__meta">
+            <span>Permit <strong>SR-EH 100-987654</strong></span>
+            <span>No expiry</span>
+          </div>
+          <button class="btn btn-secondary" onclick="alert('Seller\'s permit certificate (PDF). (Demo)');">View permit</button>
+        </div>
+
+        <div class="focus-card">
+          <div class="focus-card__chip">Renew soon</div>
+          <div class="focus-card__icon focus-card__icon--upcoming">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          </div>
+          <h4 class="focus-card__title">DBA · Mitchell Design</h4>
+          <p class="focus-card__sub">LA County recorder · fictitious-name renewal due in 60 days.</p>
+          <div class="focus-card__meta">
+            <span>Expires <strong>Jul 12, 2026</strong></span>
+            <span>$26 county fee</span>
+          </div>
+          <button class="btn btn-secondary" onclick="alert('DBA renewed through 2031 — $26 charged to bank ····4408. (Demo)');">Renew DBA</button>
+        </div>
+
+        <div class="focus-card">
+          <div class="focus-card__chip focus-card__chip--success">Active</div>
+          <div class="focus-card__icon focus-card__icon--purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V7l8-4 8 4v14"/><path d="M9 12h6M9 16h6M9 8h6"/></svg>
+          </div>
+          <h4 class="focus-card__title">City business tax cert.</h4>
+          <p class="focus-card__sub">City of LA · auto-renews annually from your linked account.</p>
+          <div class="focus-card__meta">
+            <span>Renewed <strong>Feb 2026</strong></span>
+            <span>$155 / yr</span>
+          </div>
+          <button class="btn btn-secondary" onclick="alert('City business tax certificate (PDF). (Demo)');">View certificate</button>
         </div>
       </div>
 
-      <div class="grid-2 mb-6">
-        <div class="card">
-          <div class="card-header"><div class="card-title">Upcoming Filings</div></div>
-          <ul class="list">
-            <li class="list-item">
-              <div class="list-item-icon" style="background:rgba(217,119,6,0.12);color:var(--warning);">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 9v4M12 17h.01"/></svg>
-              </div>
-              <div class="list-item-content">
-                <div class="list-item-title">Q1 sales & use tax · $1,184</div>
-                <div class="list-item-sub">Pre-filled from card-reader & invoice data</div>
-              </div>
-              <div class="list-item-meta"><strong>May 31</strong></div>
-            </li>
-            <li class="list-item">
-              <div class="list-item-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
-              </div>
-              <div class="list-item-content">
-                <div class="list-item-title">DBA renewal · Mitchell Design</div>
-                <div class="list-item-sub">$26 county fee · 1-click renew</div>
-              </div>
-              <div class="list-item-meta"><strong>Jul 12</strong></div>
-            </li>
-            <li class="list-item">
-              <div class="list-item-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/></svg>
-              </div>
-              <div class="list-item-content">
-                <div class="list-item-title">LLC Statement of Information</div>
-                <div class="list-item-sub">$20 SOS filing · biennial</div>
-              </div>
-              <div class="list-item-meta"><strong>Aug 31</strong></div>
-            </li>
-            <li class="list-item">
-              <div class="list-item-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v18l3-2 3 2 3-2 3 2 3-2V3"/><path d="M9 8h8M9 12h8M9 16h5"/></svg>
-              </div>
-              <div class="list-item-content">
-                <div class="list-item-title">$800 LLC tax (FTB Form 568)</div>
-                <div class="list-item-sub">Annual minimum franchise tax</div>
-              </div>
-              <div class="list-item-meta"><strong>Apr 15, 2027</strong></div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="card-header"><div class="card-title">Licenses & Permits</div></div>
-          <ul class="list">
-            <li class="list-item">
-              <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <div class="list-item-content">
-                <div class="list-item-title">Seller's permit (CDTFA)</div>
-                <div class="list-item-sub">SR-EH 100-987654</div>
-              </div>
-              <span class="badge badge-success">Active</span>
-            </li>
-            <li class="list-item">
-              <div class="list-item-icon" style="background:rgba(5,150,105,0.12);color:var(--success);">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <div class="list-item-content">
-                <div class="list-item-title">City of LA business tax cert.</div>
-                <div class="list-item-sub">Renewed Feb 2026</div>
-              </div>
-              <span class="badge badge-success">Active</span>
-            </li>
-            <li class="list-item">
-              <div class="list-item-icon" style="background:rgba(217,119,6,0.12);color:var(--warning);">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-              </div>
-              <div class="list-item-content">
-                <div class="list-item-title">DBA · Mitchell Design</div>
-                <div class="list-item-sub">LA County recorder</div>
-              </div>
-              <span class="badge badge-warning">Renew soon</span>
-            </li>
-            <li class="list-item">
-              <div class="list-item-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-              </div>
-              <div class="list-item-content">
-                <div class="list-item-title text-muted">Add another license</div>
-                <div class="list-item-sub">e.g. contractor's, professional, food handler</div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header"><div class="card-title">Recent Filings</div></div>
-        <table class="table">
-          <thead><tr><th>Date</th><th>Filing</th><th>Amount</th><th>Status</th></tr></thead>
-          <tbody>
-            <tr><td>Feb 28, 2026</td><td>Q4 2025 sales & use tax</td><td>$1,420</td><td><span class="badge badge-success">Accepted</span></td></tr>
-            <tr><td>Feb 12, 2026</td><td>City of LA business tax renewal</td><td>$155</td><td><span class="badge badge-success">Accepted</span></td></tr>
-            <tr><td>Apr 15, 2025</td><td>$800 LLC tax</td><td>$800</td><td><span class="badge badge-success">Accepted</span></td></tr>
-            <tr><td>Aug 31, 2024</td><td>Statement of Information (LLC-12)</td><td>$20</td><td><span class="badge badge-success">Accepted</span></td></tr>
-          </tbody>
-        </table>
+      <h3 class="section-eyebrow">Anything else</h3>
+      <div class="quick-row">
+        <a class="quick-action" href="#" onclick="event.preventDefault();alert('New entity registration flow. (Demo)');">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          <span>Register a new business</span>
+        </a>
+        <a class="quick-action" href="#" onclick="event.preventDefault();alert('Full filings history opens. (Demo)');">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/><path d="M9 13h6M9 17h6"/></svg>
+          <span>See all filings</span>
+        </a>
+        <a class="quick-action" href="#" onclick="event.preventDefault();alert('Registered agent editor. (Demo)');">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          <span>Update registered agent</span>
+        </a>
+        <a class="quick-action" href="#" onclick="event.preventDefault();alert('Worker\'s comp settings opens. (Demo)');">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 18 0v8H3z"/><path d="M9 20v-6h6v6"/></svg>
+          <span>Worker's comp settings</span>
+        </a>
+        <a class="quick-action" href="#" onclick="event.preventDefault();alert('Tax records exported as CSV. (Demo)');">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Export tax records</span>
+        </a>
       </div>
     </main>
+  </div>
+
+  <!-- File Q1 sales tax modal -->
+  <div class="modal-backdrop" id="fileTaxModal" hidden onclick="if(event.target===this)closeFileTaxModal()">
+    <div class="modal-pane" role="dialog" aria-modal="true" aria-labelledby="fileTaxTitle">
+      <button class="modal-close" type="button" onclick="closeFileTaxModal()" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-header">
+        <span class="badge badge-info">Q1 2026 · Jan 1 – Mar 31</span>
+        <h2 id="fileTaxTitle" class="mt-2" style="font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.2;">File Q1 sales &amp; use tax</h2>
+        <p class="text-muted mt-2" style="font-size:15px;line-height:1.5;">Pre-filled from your card reader and invoicing. Review the numbers, then submit and pay in one tap.</p>
+      </div>
+      <div class="modal-body">
+        <div class="card" style="background:var(--surface-2);padding:18px;margin-bottom:20px;">
+          <div class="row-between mb-3" style="align-items:flex-start;">
+            <div>
+              <div style="font-size:11px;color:var(--text-muted);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px;">Filing as</div>
+              <div style="font-size:17px;font-weight:600;letter-spacing:-0.01em;">Mitchell Design LLC</div>
+              <div class="text-sm text-muted">Permit SR-EH 100-987654 · EIN 87-2340198</div>
+            </div>
+            <span class="badge badge-success"><span class="dot"></span>Permit active</span>
+          </div>
+        </div>
+
+        <h3 style="font-size:13px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Calculation</h3>
+        <table class="table" style="margin-bottom:20px;">
+          <tbody>
+            <tr><td>Gross receipts (Q1)</td><td style="text-align:right;font-weight:500;">$14,800.00</td></tr>
+            <tr><td>Non-taxable · out-of-state sales</td><td style="text-align:right;font-weight:500;">−$1,000.00</td></tr>
+            <tr><td>Taxable sales</td><td style="text-align:right;font-weight:600;">$13,800.00</td></tr>
+            <tr><td>Combined rate · LA County 8.58%</td><td style="text-align:right;font-weight:500;">×&nbsp;0.0858</td></tr>
+            <tr><td style="font-weight:600;">Total tax due</td><td style="text-align:right;font-weight:700;font-size:16px;">$1,184.04</td></tr>
+          </tbody>
+        </table>
+
+        <h3 style="font-size:13px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Payment</h3>
+        <div class="card" style="background:var(--surface-2);padding:14px;margin-bottom:14px;">
+          <div class="row-between" style="align-items:center;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><line x1="3" y1="11" x2="21" y2="11"/></svg>
+              <div>
+                <div style="font-weight:500;font-size:14px;">Bank ···· 4408</div>
+                <div class="text-sm text-muted">ACH · drafts within 1 business day of submit</div>
+              </div>
+            </div>
+            <button class="btn btn-ghost" type="button" onclick="alert('Change payment method. (Demo)');" style="font-size:13px;">Change</button>
+          </div>
+        </div>
+
+        <div class="form-row" style="margin-bottom:14px;">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:400;">
+            <input type="checkbox" id="taxAttest" checked style="width:auto;">
+            <span>I certify the figures above are accurate to the best of my knowledge.</span>
+          </label>
+        </div>
+
+        <div class="row-between mt-6">
+          <span class="text-sm text-muted">A signed acknowledgement arrives by email within minutes.</span>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-ghost" type="button" onclick="closeFileTaxModal()">Cancel</button>
+            <button class="btn btn-primary" type="button" onclick="submitFileTax()">Submit &amp; pay $1,184.04</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Business details modal -->
+  <div class="modal-backdrop" id="bizDetailsModal" hidden onclick="if(event.target===this)closeBizDetailsModal()">
+    <div class="modal-pane" role="dialog" aria-modal="true" aria-labelledby="bizDetailsTitle">
+      <button class="modal-close" type="button" onclick="closeBizDetailsModal()" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-header">
+        <span class="badge badge-success"><span class="dot"></span>In good standing</span>
+        <h2 id="bizDetailsTitle" class="mt-2" style="font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.2;">Mitchell Design LLC</h2>
+        <p class="text-muted mt-2" style="font-size:15px;line-height:1.5;">Full entity record, plus everyday management actions.</p>
+      </div>
+      <div class="modal-body">
+        <div class="card" style="background:var(--surface-2);padding:18px;margin-bottom:20px;">
+          <div class="grid-3" style="gap:12px;">
+            <div class="info-field"><label>Entity type</label><div class="value">LLC · single-member</div></div>
+            <div class="info-field"><label>State of formation</label><div class="value" id="bizModalState">California</div></div>
+            <div class="info-field"><label>Filed</label><div class="value">Aug 4, 2022</div></div>
+            <div class="info-field"><label>EIN</label><div class="value">87-2340198</div></div>
+            <div class="info-field"><label>NAICS</label><div class="value">541430 · Graphic Design</div></div>
+            <div class="info-field"><label>Registered agent</label><div class="value">Sarah K. Mitchell</div></div>
+            <div class="info-field"><label>DBA</label><div class="value">Mitchell Design</div></div>
+            <div class="info-field"><label>Worker's comp</label><div class="value">Exempt · no employees</div></div>
+            <div class="info-field"><label>Annual report due</label><div class="value">Aug 31, 2026</div></div>
+          </div>
+        </div>
+
+        <h3 style="font-size:13px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Upcoming filings</h3>
+        <table class="table" style="margin-bottom:20px;">
+          <tbody>
+            <tr><td>Q1 sales &amp; use tax</td><td style="text-align:right;color:var(--text-muted);">May 31, 2026</td><td style="text-align:right;font-weight:600;">$1,184</td></tr>
+            <tr><td>DBA renewal</td><td style="text-align:right;color:var(--text-muted);">Jul 12, 2026</td><td style="text-align:right;font-weight:600;">$26</td></tr>
+            <tr><td>LLC Statement of Information</td><td style="text-align:right;color:var(--text-muted);">Aug 31, 2026</td><td style="text-align:right;font-weight:600;">$20</td></tr>
+            <tr><td>$800 LLC tax (FTB 568)</td><td style="text-align:right;color:var(--text-muted);">Apr 15, 2027</td><td style="text-align:right;font-weight:600;">$800</td></tr>
+          </tbody>
+        </table>
+
+        <h3 style="font-size:13px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Recent filings</h3>
+        <table class="table" style="margin-bottom:20px;">
+          <tbody>
+            <tr><td>Q4 2025 sales &amp; use tax</td><td style="text-align:right;color:var(--text-muted);">Feb 28, 2026</td><td style="text-align:right;"><span class="badge badge-success">Accepted</span></td></tr>
+            <tr><td>City of LA business tax renewal</td><td style="text-align:right;color:var(--text-muted);">Feb 12, 2026</td><td style="text-align:right;"><span class="badge badge-success">Accepted</span></td></tr>
+            <tr><td>$800 LLC tax</td><td style="text-align:right;color:var(--text-muted);">Apr 15, 2025</td><td style="text-align:right;"><span class="badge badge-success">Accepted</span></td></tr>
+            <tr><td>Statement of Information</td><td style="text-align:right;color:var(--text-muted);">Aug 31, 2024</td><td style="text-align:right;"><span class="badge badge-success">Accepted</span></td></tr>
+          </tbody>
+        </table>
+
+        <h3 style="font-size:13px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Manage entity</h3>
+        <div class="grid-3" style="gap:8px;margin-bottom:20px;">
+          <button class="btn btn-secondary" type="button" style="font-size:13px;padding:10px 12px;justify-content:flex-start;" onclick="alert('Edit registered agent. (Demo)');">Update registered agent</button>
+          <button class="btn btn-secondary" type="button" style="font-size:13px;padding:10px 12px;justify-content:flex-start;" onclick="alert('Edit business address. (Demo)');">Update address</button>
+          <button class="btn btn-secondary" type="button" style="font-size:13px;padding:10px 12px;justify-content:flex-start;" onclick="alert('Add member/officer. (Demo)');">Add member or officer</button>
+          <button class="btn btn-secondary" type="button" style="font-size:13px;padding:10px 12px;justify-content:flex-start;" onclick="alert('Workers comp setup. (Demo)');">Workers' comp setup</button>
+          <button class="btn btn-secondary" type="button" style="font-size:13px;padding:10px 12px;justify-content:flex-start;" onclick="alert('Articles of Organization (PDF). (Demo)');">Download formation docs</button>
+          <button class="btn btn-secondary" type="button" style="font-size:13px;padding:10px 12px;justify-content:flex-start;" onclick="alert('Dissolution flow. (Demo)');">Dissolve entity</button>
+        </div>
+
+        <div class="row-between mt-2">
+          <span class="text-sm text-muted">Most updates take effect immediately. Filings with the SOS take 5–10 days.</span>
+          <button class="btn btn-primary" type="button" onclick="closeBizDetailsModal()">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="js/app.js"></script>
   <script>
     const u = getCitizen();
-    if (u) document.getElementById('bizState').textContent = u.stateName;
+    if (u) {
+      document.getElementById('bizState').textContent = u.stateName;
+      document.getElementById('bizModalState').textContent = u.stateName;
+    }
+
+    function openFileTaxModal() {
+      document.getElementById('fileTaxModal').hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function closeFileTaxModal() {
+      document.getElementById('fileTaxModal').hidden = true;
+      document.body.style.overflow = '';
+    }
+    function submitFileTax() {
+      if (!document.getElementById('taxAttest').checked) {
+        alert('Please certify the figures before submitting. (Demo)');
+        return;
+      }
+      alert('Q1 sales tax filed — $1,184.04 will draft from bank ····4408 within 1 business day. Confirmation #SUT-2026-Q1-118404. (Demo)');
+      closeFileTaxModal();
+    }
+
+    function openBizDetailsModal() {
+      document.getElementById('bizDetailsModal').hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function closeBizDetailsModal() {
+      document.getElementById('bizDetailsModal').hidden = true;
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        const ft = document.getElementById('fileTaxModal');
+        if (ft && !ft.hidden) { closeFileTaxModal(); return; }
+        const bd = document.getElementById('bizDetailsModal');
+        if (bd && !bd.hidden) closeBizDetailsModal();
+      }
+    });
   </script>
 </body>
 </html>
