@@ -3830,3 +3830,101 @@ body[data-page="jobs"] .tickets-hero .btn-primary { color: #1a5a5a; }
   flex-shrink: 0;
   color: var(--license-accent, var(--text));
 }
+
+/* Process strip — a horizontal sequence of stages with state-accented
+   nodes and connecting line. Used on pages whose content is inherently
+   sequential (filing journey, repairs lifecycle, application stages). */
+.timeline-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  position: relative;
+}
+.timeline-step {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+  position: relative;
+  padding: 0 6px;
+}
+.timeline-step__node {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  font-size: 13px;
+  font-weight: 700;
+}
+.timeline-step__node svg { width: 18px; height: 18px; }
+.timeline-step::before {
+  content: '';
+  position: absolute;
+  top: 17px;
+  left: 50%;
+  right: -50%;
+  height: 2px;
+  background: var(--surface-3);
+  z-index: 0;
+}
+.timeline-step:last-child::before { display: none; }
+
+.timeline-step--done .timeline-step__node {
+  background: var(--license-accent, #0d0d0d);
+  color: white;
+}
+.timeline-step--done::before {
+  background: var(--license-accent, #0d0d0d);
+}
+.timeline-step--current .timeline-step__node {
+  background: var(--surface);
+  border: 2.5px solid var(--license-accent, #0d0d0d);
+  color: var(--license-accent, #0d0d0d);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--license-accent, #0d0d0d) 14%, white);
+}
+.timeline-step--pending .timeline-step__node {
+  background: var(--surface);
+  border: 2px solid var(--surface-3);
+  color: var(--text-muted);
+}
+
+.timeline-step__label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.timeline-step--pending .timeline-step__label { color: var(--text-muted); }
+.timeline-step__sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+@media (max-width: 800px) {
+  .timeline-strip { flex-direction: column; gap: 18px; }
+  .timeline-step {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    column-gap: 14px;
+    text-align: left;
+    padding: 0;
+  }
+  .timeline-step__node { margin: 0; }
+  .timeline-step::before {
+    left: 17px;
+    top: 36px;
+    right: auto;
+    bottom: -18px;
+    width: 2px;
+    height: auto;
+  }
+  .timeline-step > .timeline-step__label,
+  .timeline-step > .timeline-step__sub { grid-column: 2; }
+}
