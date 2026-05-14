@@ -11,142 +11,98 @@
   <div class="app">
     <div id="sidebar-mount"></div>
     <main class="main-content">
-      <div class="page-header">
+      <div class="page-header page-header--lg">
         <div class="page-title">
           <h1>Health Insurance</h1>
           <p id="hcSub">Plans, payments, network providers, and policy documents — managed in one place.</p>
         </div>
       </div>
 
-      <div class="banner-success">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <div>All 3 plans <strong>active</strong> and in good standing. Next premium due <strong>Jun 1, 2026</strong> · auto-pay on.</div>
-      </div>
-
-      <div class="grid-4 mb-6">
-        <div class="stat">
-          <div class="stat-label">Active plans</div>
-          <div class="stat-value">3</div>
-          <div class="stat-trend">Health · Dental · Vision</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Member since</div>
-          <div class="stat-value">2018</div>
-          <div class="stat-trend">8 years continuous coverage</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Out-of-pocket YTD</div>
-          <div class="stat-value">$1,247</div>
-          <div class="stat-trend">of $7,500 max</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Next renewal</div>
-          <div class="stat-value">Dec 31</div>
-          <div class="stat-trend up">Open enrollment Nov 1</div>
-        </div>
-      </div>
-
-      <h2 class="text-xl mb-4">Active Plans</h2>
-      <div class="grid-3 mb-6">
-        <div class="card plan-tile" tabindex="0">
-          <div class="row-between mb-3">
-            <div class="card-title">Health</div>
-            <span class="badge badge-success"><span class="dot"></span>Active</span>
+      <!-- Split hero: headline + actions on the left, factual snapshot of
+           the dominant plan on the right. Variant on the illustrated
+           hero used by vote/jobs/tickets/business. -->
+      <section class="feature-moment">
+        <div class="feature-moment__body">
+          <span class="feature-moment__chip">premium auto-drafts jun 1</span>
+          <h2 class="feature-moment__title">You're covered.</h2>
+          <p class="feature-moment__sub">Three plans active and in good standing. Your $441 monthly premium drafts from bank ····4408 — no action needed before open enrollment opens Nov 1.</p>
+          <div class="feature-moment__actions">
+            <button class="btn btn-primary btn-lg" onclick="openInsuranceCardModal('health');">Show member card</button>
+            <button class="text-link-action" onclick="openDetailsModal('health');">Plan details →</button>
           </div>
-          <div class="plan-tile-summary">
-            <span class="premium">$385<span class="meta"> / mo</span></span>
-            <span class="meta" id="hcHealthId">XJP-2841-04</span>
+        </div>
+        <div class="feature-moment__art" aria-hidden="true">
+          <svg viewBox="0 0 220 220" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="20" y1="196" x2="200" y2="196" stroke-width="2.6"/>
+            <rect x="52" y="64" width="116" height="132"/>
+            <path d="M110 88 L110 128" stroke-width="7"/>
+            <path d="M90 108 L130 108" stroke-width="7"/>
+            <rect x="68"  y="148" width="18" height="22" rx="2" stroke-width="2.2"/>
+            <rect x="134" y="148" width="18" height="22" rx="2" stroke-width="2.2"/>
+            <path d="M100 196 L100 172 L120 172 L120 196"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- Stacked rows for dental + vision — compact horizontal layout
+           since Health dominates above, so equal-weight tiles would
+           misweight the hierarchy. -->
+      <h3 class="section-eyebrow">Also on your account</h3>
+      <div class="row-list section-mb-lg">
+        <div class="row-card">
+          <div class="row-card__icon row-card__icon--teal">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-2.5 0-3.8 1.2-5 1.2S4.5 3 3 3.6c0 4 .6 7 1.5 9.4.7 2 1 4 2 6 .5 1 1 2 2 2 1.4 0 1.6-3 2.5-3s1.1 3 2.5 3c1 0 1.5-1 2-2 1-2 1.3-4 2-6 .9-2.4 1.5-5.4 1.5-9.4-1.5-.6-2.7.6-4 .6S14.5 3 12 3z"/></svg>
           </div>
-          <div class="plan-extra"><div>
-            <div class="text-sm text-muted mb-3" style="font-weight:500;">BlueShield Gold PPO 2000</div>
-            <div class="scanned-info">
-              <div class="info-field"><label>Deductible</label><div class="value">$2,000</div></div>
-              <div class="info-field"><label>OOP max</label><div class="value">$7,500</div></div>
-              <div class="info-field"><label>Effective</label><div class="value">Jan 1, 2024</div></div>
-              <div class="info-field"><label>Renews</label><div class="value">Dec 31, 2026</div></div>
-            </div>
-            <div class="row mt-4" style="gap:8px;">
-              <button class="btn btn-primary" onclick="openInsuranceCardModal('health');">View card</button>
-              <button class="btn btn-secondary" onclick="openDetailsModal('health');">Details</button>
-            </div>
-          </div></div>
+          <div>
+            <div class="row-card__title">Dental · Delta Dental PPO Premier</div>
+            <div class="row-card__sub">Member ID DDP-72611-04 · annual max $2,000 · cleanings 2/yr at 100%</div>
+          </div>
+          <div class="row-card__price">$42<span> / mo</span></div>
+          <div class="row-card__actions">
+            <button class="btn btn-secondary" onclick="openInsuranceCardModal('dental');">View card</button>
+            <button class="btn btn-ghost" onclick="openDetailsModal('dental');">Details</button>
+          </div>
         </div>
 
-        <div class="card plan-tile" tabindex="0">
-          <div class="row-between mb-3">
-            <div class="card-title">Dental</div>
-            <span class="badge badge-success"><span class="dot"></span>Active</span>
+        <div class="row-card">
+          <div class="row-card__icon row-card__icon--violet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
           </div>
-          <div class="plan-tile-summary">
-            <span class="premium">$42<span class="meta"> / mo</span></span>
-            <span class="meta">DDP-72611-04</span>
+          <div>
+            <div class="row-card__title">Vision · VSP Choice</div>
+            <div class="row-card__sub">Member ID VSP-58420-04 · $200 frame allowance every 12 mo · $10 exam copay</div>
           </div>
-          <div class="plan-extra"><div>
-            <div class="text-sm text-muted mb-3" style="font-weight:500;">Delta Dental PPO Premier</div>
-            <div class="scanned-info">
-              <div class="info-field"><label>Annual max</label><div class="value">$2,000</div></div>
-              <div class="info-field"><label>Preventive</label><div class="value">100%</div></div>
-              <div class="info-field"><label>Effective</label><div class="value">Jan 1, 2024</div></div>
-              <div class="info-field"><label>Renews</label><div class="value">Dec 31, 2026</div></div>
-            </div>
-            <div class="row mt-4" style="gap:8px;">
-              <button class="btn btn-primary" onclick="openInsuranceCardModal('dental');">View card</button>
-              <button class="btn btn-secondary" onclick="openDetailsModal('dental');">Details</button>
-            </div>
-          </div></div>
-        </div>
-
-        <div class="card plan-tile" tabindex="0">
-          <div class="row-between mb-3">
-            <div class="card-title">Vision</div>
-            <span class="badge badge-success"><span class="dot"></span>Active</span>
+          <div class="row-card__price">$14<span> / mo</span></div>
+          <div class="row-card__actions">
+            <button class="btn btn-secondary" onclick="openInsuranceCardModal('vision');">View card</button>
+            <button class="btn btn-ghost" onclick="openDetailsModal('vision');">Details</button>
           </div>
-          <div class="plan-tile-summary">
-            <span class="premium">$14<span class="meta"> / mo</span></span>
-            <span class="meta">VSP-58420-04</span>
-          </div>
-          <div class="plan-extra"><div>
-            <div class="text-sm text-muted mb-3" style="font-weight:500;">VSP Choice</div>
-            <div class="scanned-info">
-              <div class="info-field"><label>Exam copay</label><div class="value">$10</div></div>
-              <div class="info-field"><label>Frames</label><div class="value">$200 / 12 mo</div></div>
-              <div class="info-field"><label>Effective</label><div class="value">Jan 1, 2024</div></div>
-              <div class="info-field"><label>Renews</label><div class="value">Dec 31, 2026</div></div>
-            </div>
-            <div class="row mt-4" style="gap:8px;">
-              <button class="btn btn-primary" onclick="openInsuranceCardModal('vision');">View card</button>
-              <button class="btn btn-secondary" onclick="openDetailsModal('vision');">Details</button>
-            </div>
-          </div></div>
         </div>
       </div>
 
-      <h2 class="text-xl mb-4">Renewal &amp; Auto-Pay</h2>
-      <div class="card mb-6">
+      <!-- Secondary moment — regular card, not feature-moment, to keep
+           the visual hierarchy clear. -->
+      <h3 class="section-eyebrow">Looking ahead</h3>
+      <div class="card section-mb-lg" style="margin-bottom:48px;">
         <div class="row-between mb-4">
           <div>
-            <div class="card-title">Open Enrollment for 2027</div>
-            <p class="text-muted text-sm mt-2">All three plans auto-renew Dec 31, 2026 at <strong>$441/mo</strong> unless you change coverage.</p>
+            <div class="card-title">Open enrollment for 2027</div>
+            <p class="text-muted text-sm mt-2">All three plans auto-renew Dec 31, 2026 at <strong>$441/mo</strong> unless you change coverage. Window is Nov 1 – Dec 15, 2026.</p>
           </div>
           <span class="badge badge-info"><span class="dot"></span>Opens Nov 1</span>
         </div>
-        <div class="grid-4">
-          <div class="info-field"><label>Enrollment window</label><div class="value">Nov 1 – Dec 15, 2026</div></div>
-          <div class="info-field"><label>2027 effective</label><div class="value">Jan 1, 2027</div></div>
-          <div class="info-field"><label>Auto-renewal</label><div class="value">On · all 3 plans</div></div>
-          <div class="info-field"><label>Payment method</label><div class="value">Bank ···· 4408</div></div>
-        </div>
-        <div class="row mt-4" style="gap:8px;">
+        <div class="row" style="gap:8px;">
           <button class="btn btn-primary" onclick="openCompareModal();">Compare 2027 plans</button>
           <button class="btn btn-secondary" onclick="alert('Auto-renewal settings opened. (Demo)');">Manage auto-renewal</button>
           <button class="btn btn-ghost" onclick="alert('Payment method update. (Demo)');">Update payment method</button>
         </div>
       </div>
 
-      <div class="grid-2 mb-6">
+      <h3 class="section-eyebrow">Reference</h3>
+      <div class="grid-2 section-mb-lg" style="margin-bottom:48px;">
         <div class="card">
           <div class="card-header">
-            <div class="card-title">Network Providers</div>
+            <div class="card-title">Network providers</div>
             <a class="card-link" href="#" onclick="event.preventDefault();alert('Provider directory opens. (Demo)');">Search directory</a>
           </div>
           <ul class="list">
@@ -183,10 +139,6 @@
               <div class="list-item-meta">Vision</div>
             </li>
           </ul>
-          <div class="row mt-4" style="gap:8px;">
-            <button class="btn btn-secondary" onclick="alert('Find a doctor opens. (Demo)');">Find in-network</button>
-            <button class="btn btn-ghost" onclick="alert('Add provider. (Demo)');">Add provider</button>
-          </div>
         </div>
 
         <div class="card">
@@ -206,23 +158,15 @@
             <li class="list-item">
               <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/></svg></div>
               <div class="list-item-content">
-                <div class="list-item-title">Summary of Benefits</div>
+                <div class="list-item-title">Summary of benefits</div>
                 <div class="list-item-sub">BlueShield Gold PPO · 12 pages</div>
               </div>
               <a class="card-link" href="#" onclick="event.preventDefault();alert('PDF download. (Demo)');">PDF</a>
             </li>
             <li class="list-item">
-              <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M15 10h3M15 14h3"/></svg></div>
-              <div class="list-item-content">
-                <div class="list-item-title">Member ID cards (3)</div>
-                <div class="list-item-sub">Add to digital wallet</div>
-              </div>
-              <a class="card-link" href="#" onclick="event.preventDefault();alert('Cards opened. (Demo)');">Open</a>
-            </li>
-            <li class="list-item">
               <div class="list-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/></svg></div>
               <div class="list-item-content">
-                <div class="list-item-title">2025 Year-end EOB</div>
+                <div class="list-item-title">2025 year-end EOB</div>
                 <div class="list-item-sub">All claims · 24 pages</div>
               </div>
               <a class="card-link" href="#" onclick="event.preventDefault();alert('PDF download. (Demo)');">PDF</a>
@@ -236,17 +180,11 @@
               <a class="card-link" href="#" onclick="event.preventDefault();alert('PDF download. (Demo)');">PDF</a>
             </li>
           </ul>
-          <div class="row mt-4" style="gap:8px;">
-            <button class="btn btn-secondary" onclick="alert('Upload form. (Demo)');">Upload document</button>
-          </div>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">Payment History</div>
-          <a class="card-link" href="#" onclick="event.preventDefault();alert('Statements export. (Demo)');">Export statements</a>
-        </div>
+      <h3 class="section-eyebrow">Payment history</h3>
+      <div class="card section-mb-lg" style="margin-bottom:48px;">
         <table class="table">
           <thead><tr><th>Date</th><th>Plan</th><th>Method</th><th>Amount</th><th>Status</th></tr></thead>
           <tbody>
@@ -256,6 +194,26 @@
             <tr><td>Feb 14, 2026</td><td>Out-of-pocket adjustment</td><td>Bank ···· 4408</td><td>$184.50</td><td><span class="badge badge-success">Paid</span></td></tr>
           </tbody>
         </table>
+      </div>
+
+      <h3 class="section-eyebrow">Anything else</h3>
+      <div class="quick-row">
+        <a class="quick-action" href="#" onclick="event.preventDefault();alert('File a claim flow. (Demo)');">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 13h6M9 17h4"/></svg>
+          <span>File a claim</span>
+        </a>
+        <a class="quick-action" href="#" onclick="event.preventDefault();alert('Find an in-network provider. (Demo)');">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <span>Find a provider</span>
+        </a>
+        <a class="quick-action" href="#" onclick="event.preventDefault();alert('Payment method update. (Demo)');">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><line x1="3" y1="11" x2="21" y2="11"/></svg>
+          <span>Update payment</span>
+        </a>
+        <a class="quick-action" href="#" onclick="event.preventDefault();alert('Member card replacement ordered. (Demo)');">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M15 10h3M15 14h3"/></svg>
+          <span>Replace member card</span>
+        </a>
       </div>
     </main>
   </div>
