@@ -29,23 +29,21 @@
           </div>
         </div>
         <div class="feature-moment__art" aria-hidden="true">
-          <!-- Wallet stack: three overlapping pass cards in line art -->
           <svg viewBox="0 0 220 220" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="50" y="38" width="120" height="76" rx="10" stroke-opacity="0.35"/>
-            <rect x="36" y="64" width="120" height="76" rx="10" stroke-opacity="0.65"/>
-            <rect x="22" y="90" width="140" height="92" rx="12"/>
-            <rect x="36" y="106" width="22" height="16" rx="3"/>
-            <circle cx="142" cy="114" r="4"/>
-            <circle cx="153" cy="114" r="4" stroke-opacity="0.5"/>
-            <line x1="36" y1="142" x2="118" y2="142" stroke-width="2.6"/>
-            <line x1="36" y1="158" x2="92" y2="158" stroke-width="2.6"/>
+            <rect x="30" y="70" width="130" height="84" rx="12"/>
+            <rect x="46" y="92" width="22" height="16" rx="3"/>
+            <line x1="46" y1="124" x2="138" y2="124" stroke-width="2.6"/>
+            <line x1="46" y1="140" x2="106" y2="140" stroke-width="2.6"/>
+            <path d="M170 86 a18 18 0 0 1 0 50" stroke-width="3"/>
+            <path d="M182 70 a34 34 0 0 1 0 82" stroke-width="2.6"/>
+            <path d="M194 54 a50 50 0 0 1 0 114" stroke-width="2.2"/>
           </svg>
         </div>
       </section>
 
       <h3 class="section-eyebrow">Your passes</h3>
       <div class="grid-2 section-mb-lg">
-        <div class="focus-card focus-card--stripe" style="--card-stripe: #1e6091;">
+        <div class="focus-card">
           <div class="focus-card__chip focus-card__chip--success">Active</div>
           <div class="focus-card__icon focus-card__icon--blue">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 16h16M9 19v2M15 19v2"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="9" r="1"/></svg>
@@ -56,10 +54,10 @@
             <span>Balance <strong>$28.50</strong></span>
             <span>Last used May 3</span>
           </div>
-          <button class="text-link-action" onclick="openPassModal('tap');">Show QR →</button>
+          <button class="btn btn-secondary" onclick="openPassModal('tap');">Show QR</button>
         </div>
 
-        <div class="focus-card focus-card--stripe" style="--card-stripe: #2d8659;">
+        <div class="focus-card">
           <div class="focus-card__chip focus-card__chip--success">Active</div>
           <div class="focus-card__icon focus-card__icon--green">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 14h4l-3 7h14l-3-7h4z"/><path d="M11 21v-3h2v3"/></svg>
@@ -70,10 +68,10 @@
             <span>Renews <strong>Mar 14, 2027</strong></span>
             <span>7 visits this year</span>
           </div>
-          <button class="text-link-action" onclick="openPassModal('parks');">Show pass →</button>
+          <button class="btn btn-secondary" onclick="openPassModal('parks');">Show pass</button>
         </div>
 
-        <div class="focus-card focus-card--stripe" style="--card-stripe: #7e3c8a;">
+        <div class="focus-card">
           <div class="focus-card__chip focus-card__chip--success">Active</div>
           <div class="focus-card__icon focus-card__icon--purple">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-6 9 6v12"/><path d="M3 21h18M9 21V12h6v9"/></svg>
@@ -84,10 +82,10 @@
             <span>Renews <strong>Sep 12, 2026</strong></span>
             <span>3 visits this year</span>
           </div>
-          <button class="text-link-action" onclick="openPassModal('lacma');">Show pass →</button>
+          <button class="btn btn-secondary" onclick="openPassModal('lacma');">Show pass</button>
         </div>
 
-        <div class="focus-card focus-card--stripe" style="--card-stripe: #1f6fa6;">
+        <div class="focus-card">
           <div class="focus-card__chip">Expires soon</div>
           <div class="focus-card__icon focus-card__icon--blue">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16c2.5-2 5 2 7.5 0S14.5 14 17 16s4 0 5-1"/><path d="M2 20c2.5-2 5 2 7.5 0S14.5 18 17 20s4 0 5-1"/></svg>
@@ -98,7 +96,7 @@
             <span>Expires <strong>Jun 30, 2026</strong></span>
             <span>12 visits this year</span>
           </div>
-          <button class="text-link-action" onclick="openPassModal('pool');">Show pass →</button>
+          <button class="btn btn-secondary" onclick="openPassModal('pool');">Show pass</button>
         </div>
       </div>
 

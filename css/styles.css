@@ -3748,21 +3748,6 @@ body[data-page="jobs"] .tickets-hero .btn-primary { color: #1a5a5a; }
   background: color-mix(in srgb, #7e3c8a 18%, white);
   color: color-mix(in srgb, #7e3c8a 78%, black);
 }
-/* Top stripe modifier — gives a focus-card the character of an actual
-   card (transit pass, membership, etc.). Pair with a per-card
-   --card-stripe custom property: style="--card-stripe: #1e6091". */
-.focus-card--stripe { padding-top: 32px; }
-.focus-card--stripe::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 6px;
-  background: var(--card-stripe, var(--license-accent, #0d0d0d));
-  border-radius: 22px 22px 0 0;
-}
-
 .focus-card__chip {
   position: absolute;
   top: 28px;
